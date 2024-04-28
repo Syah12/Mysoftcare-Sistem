@@ -9,7 +9,6 @@
             </div>
         </div>
         <div>
-            {{-- {{ $now->format('d/m/Y') }} --}}
             @if ($companyStatusMysoftcare->isNotEmpty())
                 @foreach ($companyStatusMysoftcare as $item)
                     <button wire:click="edit({{ $item->id }})"

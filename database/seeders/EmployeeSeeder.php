@@ -29,8 +29,7 @@ class EmployeeSeeder extends Seeder
                 'education'    => Arr::random(['Diploma', 'Degree']),
                 'start_intern'    =>  now(),
                 'end_intern'    =>  now(),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'office_position'    => Arr::random(['Atas', 'Bawah']),
             ]);
         });
     }
