@@ -9,19 +9,27 @@ use Livewire\Component;
 
 class GenerateDuty extends Component
 {
-    public array $dutyRosters;
-    public int $employeeIndex = 0;
+    public array $dutyRostersTopOffice = [];
+    public array $dutyRostersBottomOffice = [];
+    public int $employeeIndexTopOffice = 0;
+    public int $employeeIndexBottomOffice = 0;
     public string $generateButtonPressed;
     public ?string $fromDate = null;
     public ?string $toDate = null;
 
     public function generate()
     {
-        $duties = Duty::all();
-        $employee = Employee::pluck('id')->toArray();
+        $this->dutyRostersTopOffice = [];
+        $this->dutyRostersBottomOffice = [];
 
-        $this->dutyRosters = [];
-        $this->employeeIndex = rand(0, count($employee) - 1);
+        $dutiesTopOffice = Duty::where('office_position', 'Atas')->get();
+        $dutiesBottomOffice = Duty::where('office_position', 'Bawah')->get();
+
+        $employeeTopOffice = Employee::where('office_position', 'Atas')->pluck('id')->toArray();
+        $employeeBottomOffice = Employee::where('office_position', 'Bawah')->pluck('id')->toArray();
+
+        $this->employeeIndexTopOffice = rand(0, count($employeeTopOffice) - 1);
+        $this->employeeIndexBottomOffice = rand(0, count($employeeBottomOffice) - 1);
 
         $startDate = $this->fromDate ? Carbon::parse($this->fromDate) : Carbon::now()->startOfMonth();
         $endDate = $this->toDate ? Carbon::parse($this->toDate) : Carbon::now()->endOfMonth();
@@ -34,14 +42,23 @@ class GenerateDuty extends Component
                 // Check if the end of the week is within the range
                 if ($weekEnd->lessThanOrEqualTo($endDate)) {
                     $dateRange = $weekStart->format('j M') . ' - ' . $weekEnd->format('j M');
-                    $existingWeek = collect($this->dutyRosters)->firstWhere('date_range', $dateRange);
 
-                    if (!$existingWeek) {
-                        $assignments = $this->generateDutyAssignments($duties, $employee);
+                    $existingWeekTopOffice = collect($this->dutyRostersTopOffice)->firstWhere('date_range', $dateRange);
+                    $existingWeekBottomOffice = collect($this->dutyRostersBottomOffice)->firstWhere('date_range', $dateRange);
 
-                        $this->dutyRosters[] = [
+                    if (!$existingWeekTopOffice) {
+                        $assignmentsTopOffice = $this->generateDutyAssignments($dutiesTopOffice, $employeeTopOffice, $this->employeeIndexTopOffice);
+                        $this->dutyRostersTopOffice[] = [
                             'date_range' => $dateRange,
-                            'duties' => $assignments,
+                            'duties' => $assignmentsTopOffice,
+                        ];
+                    }
+
+                    if (!$existingWeekBottomOffice) {
+                        $assignmentsBottomOffice = $this->generateDutyAssignments($dutiesBottomOffice, $employeeBottomOffice, $this->employeeIndexBottomOffice);
+                        $this->dutyRostersBottomOffice[] = [
+                            'date_range' => $dateRange,
+                            'duties' => $assignmentsBottomOffice,
                         ];
                     }
                 }
@@ -50,20 +67,20 @@ class GenerateDuty extends Component
             $startDate->addDay(); // Move to the next day
         }
 
-        $this->generateButtonPressed = time();
+        $this->generateButtonPressed = now()->timestamp;
     }
 
-    private function generateDutyAssignments($duties, $employee)
+    private function generateDutyAssignments($duties, $employee, &$employeeIndex)
     {
         $assignments = [];
 
         foreach ($duties as $duty) {
-            $assignments[$duty->id] = $employee[$this->employeeIndex];
+            $assignments[$duty->id] = $employee[$employeeIndex];
 
-            $this->employeeIndex++;
+            $employeeIndex++;
 
-            if ($this->employeeIndex == count($employee)) {
-                $this->employeeIndex = 0;
+            if ($employeeIndex == count($employee)) {
+                $employeeIndex = 0;
             }
         }
 
