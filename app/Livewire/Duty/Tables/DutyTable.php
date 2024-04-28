@@ -43,14 +43,6 @@ class DutyTable extends BaseDataTable
                 'Bawah' => 'Bawah'
             ]);
 
-        // Notification::make()
-        //     ->title('Berjaya')
-        //     ->body('Maklumat berjaya disimpan')
-        //     ->success()
-        //     ->color('success')
-        //     ->seconds(3)
-        //     ->send();
-
         return [
             $name,
             $officePosition,
