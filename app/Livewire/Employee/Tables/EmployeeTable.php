@@ -38,13 +38,15 @@ class EmployeeTable extends BaseDataTable
             'Staff' => 'success',
             'Intern' => 'warning',
         });
+        $officePosition = TextColumn::make('office_position')->label('Pejabat');
 
         return [
             $fullName,
             $birthDate,
             $phoneNumber,
             $gender,
-            $type
+            $type,
+            $officePosition
         ];
     }
 
@@ -85,10 +87,11 @@ class EmployeeTable extends BaseDataTable
         $education = Radio::make('education')->label('Pengajian')->required()
             ->options([
                 'Diploma' => 'Diploma',
-                'Perempuan' => 'Perempuan'
+                'Degree' => 'Degree'
             ])
             ->required(fn (Get $get) => $get('type'))
             ->hidden(fn (Get $get) => $get('type') != 'Intern');
+        $officePosition = TextInput::make('office_position');
 
         return [
             $fullName,
@@ -97,7 +100,8 @@ class EmployeeTable extends BaseDataTable
             $gender,
             $type,
             $university,
-            $education
+            $education,
+            $officePosition
         ];
 
         Notification::make()
@@ -107,12 +111,11 @@ class EmployeeTable extends BaseDataTable
             ->color('success')
             ->seconds(3)
             ->send();
-
     }
 
     public function table(Table $table): Table
     {
-        return $table->query(Employee::query()->latest())
+        return $table->query($this->getQuery())
             ->headerActions([
                 CreateAction::make()
                     ->label('Tambah Pekerja')
