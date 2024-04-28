@@ -20,12 +20,14 @@
 
         @if ($generateButtonPressed)
             <div class="overflow-x-auto">
+                <h2 class="text-lg font-bold mb-2">Top Office Duty Roster</h2>
                 <table class="table-auto min-w-full divide-y divide-gray-200">
+                    <!-- Table Header -->
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             </th>
-                            @foreach ($dutyRosters[0]['duties'] as $dutyId => $employeeName)
+                            @foreach ($dutyRostersTopOffice[0]['duties'] as $dutyId => $employeeName)
                                 @php
                                     $dutyName = App\Models\Duty::find($dutyId)->name;
                                 @endphp
@@ -35,8 +37,48 @@
                             @endforeach
                         </tr>
                     </thead>
+                    <!-- Table Body -->
                     <tbody class="bg-blue-200">
-                        @foreach ($dutyRosters as $week)
+                        @foreach ($dutyRostersTopOffice as $week)
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-medium text-black uppercase">
+                                    {{ $week['date_range'] }}</th>
+                                @foreach ($week['duties'] as $employeeId)
+                                    @php
+                                        $employee = App\Models\Employee::find($employeeId);
+                                    @endphp
+                                    <td class="px-6 py-4 whitespace-nowrap text-lg"
+                                        style="background-color: {{ $employee->colour }}">
+                                        {{ $employee->full_name }}
+                                    </td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="overflow-x-auto mt-8">
+                <h2 class="text-lg font-bold mb-2">Bottom Office Duty Roster</h2>
+                <table class="table-auto min-w-full divide-y divide-gray-200">
+                    <!-- Table Header -->
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            </th>
+                            @foreach ($dutyRostersBottomOffice[0]['duties'] as $dutyId => $employeeName)
+                                @php
+                                    $dutyName = App\Models\Duty::find($dutyId)->name;
+                                @endphp
+                                <th
+                                    class="px-6 py-3 text-left text-sm font-bold text-black bg-gray-200 uppercase tracking-wider">
+                                    {{ $dutyName }}</th>
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <!-- Table Body -->
+                    <tbody class="bg-blue-200">
+                        @foreach ($dutyRostersBottomOffice as $week)
                             <tr>
                                 <th class="px-6 py-3 text-left text-sm font-medium text-black uppercase">
                                     {{ $week['date_range'] }}</th>

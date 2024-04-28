@@ -15,7 +15,13 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
-        collect(['Syahmi', 'Rahman', 'Syazwan', 'Izzat', 'Amar'])->each(function ($i) {
+        $names = [
+            'Amir', 'Alya', 'Haziq', 'Siti', 'Ahmad', 'Nurul', 'Imran', 'Nadia', 'Firdaus', 'Nor',
+            'Aziz', 'Sofia', 'Syafiq', 'Zainab', 'Aiman', 'Farah', 'Izzat', 'Aishah', 'Haris', 'Rina',
+            'Danial', 'Zara', 'Akmal', 'Amira', 'Hakim', 'Azlina', 'Asyraf', 'Nur', 'Fahmi', 'Aina'
+        ];
+
+        collect($names)->each(function ($i) {
             $birthDate = Carbon::now()->subYears(rand(18, 40))->subDays(rand(0, 365));
             $phoneNumber = "013-" . rand(1000000, 9999999);
 
