@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('start_intern')->nullable();
             $table->string('end_intern')->nullable();
             $table->string('office_position')->nullable();
+            $table->string('colour')->nullable();
             $table->timestamps();
         });
     }
