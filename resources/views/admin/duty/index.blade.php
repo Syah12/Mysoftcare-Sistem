@@ -1,3 +1,4 @@
 <x-admin-layout>
-    Jadual Bertugas
+    <livewire:duty.pages.index-page />
+    <livewire:duty.partials.generate-duty />
 </x-admin-layout>

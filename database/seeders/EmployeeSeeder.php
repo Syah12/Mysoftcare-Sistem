@@ -15,12 +15,12 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
-        collect(range(1, 10))->each(function ($i) {
+        collect(['Syahmi', 'Rahman', 'Syazwan', 'Izzat', 'Amar'])->each(function ($i) {
             $birthDate = Carbon::now()->subYears(rand(18, 40))->subDays(rand(0, 365));
             $phoneNumber = "013-" . rand(1000000, 9999999);
 
             Employee::create([
-                'full_name' => Arr::random(['Syahmi', 'Rahman', 'Syazwan', 'Izzat', 'Amar']),
+                'full_name' => $i,
                 'birth_date' => $birthDate,
                 'phone_number'    => $phoneNumber,
                 'gender'    => Arr::random(['Lelaki', 'Perempuan']),
