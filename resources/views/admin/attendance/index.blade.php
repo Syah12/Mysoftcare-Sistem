@@ -11,4 +11,8 @@
         </h2>
         <p>Hi, {{ Auth::user()->name }}.</p>
     </x-slot>
+
+    <div class="mt-4">
+        <livewire:attendance.tables.attendance-table />
+    </div>
 </x-admin-layout>

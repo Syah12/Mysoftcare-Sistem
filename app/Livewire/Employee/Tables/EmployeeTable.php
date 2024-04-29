@@ -31,7 +31,7 @@ class EmployeeTable extends BaseDataTable
         $fullName = TextColumn::make('full_name')->label('Name Penuh')->searchable()->sortable();
         $birthDate = TextColumn::make('birth_date')->label('Tarikh Lahir')->sortable();
         $phoneNumber = TextColumn::make('phone_number')->label('No. Telefon')->sortable();
-        $gender = TextColumn::make('gender')->label('Jantina')->sortable()->badge()->color(fn (string $state): string => match ($state) {
+        $gender = TextColumn::make('gender')->label('Jantina')->sortable()->color(fn (string $state): string => match ($state) {
             'Lelaki' => 'info',
             'Perempuan' => 'danger',
         });
@@ -39,7 +39,10 @@ class EmployeeTable extends BaseDataTable
             'Staff' => 'success',
             'Intern' => 'warning',
         });
-        $officePosition = TextColumn::make('office_position')->label('Pejabat');
+        $officePosition = TextColumn::make('office_position')->label('Pejabat')->sortable()->badge()->color(fn (string $state): string => match ($state) {
+            'Bawah' => 'danger',
+            'Atas' => 'info',
+        });
 
         return [
             $fullName,
@@ -92,8 +95,13 @@ class EmployeeTable extends BaseDataTable
             ])
             ->required(fn (Get $get) => $get('type'))
             ->hidden(fn (Get $get) => $get('type') != 'Intern');
-        $officePosition = TextInput::make('office_position');
-        $colour = ColorPicker::make('colour');
+        $officePosition = Select::make('office_position')->label('Posisi Pejabat')->helperText('Kedudukan pekerja dalam pejabat sama ada atas atau bawah')
+            ->options([
+                'Atas' => 'Atas',
+                'Bawah' => 'Bawah',
+            ])
+            ->native(false);
+        // $colour = ColorPicker::make('colour');
 
         return [
             $fullName,
@@ -104,7 +112,7 @@ class EmployeeTable extends BaseDataTable
             $university,
             $education,
             $officePosition,
-            $colour
+            // $colour
         ];
 
         Notification::make()
@@ -135,6 +143,8 @@ class EmployeeTable extends BaseDataTable
                     ->form($this->getFormFields())
             ])
             ->columns($this->getColumns())
+            ->emptyStateHeading('Tiada Pekerja')
+            ->emptyStateDescription('Senarai pekerja akan dipaparkan di sini')
             ->actions([
                 ViewAction::make()
                     ->icon(false)

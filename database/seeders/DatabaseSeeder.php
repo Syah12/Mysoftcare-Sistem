@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             EmployeeSeeder::class,
             CompanyStatusSeeder::class,
             DutySeeder::class,
+            // AttendanceSeeder::class
         ]);
     }
 }
