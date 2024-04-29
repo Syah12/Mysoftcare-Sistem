@@ -14,11 +14,26 @@ class DutySeeder extends Seeder
      */
     public function run(): void
     {
-        collect(['Sampah', 'Surau', 'Lantai', 'Tangga', 'Cermin'])->each(function ($i) {
+        $atasDuties = [
+            'Section A', 'Section B', 'Cermin + Partition', 'Meja Meeting',
+            'Sampah', 'Toilet', 'Surau', 'Tangga', 'Filter', 'Mop Section A', 'Mop Section B'
+        ];
+        $bawahDuties = [
+            'Section A', 'Section B', 'Cermin', 'Meja', 'Sampah', 'Toilet',
+            'Mop Section A', 'Mop Section B', 'Filter'
+        ];
+
+        foreach ($atasDuties as $duty) {
             Duty::create([
-                'name' => $i,
-                'office_position' => Arr::random(['Atas', 'Bawah']),
+                'name' => $duty,
+                'office_position' => 'Atas',
             ]);
-        });
+        }
+        foreach ($bawahDuties as $duty) {
+            Duty::create([
+                'name' => $duty,
+                'office_position' => 'Bawah',
+            ]);
+        }
     }
 }

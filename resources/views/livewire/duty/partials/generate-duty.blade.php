@@ -37,8 +37,9 @@
                                         $dutyName = App\Models\Duty::find($dutyId)->name;
                                     @endphp
                                     <th
-                                        class="px-6 py-3 text-left text-sm font-bold text-black bg-gray-100 uppercase tracking-wider text-center">
-                                        {{ $dutyName }}</th>
+                                        class="px-6 py-3 text-center text-sm font-bold text-black bg-gray-100 uppercase tracking-wider">
+                                        {{ $dutyName }}
+                                    </th>
                                 @endforeach
                             </tr>
                         </thead>
@@ -46,13 +47,15 @@
                         <tbody class="bg-blue-100">
                             @foreach ($dutyRostersTopOffice as $week)
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-sm font-medium text-black uppercase">
-                                        {{ $week['date_range'] }}</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-sm font-medium text-black uppercase whitespace-nowrap">
+                                        {{ $week['date_range'] }}
+                                    </th>
                                     @foreach ($week['duties'] as $employeeId)
                                         @php
                                             $employee = App\Models\Employee::find($employeeId);
                                         @endphp
-                                        <td class="px-6 py-4 whitespace-nowrap"
+                                        <td class="px-6 py-4 text-center whitespace-nowrap"
                                             style="background-color: {{ $employee->colour }}">
                                             {{ $employee->full_name }}
                                         </td>
@@ -80,8 +83,9 @@
                                         $dutyName = App\Models\Duty::find($dutyId)->name;
                                     @endphp
                                     <th
-                                        class="px-6 py-3 text-left text-sm font-bold text-black bg-gray-100 uppercase tracking-wider text-center">
-                                        {{ $dutyName }}</th>
+                                        class="px-6 py-3 text-center text-sm font-bold text-black bg-gray-100 uppercase tracking-wider">
+                                        {{ $dutyName }}
+                                    </th>
                                 @endforeach
                             </tr>
                         </thead>
@@ -89,13 +93,15 @@
                         <tbody class="bg-blue-100">
                             @foreach ($dutyRostersBottomOffice as $week)
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-sm font-medium text-black uppercase">
-                                        {{ $week['date_range'] }}</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-sm font-medium text-black uppercase whitespace-nowrap">
+                                        {{ $week['date_range'] }}
+                                    </th>
                                     @foreach ($week['duties'] as $employeeId)
                                         @php
                                             $employee = App\Models\Employee::find($employeeId);
                                         @endphp
-                                        <td class="px-6 py-4 whitespace-nowrap"
+                                        <td class="px-6 py-4 text-center whitespace-nowrap"
                                             style="background-color: {{ $employee->colour }}">
                                             {{ $employee->full_name }}
                                         </td>
