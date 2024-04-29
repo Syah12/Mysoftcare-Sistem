@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class DutyScheduleController extends Controller
 {
     public function index()
     {
+        Gate::authorize(config('mysoftcare.permissions.admin.route.dutyRosterIndex'));
         return view('admin.duty.index');
     }
 

@@ -29,6 +29,7 @@ class EmployeeSeeder extends Seeder
             $colors = $this->generateRandomColors(30);
 
             Employee::create([
+                'user_id' => null,
                 'full_name' => $i,
                 'birth_date' => $birthDate,
                 'phone_number'    => $phoneNumber,

@@ -14,6 +14,10 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class, 'user_id')
+                ->nullable()
+                ->constrained(User::getModel()->getTable())
+                ->onDelete('cascade');
             $table->string('full_name')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('phone_number')->nullable();

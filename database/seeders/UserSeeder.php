@@ -18,6 +18,18 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('pswd123')
-        ]);
+        ])->assignRole(config('mysoftcare.roles.admin'));
+
+        User::factory()->create([
+            'name' => 'Staff',
+            'email' => 'staff@gmail.com',
+            'password' => Hash::make('pswd123')
+        ])->assignRole(config('mysoftcare.roles.staff'));
+
+        User::factory()->create([
+            'name' => 'Intern',
+            'email' => 'intern@gmail.com',
+            'password' => Hash::make('pswd123')
+        ])->assignRole(config('mysoftcare.roles.intern'));
     }
 }
