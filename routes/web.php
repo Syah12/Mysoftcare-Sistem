@@ -17,6 +17,7 @@ Route::middleware([
     // })->name('dashboard');
 
     Route::get('/papan_utama', [Admin\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/kalendar', [Admin\CalendarController::class, 'index'])->name('calendar.index');
     Route::get('/pekerja', [Admin\EmployeeController::class, 'index'])->name('employee.index');
     Route::get('/kehadiran', [Admin\AttendanceController::class, 'index'])->name('attendance.index');
     Route::get('/jadual_bertugas', [Admin\DutyScheduleController::class, 'index'])->name('duty.index');
