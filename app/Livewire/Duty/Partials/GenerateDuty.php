@@ -17,6 +17,16 @@ class GenerateDuty extends Component
     public ?string $fromDate = null;
     public ?string $toDate = null;
 
+    public function print()
+    {
+        $query = [
+            'dutyRostersTopOffice'   => $this->dutyRostersTopOffice,
+            'dutyRostersBottomOffice'   => $this->dutyRostersBottomOffice,
+        ];
+
+        $this->dispatch('print', route('duty.print', $query));
+    }
+
     public function generate()
     {
         $this->dutyRostersTopOffice = [];

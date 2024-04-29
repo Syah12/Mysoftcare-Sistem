@@ -105,6 +105,12 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="flex flex-row-reverse py-5">
+                    <button wire:click="print()"
+                        class="px-4 py-2 font-medium text-white bg-blue-500 rounded-md hover:bg-blue-700">Cetak
+                        PDF</button>
+                </div>
             @endif
         </div>
         {{-- <div class="flex flex-col items-center space-y-4">

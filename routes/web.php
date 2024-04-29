@@ -20,6 +20,7 @@ Route::middleware([
     Route::get('/pekerja', [Admin\EmployeeController::class, 'index'])->name('employee.index');
     Route::get('/kehadiran', [Admin\AttendanceController::class, 'index'])->name('attendance.index');
     Route::get('/jadual_bertugas', [Admin\DutyScheduleController::class, 'index'])->name('duty.index');
+    Route::get('/pdf-jadual-bertugas', [Admin\DutyScheduleController::class, 'print'])->name('duty.print');
 
     // require __DIR__ . '/web/admin.php';
 });

@@ -52,6 +52,9 @@
     @livewire('notifications')
     @filamentScripts
 
+    <script>
+        window.addEventListener('print', event => window.open(event.detail));
+    </script>
 </body>
 
 </html>
