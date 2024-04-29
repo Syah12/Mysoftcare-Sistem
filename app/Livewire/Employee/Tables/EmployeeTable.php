@@ -4,6 +4,7 @@ namespace App\Livewire\Employee\Tables;
 
 use App\Livewire\BaseDataTable;
 use App\Models\Employee;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
@@ -92,6 +93,7 @@ class EmployeeTable extends BaseDataTable
             ->required(fn (Get $get) => $get('type'))
             ->hidden(fn (Get $get) => $get('type') != 'Intern');
         $officePosition = TextInput::make('office_position');
+        $colour = ColorPicker::make('colour');
 
         return [
             $fullName,
@@ -101,7 +103,8 @@ class EmployeeTable extends BaseDataTable
             $type,
             $university,
             $education,
-            $officePosition
+            $officePosition,
+            $colour
         ];
 
         Notification::make()
