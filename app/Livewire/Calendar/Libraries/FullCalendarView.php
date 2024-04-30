@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Calendar\Tables;
+namespace App\Livewire\Calendar\Libraries;
 
 use App\Models\Calendar;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
-class CalendarTable extends Component
+class FullCalendarView extends Component
 {
 
     public function newEvent($title, $startDate, $endDate)
@@ -60,7 +60,7 @@ class CalendarTable extends Component
             ];
         }
 
-        return view('livewire.calendar.tables.calendar-table', [
+        return view('livewire.calendar.libraries.full-calendar-view', [
             'events' => $events
         ]);
     }

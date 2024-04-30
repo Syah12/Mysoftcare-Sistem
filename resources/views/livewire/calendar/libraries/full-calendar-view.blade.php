@@ -29,7 +29,9 @@
                 },
                 eventClick: function(data) {
                     Livewire.dispatch('show', {
-                        eventId: data.event.id
+                        eventId: data.event.id,
+                        startDate: null,
+                        endDate: null,
                     });
                 }
             });
