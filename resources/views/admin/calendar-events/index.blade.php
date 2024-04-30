@@ -14,6 +14,7 @@
 
     <div class="mt-4">
         <livewire:calendar-events.modals.form-modal />
+        <livewire:calendar-events.tables.calendar-event-table />
         <livewire:calendar-events.libraries.full-calendar-view />
     </div>
 </x-admin-layout>
