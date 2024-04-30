@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Calendar\Libraries;
+namespace App\Livewire\CalendarEvents\Libraries;
 
-use App\Models\Calendar;
+use App\Models\CalendarEvent;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
@@ -24,7 +24,7 @@ class FullCalendarView extends Component
             ]
         )->validate();
 
-        $event = Calendar::create(
+        $event = CalendarEvent::create(
             $validated
         );
 
@@ -44,14 +44,14 @@ class FullCalendarView extends Component
             ]
         )->validate();
 
-        Calendar::findOrFail($id)->update($validated);
+        CalendarEvent::findOrFail($id)->update($validated);
     }
 
     public function render()
     {
         $events = [];
 
-        foreach (Calendar::all() as $event) {
+        foreach (CalendarEvent::all() as $event) {
             $events[] =  [
                 'id' => $event->id,
                 'title' => $event->title,
@@ -60,7 +60,7 @@ class FullCalendarView extends Component
             ];
         }
 
-        return view('livewire.calendar.libraries.full-calendar-view', [
+        return view('livewire.calendar-events.libraries.full-calendar-view', [
             'events' => $events
         ]);
     }

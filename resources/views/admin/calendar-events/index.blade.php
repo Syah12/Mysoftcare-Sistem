@@ -13,7 +13,7 @@
     </x-slot>
 
     <div class="mt-4">
-        <livewire:calendar.modals.form-modal />
-        <livewire:calendar.libraries.full-calendar-view />
+        <livewire:calendar-events.modals.form-modal />
+        <livewire:calendar-events.libraries.full-calendar-view />
     </div>
 </x-admin-layout>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Calendar\Modals;
+namespace App\Livewire\CalendarEvents\Modals;
 
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -17,11 +17,11 @@ class FormModal extends Component
         $this->eventId = $eventId;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
-        $this->dispatch('open-modal', id: 'calendar-form-modal');
+        $this->dispatch('open-modal', id: 'calendar-event-form-modal');
     }
 
     public function render()
     {
-        return view('livewire.calendar.modals.form-modal');
+        return view('livewire.calendar-events.modals.form-modal');
     }
 }

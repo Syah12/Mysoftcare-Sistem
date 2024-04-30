@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Livewire\Calendar\Forms;
+namespace App\Livewire\CalendarEvents\Forms;
 
 use App\Livewire\BaseForm;
-use App\Models\Calendar;
+use App\Models\CalendarEvent;
 use Carbon\Carbon;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 
-class CalendarForm extends BaseForm
+class CalendarEventForm extends BaseForm
 {
     public ?int $eventId = null;
     public ?string $startDate = null;
     public ?string $endDate = null;
-    public ?Calendar $calendarEvent;
+    public ?CalendarEvent $calendarEvent;
 
     public function mount()
     {
-        $this->calendarEvent = Calendar::findOrNew($this->eventId);
+        $this->calendarEvent = CalendarEvent::findOrNew($this->eventId);
 
         if ($this->startDate && $this->endDate) {
             $endDate = Carbon::parse($this->endDate)->subDay(1);
@@ -78,6 +78,6 @@ class CalendarForm extends BaseForm
             ->seconds(3)
             ->send();
 
-        return to_route('calendar.index'); /* todo: toroute */
+        return to_route('calendar-event.index'); /* todo: toroute */
     }
 }
