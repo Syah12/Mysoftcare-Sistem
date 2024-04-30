@@ -16,5 +16,15 @@ return [
                 'roleIndex' => 'admin.role.index',
             ],
         ],
+        'staff'     => [
+            'route' => [
+                'dashboardIndex' => 'admin.dashboard.index',
+            ],
+        ],
+        'intern'     => [
+            'route' => [
+                'dashboardIndex' => 'admin.dashboard.index',
+            ],
+        ],
     ]
 ];

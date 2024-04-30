@@ -20,12 +20,20 @@ class PermissionSeeder extends Seeder
 
         collect($roles)->each(function ($role) {
             $this->adminPermissions($role);
+            $this->userPermissions($role);
         });
     }
 
     private function adminPermissions(Role $role)
     {
         if ($role->name == config('mysoftcare.roles.admin')) {
+            $role->givePermissionTo($this->all()->toArray());
+        }
+    }
+
+    private function userPermissions(Role $role)
+    {
+        if ($role->name == config('mysoftcare.roles.staff') || $role->name == config('mysoftcare.roles.intern')) {
             $role->givePermissionTo($this->all()->toArray());
         }
     }

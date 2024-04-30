@@ -22,10 +22,10 @@
 <body>
 
     <div class="grid md:grid-cols-6 h-screen overflow-hidden">
-        <div>
+        <div class="md:block hidden">
             <x-mysoftcare.sidebar.content />
         </div>
-        <div class="col-span-5 overflow-x-auto bg-gray-100">
+        <div class="md:col-span-5 sm:col-span-6 overflow-x-auto bg-gray-100">
             <div>
                 @livewire('navigation-menu')
 

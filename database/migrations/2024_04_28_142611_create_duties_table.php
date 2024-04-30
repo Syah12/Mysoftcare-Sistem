@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('duties', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('gender')->nullable();
             $table->string('office_position')->nullable();
             $table->timestamps();
         });

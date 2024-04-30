@@ -12,9 +12,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('admin.dashboard.index');
-    // })->name('dashboard');
 
     Route::get('/papan_utama', [Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/kalendar', [Admin\CalendarController::class, 'index'])->name('calendar.index');

@@ -11,11 +11,14 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        Gate::authorize(config('mysoftcare.permissions.admin.route.dashboardIndex'));
-        $employeesCount = Employee::count();
-        return view('admin.dashboard.index', compact([
-            'employeesCount'
-        ]));
+        if (auth()->user()->hasRole(config('mysoftcare.roles.admin'))) {
+            Gate::authorize(config('mysoftcare.permissions.admin.route.dashboardIndex'));
+            $employeesCount = Employee::count();
+            return view('admin.dashboard.index', compact([
+                'employeesCount'
+            ]));
+        } else {
+            return view('user.dashboard.index');
+        }
     }
-
 }

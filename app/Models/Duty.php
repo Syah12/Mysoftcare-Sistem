@@ -11,6 +11,7 @@ class Duty extends Model
 
     protected $fillable = [
         'name',
+        'gender',
         'office_position',
     ];
 }

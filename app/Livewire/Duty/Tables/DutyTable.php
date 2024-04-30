@@ -23,6 +23,10 @@ class DutyTable extends BaseDataTable
     public function getColumns()
     {
         $name = TextColumn::make('name')->label('Tugas')->sortable();
+        $gender = TextColumn::make('gender')->label('Tugas Untuk?')->sortable()->color(fn (string $state): string => match ($state) {
+            'Lelaki' => 'info',
+            'Perempuan' => 'danger',
+        });
         $officePosition = TextColumn::make('office_position')->label('Posisi Pejabat')->sortable()->badge()->color(fn (string $state): string => match ($state) {
             'Atas' => 'info',
             'Bawah' => 'danger',
@@ -30,6 +34,7 @@ class DutyTable extends BaseDataTable
 
         return [
             $name,
+            $gender,
             $officePosition,
         ];
     }
@@ -37,6 +42,11 @@ class DutyTable extends BaseDataTable
     public function getFormFields()
     {
         $name = TextInput::make('name')->label('Tugas')->required();
+        $gender = Radio::make('gender')->label('Tugas Untuk?')->helperText('Tugasan sesuai untuk lelaki atau perempuan?')->required()
+            ->options([
+                'Lelaki' => 'Lelaki',
+                'Perempuan' => 'Perempuan'
+            ]);
         $officePosition = Radio::make('office_position')->label('Posisi Pejabat')->required()
             ->options([
                 'Atas' => 'Atas',
@@ -45,6 +55,7 @@ class DutyTable extends BaseDataTable
 
         return [
             $name,
+            $gender,
             $officePosition,
         ];
     }
