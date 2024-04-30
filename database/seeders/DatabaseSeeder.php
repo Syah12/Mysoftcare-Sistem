@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             UserSeeder::class,
             EmployeeSeeder::class,
+            InternSeeder::class,
             CompanyStatusSeeder::class,
             DutySeeder::class,
             // AttendanceSeeder::class

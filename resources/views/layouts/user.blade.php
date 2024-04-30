@@ -1,44 +1,60 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        <!-- Styles -->
-        @filamentStyles
-    </head>
-    <body class="font-sans antialiased">
-        <x-banner />
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+    <!-- Styles -->
+    @filamentStyles
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+</head>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+<body>
+
+    <div class="grid md:grid-cols-6 h-screen overflow-hidden">
+        <div class="md:block hidden">
+            <x-mysoftcare.sidebar.content />
         </div>
+        <div class="md:col-span-5 sm:col-span-6 overflow-x-auto bg-gray-100">
+            <div>
+                @livewire('navigation-menu')
 
-        @stack('modals')
+                <div class="py-7 px-6">
+                    @if (isset($breadcrumb))
+                        <div>
+                            {{ $breadcrumb }}
+                        </div>
+                    @endif
 
-        @filamentScripts
-    </body>
+                    @if (isset($welcome))
+                        <div>
+                            {{ $welcome }}
+                        </div>
+                    @endif
+
+                    {{ $slot }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @livewire('notifications')
+    @filamentScripts
+
+    <script>
+        window.addEventListener('print', event => window.open(event.detail));
+    </script>
+</body>
+
 </html>

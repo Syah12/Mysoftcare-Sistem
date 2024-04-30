@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CompanyStatus;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -18,7 +19,10 @@ class DashboardController extends Controller
                 'employeesCount'
             ]));
         } else {
-            return view('user.dashboard.index');
+            $companyStatus = CompanyStatus::all();
+            return view('user.dashboard.index', compact(
+                'companyStatus'
+            ));
         }
     }
 }

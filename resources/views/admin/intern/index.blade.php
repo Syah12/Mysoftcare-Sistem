@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="breadcrumb">
         <h2 class="font-medium py-2">
-            {{ __('Staf') }}
+            {{ __('Pelajar Industri') }}
         </h2>
     </x-slot>
 
@@ -13,6 +13,6 @@
     </x-slot>
 
     <div class="mt-4">
-        <livewire:employee.tables.employee-table />
+        <livewire:intern.tables.intern-table />
     </div>
 </x-admin-layout>

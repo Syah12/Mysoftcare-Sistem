@@ -17,10 +17,10 @@
 
         <div class="grid grid-cols-2 gap-6">
             <x-mysoftcare.general.stats-card route="employee.index" img="{{ asset('img/new-employee.png') }}"
-                name="Bilagan Pekerja" description="Klik di sini untuk pergi ke halaman pekerja"
+                name="Bilangan Pekerja" description="Klik di sini untuk pergi ke halaman pekerja"
                 value="{{ $employeesCount }}" />
             <x-mysoftcare.general.stats-card route="attendance.index" img="{{ asset('img/attendance.png') }}"
-                name="Bilagan Kehadiran" description="Klik di sini untuk pergi ke halaman kehadiran" value="0" />
+                name="Bilangan Kehadiran" description="Klik di sini untuk pergi ke halaman kehadiran" value="0" />
         </div>
     </div>
 </x-admin-layout>

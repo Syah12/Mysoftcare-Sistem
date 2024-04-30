@@ -129,7 +129,7 @@ class EmployeeTable extends BaseDataTable
         return $table->query($this->getQuery())
             ->headerActions([
                 CreateAction::make()
-                    ->label('Tambah Pekerja')
+                    ->label('Tambah Staf')
                     ->icon('heroicon-s-plus')
                     ->modalHeading('Maklumat Pekerja')
                     ->modalDescription('Tambah Maklumat Pekerja')
