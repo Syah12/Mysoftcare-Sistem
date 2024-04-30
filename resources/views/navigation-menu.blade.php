@@ -7,18 +7,18 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="font-semibold text-2xl text-blue-400">
                         {{-- <x-application-mark class="block h-9 w-auto" /> --}}
-                        Mysoftcare
+                        {{-- Mysoftcare --}}
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    {{-- <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Papan Utama') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                         {{ __('Profil') }}
-                    </x-nav-link>
+                    </x-nav-link> --}}
                 </div>
             </div>
 

@@ -4,11 +4,11 @@ namespace App\Livewire\CalendarEvents\Libraries;
 
 use App\Models\CalendarEvent;
 use Illuminate\Support\Facades\Validator;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class FullCalendarView extends Component
 {
-
     public function newEvent($title, $startDate, $endDate)
     {
         $validated = Validator::make(

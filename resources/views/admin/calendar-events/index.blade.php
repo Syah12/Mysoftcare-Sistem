@@ -12,9 +12,9 @@
         <p>Hi, {{ Auth::user()->name }}.</p>
     </x-slot>
 
-    <div class="mt-4">
+    <div>
         <livewire:calendar-events.modals.form-modal />
-        <livewire:calendar-events.tables.calendar-event-table />
-        <livewire:calendar-events.libraries.full-calendar-view />
+
+        <livewire:calendar-events.pages.index-page />
     </div>
 </x-admin-layout>

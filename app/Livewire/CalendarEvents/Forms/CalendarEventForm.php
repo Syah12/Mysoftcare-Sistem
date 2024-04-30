@@ -9,17 +9,19 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Route;
 
 class CalendarEventForm extends BaseForm
 {
-    public ?int $eventId = null;
+    // public ?int $eventId = null;
     public ?string $startDate = null;
     public ?string $endDate = null;
     public ?CalendarEvent $calendarEvent;
 
     public function mount()
     {
-        $this->calendarEvent = CalendarEvent::findOrNew($this->eventId);
+        $this->calendarEvent ??= new CalendarEvent();
+        // $this->calendarEvent = CalendarEvent::findOrNew($this->eventId);
 
         if ($this->startDate && $this->endDate) {
             $endDate = Carbon::parse($this->endDate)->subDay(1);
@@ -27,7 +29,7 @@ class CalendarEventForm extends BaseForm
             $this->endDate = $endDate;
         }
 
-        if (!$this->eventId && !$this->calendarEvent->exists) {
+        if (!$this->calendarEvent->exists) {
             $this->data = [
                 'title' => null,
                 'start_time' => $this->startDate,
@@ -78,6 +80,6 @@ class CalendarEventForm extends BaseForm
             ->seconds(3)
             ->send();
 
-        return to_route('calendar-event.index'); /* todo: toroute */
+        return to_route('calendar-event.index');
     }
 }
