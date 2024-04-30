@@ -16,7 +16,7 @@ class Calendar extends Model
     ];
 
     protected $casts = [
-        'start_time' => 'date',
-        'end_time' => 'date',
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
     ];
 }

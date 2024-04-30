@@ -7,7 +7,7 @@
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 // initialView: 'timeGridWeek',
-                timeZone: 'UTC',
+                timeZone: 'Asia/Kuala_Lumpur',
                 editable: true,
                 selectable: true,
                 events: @json($events),
@@ -16,7 +16,7 @@
                     if (!event_name) {
                         return;
                     }
-                    @this.newEvent(event_name, data.start.toISOString(), data.end.toISOString())
+                    @this.newEvent(event_name, data.start, data.end)
                         .then(
                             function(id) {
                                 calendar.addEvent({
@@ -27,21 +27,20 @@
                                 });
                                 calendar.unselect();
                             });
-
                 },
                 eventDrop: function(data) {
                     console.log(data.event.id)
                     @this.updateEvent(
                         data.event.id,
                         data.event.title,
-                        data.event.start.toISOString(),
-                        data.event.end.toISOString()).then(function() {
+                        data.event.start,
+                        data.event.end
+                    ).then(function() {
                         alert('moved event');
                     })
                 },
             });
             calendar.render();
-
         });
     </script>
 </div>

@@ -55,8 +55,8 @@ class CalendarTable extends Component
             $events[] =  [
                 'id' => $event->id,
                 'title' => $event->title,
-                'start' => $event->start_time->toIso8601String(),
-                'end' => $event->end_time->toIso8601String(),
+                'start' => $event->start_time,
+                'end' => $event->end_time,
             ];
         }
 
