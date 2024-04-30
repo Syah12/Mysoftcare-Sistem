@@ -1,15 +1,26 @@
-<x-user-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+<x-admin-layout>
+    <x-slot name="breadcrumb">
+        <h2 class="font-medium py-2">
+            {{ __('Papan Utama') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi ipsam ducimus, enim assumenda voluptatum nesciunt delectus laborum fuga libero, quam pariatur mollitia quaerat tempora! Exercitationem dignissimos maxime voluptatem minima adipisci.
-            </div>
-        </div>
+    <x-slot name="welcome">
+        <h2 class="font-semibold text-2xl pt-4">
+            Selamat datang ke <span class="text-blue-400">Mysoftcare</span>
+        </h2>
+        <p>Hi, {{ Auth::user()->name }}.</p>
+    </x-slot>
+
+    <div class="mt-4">
+        {{-- <livewire:employee.tables.employee-table /> --}}
+        @foreach ($companyStatus as $item)
+            @if ($item->flag == false)
+                kerja seperti biasa
+            @else
+                Cuti
+                {{ $item->description }}
+            @endif
+        @endforeach
     </div>
-</x-user-layout>
+</x-admin-layout>

@@ -16,6 +16,7 @@ Route::middleware([
     Route::get('/papan_utama', [Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/kalendar', [Admin\CalendarController::class, 'index'])->name('calendar.index');
     Route::get('/pekerja', [Admin\EmployeeController::class, 'index'])->name('employee.index');
+    Route::get('/pelajar_industri', [Admin\InternController::class, 'index'])->name('intern.index');
     Route::get('/kehadiran', [Admin\AttendanceController::class, 'index'])->name('attendance.index');
     Route::get('/jadual_bertugas', [Admin\DutyScheduleController::class, 'index'])->name('duty.index');
     Route::get('/pdf-jadual-bertugas', [Admin\DutyScheduleController::class, 'print'])->name('duty.print');
