@@ -15,19 +15,12 @@ class AttendanceTable extends BaseDataTable
 {
     public function getQuery()
     {
-
         return Attendance::query()->whereDate('date', Carbon::now());
     }
 
     public function getColumns()
     {
-        $fullName = TextColumn::make('employee.full_name')->label('Name Penuh')->searchable()->sortable()
-            ->extraAttributes(function (Employee $employee) {
-                return [
-                    'wire:click' => 'mountTableAction("settle", ' . $employee->getKey() . ')',
-                    'class' => 'cursor-pointer',
-                ];
-            });
+        $fullName = TextColumn::make('employee.full_name')->label('Name Penuh')->searchable()->sortable();
         $phoneNumber = TextColumn::make('employee.phone_number')->label('No. Telefon')->sortable();
         $type = TextColumn::make('employee.type')->label('Pekerja?')->sortable()->badge()->color(fn (string $state): string => match ($state) {
             'Staff' => 'success',
