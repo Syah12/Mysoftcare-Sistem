@@ -12,6 +12,8 @@
         <p>Hi, {{ Auth::user()->name }}.</p>
     </x-slot>
 
+    <livewire:calendar.modals.form-modal />
+
     <div class="mt-4">
         <livewire:calendar.tables.calendar-table />
     </div>

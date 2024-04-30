@@ -34,11 +34,16 @@
                         data.event.id,
                         data.event.title,
                         data.event.start,
-                        data.event.end
-                    ).then(function() {
+                        data.event.end).then(function() {
                         alert('moved event');
                     })
                 },
+                eventClick: function(data) {
+                    console.log(data.event.id);
+                    Livewire.dispatch('show', {
+                        eventId: data.event.id
+                    });
+                }
             });
             calendar.render();
         });
