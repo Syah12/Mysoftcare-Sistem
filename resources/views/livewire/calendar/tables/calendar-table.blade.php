@@ -12,24 +12,13 @@
                 selectable: true,
                 events: @json($events),
                 select: function(data) {
-                    var event_name = prompt('Event Name:');
-                    if (!event_name) {
-                        return;
-                    }
-                    @this.newEvent(event_name, data.start, data.end)
-                        .then(
-                            function(id) {
-                                calendar.addEvent({
-                                    id: id,
-                                    title: event_name,
-                                    start: data.startStr,
-                                    end: data.endStr,
-                                });
-                                calendar.unselect();
-                            });
+                    Livewire.dispatch('show', {
+                        eventId: null,
+                        startDate: data.start,
+                        endDate: data.end,
+                    });
                 },
                 eventDrop: function(data) {
-                    console.log(data.event.id)
                     @this.updateEvent(
                         data.event.id,
                         data.event.title,
@@ -39,7 +28,6 @@
                     })
                 },
                 eventClick: function(data) {
-                    console.log(data.event.id);
                     Livewire.dispatch('show', {
                         eventId: data.event.id
                     });

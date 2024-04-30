@@ -8,11 +8,15 @@ use Livewire\Component;
 class FormModal extends Component
 {
     public ?int $eventId = null;
+    public ?string $startDate = null;
+    public ?string $endDate = null;
 
     #[On('show')]
-    public function show($eventId)
+    public function show($eventId, $startDate, $endDate)
     {
         $this->eventId = $eventId;
+        $this->startDate = $startDate;
+        $this->endDate = $endDate;
         $this->dispatch('open-modal', id: 'calendar-form-modal');
     }
 

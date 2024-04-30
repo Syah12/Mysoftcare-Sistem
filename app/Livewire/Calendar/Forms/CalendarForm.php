@@ -4,6 +4,7 @@ namespace App\Livewire\Calendar\Forms;
 
 use App\Livewire\BaseForm;
 use App\Models\Calendar;
+use Carbon\Carbon;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -12,28 +13,49 @@ use Filament\Notifications\Notification;
 class CalendarForm extends BaseForm
 {
     public ?int $eventId = null;
+    public ?string $startDate = null;
+    public ?string $endDate = null;
     public ?Calendar $calendarEvent;
 
     public function mount()
     {
         $this->calendarEvent = Calendar::findOrNew($this->eventId);
-        $this->data = $this->calendarEvent->toArray();
-        $this->form->fill($this->data);
+
+        if ($this->startDate && $this->endDate) {
+            $endDate = Carbon::parse($this->endDate)->subDay(1);
+            $endDate->setTime(17, 0, 0);
+            $this->endDate = $endDate;
+        }
+
+        if (!$this->eventId && !$this->calendarEvent->exists) {
+            $this->data = [
+                'title' => null,
+                'start_time' => $this->startDate,
+                'end_time' => $this->endDate,
+            ];
+            $this->form->fill($this->data);
+        } else {
+            $this->data = $this->calendarEvent->toArray();
+            $this->form->fill($this->data);
+        }
     }
 
     public function form(Form $form): Form
     {
         return $form->schema([
             TextInput::make('title')
-                ->label('Tajuk'),
+                ->label('Tajuk')
+                ->required(),
             DateTimePicker::make('start_time')
                 ->label('Tarikh Dari')
+                ->required()
                 ->timezone('Asia/Kuala_Lumpur')
                 ->native(false)
                 ->weekStartsOnSunday()
                 ->prefix('Mula'),
             DateTimePicker::make('end_time')
                 ->label('Tarikh Hingga')
+                ->required()
                 ->timezone('Asia/Kuala_Lumpur')
                 ->native(false)
                 ->weekStartsOnSunday()
