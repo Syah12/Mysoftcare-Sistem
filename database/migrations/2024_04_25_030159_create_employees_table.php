@@ -21,12 +21,6 @@ return new class extends Migration
             $table->string('full_name')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('type')->nullable();
-            $table->string('university')->nullable();
-            $table->string('education')->nullable();
-            $table->string('start_intern')->nullable();
-            $table->string('end_intern')->nullable();
             $table->string('office_position')->nullable();
             $table->string('colour')->nullable();
             $table->timestamps();

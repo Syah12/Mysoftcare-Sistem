@@ -18,13 +18,8 @@ class Employee extends Model
         'full_name',
         'birth_date',
         'phone_number',
-        'gender',
-        'type',
-        'university',
-        'education',
-        'start_intern',
-        'end_intern',
-        'office_position'
+        'office_position',
+        'colour'
     ];
 
     public function attendances(): HasMany

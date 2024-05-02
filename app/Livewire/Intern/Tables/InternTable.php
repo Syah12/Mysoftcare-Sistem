@@ -40,6 +40,10 @@ class InternTable extends BaseDataTable
             'Aktif' => 'info',
             'Tamat' => 'warning',
         });
+        $officePosition = TextColumn::make('office_position')->label('Pejabat')->sortable()->badge()->color(fn (string $state): string => match ($state) {
+            'Bawah' => 'gray',
+            'Atas' => 'gray',
+        });
 
         return [
             $name,
@@ -47,7 +51,8 @@ class InternTable extends BaseDataTable
             // $training_period,
             $start_intern,
             $end_intern,
-            $status
+            $status,
+            $officePosition
         ];
     }
 
@@ -66,7 +71,7 @@ class InternTable extends BaseDataTable
                         ])
                         ->label(false)
                         ->columns(2),
-                    FileUpload::make('letter')->label('Surat'),
+                    FileUpload::make('letter')->label('Surat Tawaran')->helperText('Format PDF')->disk('public')->directory('file')->openable(),
                 ]),
             Step::make('education')
                 ->label('Maklumat Pelajaran')
@@ -90,10 +95,10 @@ class InternTable extends BaseDataTable
                                     'UniSZA' => 'UniSZA',
                                     'UMT' => 'UMT',
                                 ]),
+                            TagsInput::make('skills')->label('Kemahiran'),
                         ])
                         ->label(false)
                         ->columns(2),
-                    TagsInput::make('skills')->label('Kemahiran'),
                 ]),
             Step::make('internship')
                 ->label('Maklumat Permohonan')
@@ -108,13 +113,24 @@ class InternTable extends BaseDataTable
                         ->columns(3),
                     FileUpload::make('image')->label('Gambar'),
                     FileUpload::make('resume')->label('Resume'),
-                    Select::make('status')->label('Status')
-                        ->options([
-                            'Diterima' => 'Diterima',
-                            'Ditolak' => 'Ditolak',
-                            'Aktif' => 'Aktif',
-                            'Tamat' => 'Tamat',
-                        ]),
+                    Fieldset::make('Label')
+                        ->schema([
+                            Select::make('status')->label('Status')
+                                ->options([
+                                    'Diterima' => 'Diterima',
+                                    'Ditolak' => 'Ditolak',
+                                    'Aktif' => 'Aktif',
+                                    'Tamat' => 'Tamat',
+                                ]),
+                            Select::make('office_position')->label('Posisi Pejabat')->helperText('Kedudukan pelajar industri dalam pejabat sama ada atas atau bawah')
+                                ->options([
+                                    'Atas' => 'Atas',
+                                    'Bawah' => 'Bawah',
+                                ])
+                                ->native(false),
+                        ])
+                        ->label(false)
+                        ->columns(2),
                 ]),
         ]);
 

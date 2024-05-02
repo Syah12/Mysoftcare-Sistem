@@ -33,12 +33,6 @@ class EmployeeSeeder extends Seeder
                 'full_name' => $i,
                 'birth_date' => $birthDate,
                 'phone_number'    => $phoneNumber,
-                'gender'    => Arr::random(['Lelaki', 'Perempuan']),
-                'type'    => Arr::random(['Staff', 'Intern']),
-                'university'    => Arr::random(['UiTM', 'UniSZA', 'UMT']),
-                'education'    => Arr::random(['Diploma', 'Degree']),
-                'start_intern'    =>  now(),
-                'end_intern'    =>  now(),
                 'office_position'    => Arr::random(['Atas', 'Bawah']),
                 'colour' => array_pop($colors),
             ]);

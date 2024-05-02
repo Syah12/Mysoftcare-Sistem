@@ -14,6 +14,7 @@ class Intern extends Model
     ];
 
     protected $fillable = [
+        'user_id',
         'name',
         'ic',
         'email',
@@ -28,6 +29,7 @@ class Intern extends Model
         'end_intern',
         'image',
         'resume',
-        'status'
+        'status',
+        'colour'
     ];
 }

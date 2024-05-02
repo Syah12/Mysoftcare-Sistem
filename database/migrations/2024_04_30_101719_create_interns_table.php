@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +14,16 @@ return new class extends Migration
     {
         Schema::create('interns', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class, 'user_id')
+                ->nullable()
+                ->constrained(User::getModel()->getTable())
+                ->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('ic')->nullable();
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('letter')->nullable();
-            $table->date('year')->nullable();
+            $table->integer('year')->nullable();
             $table->string('educational_level')->nullable();
             $table->string('institutions')->nullable();
             $table->json('skills')->nullable();

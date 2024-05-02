@@ -22,15 +22,18 @@ class InternSeeder extends Seeder
 
         collect($names)->each(function ($i) {
             $ic = rand(0, 999999) . "-" . rand(0, 99)  . "-" . rand(0, 9999);
+            $phone_number = "013-" . rand(0, 9999999);
             $colors = $this->generateRandomColors(30);
             $skills = ['Python', 'Laravel', 'MySQL'];
 
             Intern::create([
+                'user_id' => null,
                 'name' => $i,
                 'ic' => $ic,
                 'email' => $i . '@gmail.com',
+                'phone_number' => $phone_number,
                 'letter' => null,
-                'year' => now(),
+                'year' => Arr::random([1, 2, 3]),
                 'educational_level' => Arr::random(['Diploma', 'Degree']),
                 'institutions' => Arr::random(['Sekolah', 'Universiti']),
                 'skills' => $skills,

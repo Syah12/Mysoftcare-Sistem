@@ -31,25 +31,15 @@ class EmployeeTable extends BaseDataTable
         $fullName = TextColumn::make('full_name')->label('Name Penuh')->searchable()->sortable();
         $birthDate = TextColumn::make('birth_date')->label('Tarikh Lahir')->sortable();
         $phoneNumber = TextColumn::make('phone_number')->label('No. Telefon')->sortable();
-        $gender = TextColumn::make('gender')->label('Jantina')->sortable()->color(fn (string $state): string => match ($state) {
-            'Lelaki' => 'info',
-            'Perempuan' => 'danger',
-        });
-        $type = TextColumn::make('type')->label('Pekerja?')->sortable()->badge()->color(fn (string $state): string => match ($state) {
-            'Staff' => 'success',
-            'Intern' => 'warning',
-        });
         $officePosition = TextColumn::make('office_position')->label('Pejabat')->sortable()->badge()->color(fn (string $state): string => match ($state) {
-            'Bawah' => 'danger',
-            'Atas' => 'info',
+            'Bawah' => 'gray',
+            'Atas' => 'gray',
         });
 
         return [
             $fullName,
             $birthDate,
             $phoneNumber,
-            $gender,
-            $type,
             $officePosition
         ];
     }
@@ -59,43 +49,7 @@ class EmployeeTable extends BaseDataTable
         $fullName = TextInput::make('full_name')->label('Nama Penuh')->required();
         $birthDate = DatePicker::make('birth_date')->label('Tarikh Lahir')->required();
         $phoneNumber = TextInput::make('phone_number')->label('No. Telefon')->required();
-        $gender = Radio::make('gender')->label('Jantina')->required()
-            ->options([
-                'Lelaki' => 'Lelaki',
-                'Perempuan' => 'Perempuan'
-            ]);
-        $type = ToggleButtons::make('type')->label('Pekerja?')->helperText("Staff tetap?")->inline()->required()
-            ->options([
-                'Staff'    => 'Ya',
-                'Intern'   => 'Tidak',
-            ])
-            ->colors([
-                'Staff' => 'info',
-                'Intern' => 'info',
-            ])
-            ->live()
-            ->afterStateUpdated(function (Get $get, Set $set) {
-                if ($get('type') == 'Staff') {
-                    $set('university', null);
-                    $set('education', null);
-                }
-            });
-        $university = Select::make('university')->label('Universiti')->required(fn (Get $get) => $get('type'))
-            ->options([
-                'UiTM' => 'UiTM',
-                'UniSZA' => 'UniSZA',
-                'UMT' => 'UMT',
-            ])
-            ->hidden(fn (Get $get) => $get('type') != 'Intern')
-            ->searchable();
-        $education = Radio::make('education')->label('Pengajian')->required()
-            ->options([
-                'Diploma' => 'Diploma',
-                'Degree' => 'Degree'
-            ])
-            ->required(fn (Get $get) => $get('type'))
-            ->hidden(fn (Get $get) => $get('type') != 'Intern');
-        $officePosition = Select::make('office_position')->label('Posisi Pejabat')->helperText('Kedudukan pekerja dalam pejabat sama ada atas atau bawah')
+        $officePosition = Select::make('office_position')->label('Posisi Pejabat')->helperText('Kedudukan staf dalam pejabat sama ada atas atau bawah')
             ->options([
                 'Atas' => 'Atas',
                 'Bawah' => 'Bawah',
@@ -107,10 +61,6 @@ class EmployeeTable extends BaseDataTable
             $fullName,
             $birthDate,
             $phoneNumber,
-            $gender,
-            $type,
-            $university,
-            $education,
             $officePosition,
             // $colour
         ];
@@ -134,8 +84,8 @@ class EmployeeTable extends BaseDataTable
                     ->modalHeading('Maklumat Pekerja')
                     ->modalDescription('Tambah Maklumat Pekerja')
                     ->model(Employee::class)
-                    ->slideOver()
-                    ->modalWidth('xl')
+                    // ->slideOver()
+                    // ->modalWidth('xl')
                     ->color('info')
                     ->createAnother(false)
                     ->modalSubmitActionLabel('Simpan')
@@ -151,8 +101,8 @@ class EmployeeTable extends BaseDataTable
                     ->modalHeading('Maklumat Pekerja')
                     ->modalDescription('Lihat Maklumat Pekerja')
                     ->button()
-                    ->slideOver()
-                    ->modalWidth('xl')
+                    // ->slideOver()
+                    // ->modalWidth('xl')
                     ->color('gray')
                     ->label('Lihat')
                     ->modalCloseButton('Simpan')
@@ -163,8 +113,8 @@ class EmployeeTable extends BaseDataTable
                     ->modalDescription('Kemaskini Maklumat Pekerja')
                     ->button()
                     ->label('Kemaskini')
-                    ->slideOver()
-                    ->modalWidth('xl')
+                    // ->slideOver()
+                    // ->modalWidth('xl')
                     ->color('info')
                     ->modalSubmitActionLabel('Simpan')
                     ->modalCancelActionLabel('Batalkan')
