@@ -66,6 +66,8 @@ class CalendarEventTable extends BaseDataTable
                     ->form($this->getFormFields())
             ])
             ->columns($this->getColumns())
+            ->emptyStateHeading('Tiada Acara')
+            ->emptyStateDescription('Senarai acara akan dipaparkan di sini')
             ->actions([
                 ViewAction::make()
                     ->icon(false)

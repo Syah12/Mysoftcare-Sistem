@@ -24,7 +24,6 @@ class InternSeeder extends Seeder
             $ic = rand(0, 999999) . "-" . rand(0, 99)  . "-" . rand(0, 9999);
             $colors = $this->generateRandomColors(30);
             $skills = ['Python', 'Laravel', 'MySQL'];
-            $skillsJson = json_encode($skills);
 
             Intern::create([
                 'name' => $i,
@@ -34,7 +33,7 @@ class InternSeeder extends Seeder
                 'year' => now(),
                 'educational_level' => Arr::random(['Diploma', 'Degree']),
                 'institutions' => Arr::random(['Sekolah', 'Universiti']),
-                'skills' => $skillsJson,
+                'skills' => $skills,
                 'university'    => Arr::random(['UiTM', 'UniSZA', 'UMT']),
                 'training_period' => Arr::random([6, 7, 8]),
                 'start_intern'    =>  now(),

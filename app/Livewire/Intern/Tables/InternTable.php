@@ -5,8 +5,12 @@ namespace App\Livewire\Intern\Tables;
 use App\Livewire\BaseDataTable;
 use App\Models\Intern;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Components\Wizard\Step;
@@ -53,14 +57,64 @@ class InternTable extends BaseDataTable
             Step::make('info')
                 ->label('Maklumat Pelajar Industri')
                 ->schema([
-                    TextInput::make('name')->label('Nama Penuh'),
-                    TextInput::make('ic')->label('IC'),
-                    TextInput::make('ic')->label('Emel'),
+                    Fieldset::make('Label')
+                        ->schema([
+                            TextInput::make('name')->label('Nama'),
+                            TextInput::make('ic')->label('IC'),
+                            TextInput::make('email')->label('Emel'),
+                            TextInput::make('phone_number')->label('No. Telefon'),
+                        ])
+                        ->label(false)
+                        ->columns(2),
+                    FileUpload::make('letter')->label('Surat'),
                 ]),
-            Step::make('ind')
-                ->label('Maklumat Taraf Pendidikan')
+            Step::make('education')
+                ->label('Maklumat Pelajaran')
                 ->schema([
-                    // ...
+                    Fieldset::make('Label')
+                        ->schema([
+                            TextInput::make('year')->label('Tahun')->numeric(),
+                            Select::make('educational_level')->label('Taraf Pendidikan')
+                                ->options([
+                                    'Diploma' => 'Diploma',
+                                    'Degree' => 'Degree',
+                                ])->native(false),
+                            Radio::make('institutions')->label('Sekolah/Universiti')
+                                ->options([
+                                    'Sekolah' => 'Sekolah',
+                                    'Universiti' => 'Universiti'
+                                ]),
+                            Select::make('university')->label('Nama Sekolah/Universiti')
+                                ->options([
+                                    'UiTM' => 'UiTM',
+                                    'UniSZA' => 'UniSZA',
+                                    'UMT' => 'UMT',
+                                ]),
+                        ])
+                        ->label(false)
+                        ->columns(2),
+                    TagsInput::make('skills')->label('Kemahiran'),
+                ]),
+            Step::make('internship')
+                ->label('Maklumat Permohonan')
+                ->schema([
+                    Fieldset::make('Label')
+                        ->schema([
+                            TextInput::make('training_period')->label('Tempoh Latihan'),
+                            DatePicker::make('start_intern')->label('Tarikh Mula'),
+                            DatePicker::make('end_intern')->label('Tarikh Akhir'),
+                        ])
+                        ->label(false)
+                        ->columns(3),
+                    FileUpload::make('image')->label('Gambar'),
+                    FileUpload::make('resume')->label('Resume'),
+                    Select::make('status')->label('Status')
+                        ->options([
+                            'Diterima' => 'Diterima',
+                            'Ditolak' => 'Ditolak',
+                            'Aktif' => 'Aktif',
+                            'Tamat' => 'Tamat',
+                        ]),
                 ]),
         ]);
 
@@ -79,8 +133,8 @@ class InternTable extends BaseDataTable
                     ->modalHeading('Maklumat Pelajar Industri')
                     ->modalDescription('Tambah Maklumat Pelajar Industri')
                     ->model(Intern::class)
-                    // ->slideOver()
-                    // ->modalWidth('w-full')
+                    ->slideOver()
+                    ->modalWidth('w-full')
                     ->color('info')
                     ->createAnother(false)
                     ->modalSubmitActionLabel('Simpan')
@@ -96,8 +150,8 @@ class InternTable extends BaseDataTable
                     ->modalHeading('Maklumat Pelajar Industri')
                     ->modalDescription('Lihat Maklumat Pelajar Industri')
                     ->button()
-                    // ->slideOver()
-                    // ->modalWidth('w-full')
+                    ->slideOver()
+                    ->modalWidth('w-full')
                     ->color('gray')
                     ->label('Lihat')
                     ->modalCloseButton('Simpan')
@@ -108,8 +162,8 @@ class InternTable extends BaseDataTable
                     ->modalDescription('Kemaskini Maklumat Pelajar Industri')
                     ->button()
                     ->label('Kemaskini')
-                    // ->slideOver()
-                    // ->modalWidth('w-full')
+                    ->slideOver()
+                    ->modalWidth('w-full')
                     ->color('info')
                     ->modalSubmitActionLabel('Simpan')
                     ->modalCancelActionLabel('Batalkan')

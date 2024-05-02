@@ -9,6 +9,10 @@ class Intern extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'skills' => 'array',
+    ];
+
     protected $fillable = [
         'name',
         'ic',

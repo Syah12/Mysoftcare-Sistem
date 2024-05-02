@@ -22,7 +22,7 @@
 <body>
 
     <div class="grid md:grid-cols-6 h-screen overflow-hidden">
-        <div class="md:block hidden">
+        <div class="md:block hidden overflow-x-auto">
             <x-mysoftcare.sidebar.content />
         </div>
         <div class="md:col-span-5 sm:col-span-6 overflow-x-auto bg-gray-100">
