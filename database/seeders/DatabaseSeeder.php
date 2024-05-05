@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             InternSeeder::class,
             CompanyStatusSeeder::class,
             DutySeeder::class,
+            ProjectSeeder::class
             // AttendanceSeeder::class
         ]);
     }

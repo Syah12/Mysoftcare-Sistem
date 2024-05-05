@@ -1,6 +1,6 @@
 <div>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
-    <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-md">
+    <div class="bg-white p-4 rounded-xl border border-gray-200 ">
         <div wire:ignore id='calendar'></div>
     </div>
 

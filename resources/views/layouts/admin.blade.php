@@ -19,17 +19,17 @@
 
 </head>
 
-<body>
+<body class="h-screen overflow-hidden">
 
-    <div class="grid md:grid-cols-6 h-screen overflow-hidden">
-        <div class="md:block hidden overflow-x-auto">
+    <div class="grid md:grid-cols-6 h-full">
+        <div class="md:block hidden h-full">
             <x-mysoftcare.sidebar.content />
         </div>
-        <div class="md:col-span-5 sm:col-span-6 overflow-x-auto bg-gray-100">
+        <div class="md:col-span-5 sm:col-span-6 overflow-y-auto bg-gray-100">
             <div>
                 @livewire('navigation-menu')
 
-                <div class="py-7 px-6">
+                <div class="px-6">
                     @if (isset($breadcrumb))
                         <div>
                             {{ $breadcrumb }}
@@ -43,6 +43,7 @@
                     @endif
 
                     {{ $slot }}
+                    <br>
                 </div>
             </div>
 

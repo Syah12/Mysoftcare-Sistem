@@ -26,6 +26,7 @@ class DutyTable extends BaseDataTable
         $gender = TextColumn::make('gender')->label('Tugas Untuk?')->sortable()->color(fn (string $state): string => match ($state) {
             'Lelaki' => 'info',
             'Perempuan' => 'danger',
+            'Lelaki & Perempuan' => 'warning'
         });
         $officePosition = TextColumn::make('office_position')->label('Posisi Pejabat')->sortable()->badge()->color(fn (string $state): string => match ($state) {
             'Atas' => 'info',
@@ -42,12 +43,13 @@ class DutyTable extends BaseDataTable
     public function getFormFields()
     {
         $name = TextInput::make('name')->label('Tugas')->required();
-        $gender = Radio::make('gender')->label('Tugas Untuk?')->helperText('Tugasan sesuai untuk lelaki atau perempuan?')->required()
+        $gender = Radio::make('gender')->label('Tugas Untuk?')->helperText('Tugas tersebut sesuai untuk lelaki atau perempuan atau kedua-duanya?')->required()
             ->options([
                 'Lelaki' => 'Lelaki',
-                'Perempuan' => 'Perempuan'
+                'Perempuan' => 'Perempuan',
+                'Lelaki & Perempuan' => 'Lelaki & Perempuan'
             ]);
-        $officePosition = Radio::make('office_position')->label('Posisi Pejabat')->required()
+        $officePosition = Radio::make('office_position')->label('Posisi Pejabat')->helperText('Tugas tersebut di posisi pejabat atas atau bawah?')->required()
             ->options([
                 'Atas' => 'Atas',
                 'Bawah' => 'Bawah'

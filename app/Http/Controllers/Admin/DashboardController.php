@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CalendarEvent;
 use App\Models\CompanyStatus;
 use App\Models\Employee;
+use App\Models\Intern;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,13 +16,35 @@ class DashboardController extends Controller
     public function index()
     {
         if (auth()->user()->hasRole(config('mysoftcare.roles.admin'))) {
+
             Gate::authorize(config('mysoftcare.permissions.admin.route.dashboardIndex'));
-            $employeesCount = Employee::count();
+
+            $projectActiveCount = Project::where('status', 'Aktif')->count();
+            $internActiveCount = Intern::where('status', 'Aktif')->count();
+            $internAcceptedCount = Intern::where('status', 'Diterima')->count();
+            $projectCount = Project::count();
+            $internCount = Intern::count();
+            $totalProjectValueSuccess = Project::where('status', 'Berjaya')->sum('contract_value');
+            $totalProjectValueComplete = Project::where('status', 'Selesai')->sum('contract_value');
+            $totalProjectValue = Project::sum('contract_value');
+            $eventToday = CalendarEvent::whereDate('start_time', now()->toDateString())->count();
+
             return view('admin.dashboard.index', compact([
-                'employeesCount'
+                'projectActiveCount',
+                'internActiveCount',
+                'internAcceptedCount',
+                'projectCount',
+                'internCount',
+                'totalProjectValueSuccess',
+                'totalProjectValueComplete',
+                'totalProjectValue',
+                'eventToday'
             ]));
+
         } else {
+
             $companyStatus = CompanyStatus::all();
+
             return view('user.dashboard.index', compact(
                 'companyStatus'
             ));

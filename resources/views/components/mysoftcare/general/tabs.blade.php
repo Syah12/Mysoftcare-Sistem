@@ -28,7 +28,7 @@
                                 @click.prevent="currentTab = '{{ $key }}'" x-ref="{{ $key }}"
                                 @class([
                                     $buttonClasses,
-                                    'shadow-md' => $shadow
+                                    '' => $shadow
                                 ])
                                 aria-current="page">
                             @if ($withIcon)

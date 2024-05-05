@@ -1,7 +1,7 @@
-<div>
-    <div class="bg-gray-800 h-full py-8 px-4 w-full">
+<div class="h-screen overflow-y-auto bg-gray-800">
+    <div class="h-full py-8 px-4 w-full">
         <div class="text-2xl font-semibold text-blue-400 pb-8">
-            MYSOFTCARE
+            <a href="{{ route('dashboard') }}">MYSOFTCARE</a>
         </div>
 
         @php
@@ -95,5 +95,6 @@
                 @endforeach
             @endif
         </div>
+        <br>
     </div>
 </div>

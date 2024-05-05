@@ -26,14 +26,14 @@ class DutySeeder extends Seeder
         foreach ($atasDuties as $duty) {
             Duty::create([
                 'name' => $duty,
-                'gender' => Arr::random(['Lelaki', 'Perempuan']),
+                'gender' => Arr::random(['Lelaki', 'Perempuan', 'Lelaki & Perempuan']),
                 'office_position' => 'Atas',
             ]);
         }
         foreach ($bawahDuties as $duty) {
             Duty::create([
                 'name' => $duty,
-                'gender' => Arr::random(['Lelaki', 'Perempuan']),
+                'gender' => Arr::random(['Lelaki', 'Perempuan', 'Lelaki & Perempuan']),
                 'office_position' => 'Bawah',
             ]);
         }

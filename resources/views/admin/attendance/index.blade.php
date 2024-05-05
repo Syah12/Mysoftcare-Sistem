@@ -13,6 +13,10 @@
     </x-slot>
 
     <div class="mt-4">
+        <livewire:attendance.partials.attendance-stats />
+    </div>
+
+    <div class="mt-4">
         <livewire:attendance.tables.attendance-table />
     </div>
 </x-admin-layout>
