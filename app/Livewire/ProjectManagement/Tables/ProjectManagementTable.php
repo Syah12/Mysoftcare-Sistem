@@ -4,6 +4,10 @@ namespace App\Livewire\ProjectManagement\Tables;
 
 use App\Livewire\BaseDataTable;
 use App\Models\Project;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Livewire\Component;
@@ -36,54 +40,48 @@ class ProjectManagementTable extends BaseDataTable
         ];
     }
 
-    // public function getFormFields()
-    // {
-    //     $fullName = TextInput::make('full_name')->label('Nama Penuh')->required();
-    //     $birthDate = DatePicker::make('birth_date')->label('Tarikh Lahir')->required();
-    //     $phoneNumber = TextInput::make('phone_number')->label('No. Telefon')->required();
-    //     $officePosition = Select::make('office_position')->label('Posisi Pejabat')->helperText('Kedudukan staf dalam pejabat sama ada atas atau bawah')
-    //         ->options([
-    //             'Atas' => 'Atas',
-    //             'Bawah' => 'Bawah',
-    //         ])
-    //         ->native(false);
-    //     // $colour = ColorPicker::make('colour');
+    public function getFormFields()
+    {
+        $year = TextInput::make('year')->label('Tahun')->numeric()->required();
+        $name = TextInput::make('name')->label('Nama Projek')->required();
+        $birthDate = DatePicker::make('birth_date')->label('Tarikh Lahir')->required();
+        $phoneNumber = TextInput::make('phone_number')->label('No. Telefon')->required();
+        $officePosition = Select::make('office_position')->label('Posisi Pejabat')->helperText('Kedudukan staf dalam pejabat sama ada atas atau bawah')
+            ->options([
+                'Atas' => 'Atas',
+                'Bawah' => 'Bawah',
+            ])
+            ->native(false);
+        // $colour = ColorPicker::make('colour');
 
-    //     return [
-    //         $fullName,
-    //         $birthDate,
-    //         $phoneNumber,
-    //         $officePosition,
-    //         // $colour
-    //     ];
-
-    //     Notification::make()
-    //         ->title('Berjaya')
-    //         ->body('Maklumat berjaya disimpan')
-    //         ->success()
-    //         ->color('success')
-    //         ->seconds(3)
-    //         ->send();
-    // }
+        return [
+            $year,
+            $name,
+            $birthDate,
+            $phoneNumber,
+            $officePosition,
+            // $colour
+        ];
+    }
 
     public function table(Table $table): Table
     {
         return $table->query($this->getQuery())
-            // ->headerActions([
-            //     CreateAction::make()
-            //         ->label('Tambah Staf')
-            //         ->icon('heroicon-s-plus')
-            //         ->modalHeading('Maklumat Pekerja')
-            //         ->modalDescription('Tambah Maklumat Pekerja')
-            //         ->model(Employee::class)
-            //         // ->slideOver()
-            //         // ->modalWidth('xl')
-            //         ->color('info')
-            //         ->createAnother(false)
-            //         ->modalSubmitActionLabel('Simpan')
-            //         ->modalCancelActionLabel('Batalkan')
-            //         ->form($this->getFormFields())
-            // ])
+            ->headerActions([
+                CreateAction::make()
+                    ->label('Tambah Projek')
+                    ->icon('heroicon-s-plus')
+                    ->modalHeading('Maklumat Projek')
+                    ->modalDescription('Tambah Maklumat Projek')
+                    ->model(Project::class)
+                    ->slideOver()
+                    ->modalWidth('w-full')
+                    ->color('info')
+                    ->createAnother(false)
+                    ->modalSubmitActionLabel('Simpan')
+                    ->modalCancelActionLabel('Batalkan')
+                    ->form($this->getFormFields())
+            ])
             ->columns($this->getColumns())
             ->emptyStateHeading('Tiada Projek')
             ->emptyStateDescription('Senarai projek akan dipaparkan di sini');

@@ -30,11 +30,6 @@
                 @livewire('navigation-menu')
 
                 <div class="px-6">
-                    @if (isset($breadcrumb))
-                        <div>
-                            {{ $breadcrumb }}
-                        </div>
-                    @endif
 
                     @if (isset($welcome))
                         <div>

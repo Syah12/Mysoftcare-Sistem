@@ -1,6 +1,6 @@
 @props(['route' => false, 'colour', 'img', 'name', 'description' => false, 'value'])
 
-<a href="{{ route($route) }}" class="{{ $colour }} p-4 rounded-lg shadow-md">
+<a href="{{ route($route) }}" class="{{ $colour }} p-4 rounded-lg  border border-gray-200">
     <div class="flex flex-row items-center gap-6">
         <div>
             <img src="{{ $img }}" class="w-20" alt="">

@@ -1,5 +1,5 @@
 <div>
-    <div class="{{ $withShadow ? ' ' : 'border' }} rounded-lg">
+    <div class="rounded-lg">
         {{ $this->table }}
     </div>
 </div>

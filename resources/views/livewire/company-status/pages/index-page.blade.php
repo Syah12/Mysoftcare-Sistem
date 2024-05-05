@@ -1,4 +1,4 @@
-<div class="bg-white p-4 rounded-lg shadow-sm mb-6">
+<div class="bg-white p-4 rounded-lg  border border-gray-200">
     <div class="grid md:grid-cols-2 gap-4 items-center">
         <div>
             <div class="text-blue-400 font-medium text-xl">

@@ -32,8 +32,8 @@ class CompanyStatusForm extends BaseForm
                     false   => 'Tidak',
                 ])
                 ->colors([
-                    true => 'info',
-                    false => 'danger',
+                    true => 'danger',
+                    false => 'info',
                 ])
                 ->live()
                 ->afterStateUpdated(function (Get $get, Set $set) {

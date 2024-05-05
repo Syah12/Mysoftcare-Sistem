@@ -12,27 +12,13 @@ class AttendanceStats extends BaseWidget
     {
         $totalAttendance = Attendance::count();
         $presentCount = Attendance::where('is_present', true)->count();
-        $descriptionIcon = null;
 
-        if ($presentCount >= $totalAttendance / 2) {
-            $colour = 'success';
-            $descriptionIcon = 'heroicon-m-arrow-trending-down';
-        } else {
-            $colour = 'danger';
-            $descriptionIcon = 'heroicon-m-arrow-trending-up';
-        }
-
-        $intern = Stat::make('Bilangan Kehadiran Pelajar LI', $presentCount . '/' . $totalAttendance)
-            ->description($totalAttendance - $presentCount . ' belum hadir')
-            ->descriptionIcon($descriptionIcon)
-            ->descriptionColor($colour)
-            ->chart([$presentCount, $totalAttendance])
-            ->color($colour);
-
-        Stat::make('Bounce rate', '21%');
+        $intern = Stat::make('Bilangan Kehadiran Pelajar LI', $presentCount . '/' . $totalAttendance);
+        $staf = Stat::make('Bilangan Kehadiran Staf', $presentCount . '/' . $totalAttendance);
 
         return [
-            $intern
+            $intern,
+            $staf
         ];
     }
 }

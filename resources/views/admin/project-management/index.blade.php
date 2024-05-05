@@ -7,7 +7,7 @@
         <div>{{ __('Pengurusan Projek') }}</div>
     </x-slot>
 
-    <div class="mt-4">
+    <div class="pt-6">
         <livewire:project-management.tables.project-management-table />
     </div>
 </x-admin-layout>

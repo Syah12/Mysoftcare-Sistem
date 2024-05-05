@@ -14,7 +14,7 @@ abstract class BaseDataTable extends Component implements HasTable, HasForms
     use InteractsWithForms;
     use InteractsWithTable;
 
-    public bool $withShadow = true;
+    // public bool $withShadow = true;
 
     abstract public function table(Table $table): Table;
 

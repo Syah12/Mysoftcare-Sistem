@@ -95,6 +95,5 @@
                 @endforeach
             @endif
         </div>
-        <br>
     </div>
 </div>
