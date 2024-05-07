@@ -16,7 +16,7 @@
         <div class="bg-white p-4 rounded-lg border border-gray-200">
             <div class="grid grid-cols-6 gap-6 items-center">
                 <div class="col-span-2 flex justify-center">
-                    @if ($intern->image)
+                    @if (is_array($intern->image))
                         @foreach ($intern->image as $uuid => $filePath)
                             <img src="{{ asset('storage/' . $filePath) }}" class="w-60 rounded-xl mb-4  "
                                 alt="">
@@ -81,13 +81,13 @@
                     {{ $intern->end_intern }}
                     {{ $intern->status }}
                     {{ $intern->office_position }}
-                    @if ($intern->resume)
+                    @if (is_array($intern->resume))
                         @foreach ($intern->resume as $url => $filePath)
                             {{-- <iframe src="{{ asset('storage/' . $filePath) }}"></iframe> --}}
                             <a href="{{ asset('storage/' . $filePath) }}" target="blank">Klik Resume</a>
                         @endforeach
                     @endif
-                    @if ($intern->letter)
+                    @if (is_array($intern->letter))
                         @foreach ($intern->letter as $url => $filePath)
                             {{-- <iframe src="{{ asset('storage/' . $filePath) }}"></iframe> --}}
                             <a href="{{ asset('storage/' . $filePath) }}" target="blank">Klik Surat</a>

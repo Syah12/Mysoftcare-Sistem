@@ -52,7 +52,7 @@
                         <div>
                             SST :
                         </div>
-                        @if ($project->sst)
+                        @if (is_array($project->sst))
                             @foreach ($project->sst as $url => $filePath)
                                 {{-- <iframe src="{{ asset('storage/' . $filePath) }}"></iframe> --}}
                                 <a href="{{ asset('storage/' . $filePath) }}" target="blank">Klik SST</a>
