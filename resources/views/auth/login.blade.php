@@ -6,9 +6,9 @@
 
         <x-validation-errors class="mb-4" />
 
-        <div class="text-4xl font-semibold text-blue-400">
+        {{-- <div class="text-4xl font-semibold text-blue-400">
             Mysoftcare
-        </div>
+        </div> --}}
         <div class="mb-4 text-lg font-medium">
             Log masuk
         </div>

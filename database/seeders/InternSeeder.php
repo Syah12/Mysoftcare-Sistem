@@ -46,6 +46,7 @@ class InternSeeder extends Seeder
                 'educational_level' => $educational_level,
                 'skills' => $skills,
                 'university'    => Arr::random(['UiTM', 'UniSZA', 'UMT']),
+                'gender'    => Arr::random(['Lelaki', 'Perempuan']),
                 'training_period' => Arr::random([6, 7, 8]),
                 'start_intern'    =>  now(),
                 'end_intern'    =>  now(),

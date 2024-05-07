@@ -7,11 +7,13 @@
 
         <x-mysoftcare.general.breadcrumbs>
             <x-mysoftcare.general.breadcrumbs-item route="{{ route('dashboard') }}" name="Papan Utama" />
-            <x-mysoftcare.general.breadcrumbs-item name="Senarai Projek" icon disabled />
+            <x-mysoftcare.general.breadcrumbs-item route="{{ route('project.index') }}" name="Senarai Projek" icon  />
+            <x-mysoftcare.general.breadcrumbs-item name="Kemaskini Maklumat Projek" icon disabled  />
         </x-mysoftcare.general.breadcrumbs>
     </x-slot>
 
     <div class="pt-6">
-        <livewire:project-management.tables.project-management-table />
+        <livewire:project-management.forms.project-management-form :project="$project" />
     </div>
+
 </x-admin-layout>

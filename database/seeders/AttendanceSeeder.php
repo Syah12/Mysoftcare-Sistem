@@ -17,14 +17,12 @@ class AttendanceSeeder extends Seeder
     public function run(): void
     {
         $names = [
-            'Amir', 'Alya', 'Haziq', 'Siti', 'Ahmad', 'Nurul', 'Imran', 'Nadia', 'Firdaus', 'Nor',
-            'Aziz', 'Sofia', 'Syafiq', 'Zainab', 'Aiman', 'Farah', 'Izzat', 'Aishah', 'Haris', 'Rina',
-            'Danial', 'Zara', 'Akmal', 'Amira', 'Hakim', 'Azlina', 'Asyraf', 'Nur', 'Fahmi', 'Aina'
+            'Amir', 'Alya', 'Haziq', 'Siti', 'Ahmad', 'Nurul', 'Imran', 'Nadia', 'Firdaus', 'Nor'
         ];
 
         collect($names)->each(function ($i) {
             $todayDate = Carbon::now();
-            $employee_id = Employee::firstWhere('full_name', $i)->id;
+            $employee_id = Employee::firstWhere('name', $i)->id;
 
             Attendance::create([
                 'employee_id' => $employee_id,

@@ -35,6 +35,14 @@ class InternForm extends BaseForm
                 ->schema([
                     Split::make([
                         TextInput::make('name')->label('Nama Penuh')->required(),
+                        Select::make('gender')
+                            ->label('Jantina')
+                            ->options([
+                                'Lelaki' => 'Lelaki',
+                                'Perempuan' => 'Perempuan',
+                            ])
+                            ->native(false)
+                            ->required(),
                         TextInput::make('ic')->label('IC')->required(),
                     ])->from('md'),
                     Split::make([

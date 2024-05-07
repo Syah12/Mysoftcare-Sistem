@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('ic')->nullable();
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
+            $table->string('gender')->nullable();
             $table->json('letter')->nullable();
             $table->json('educational_level')->nullable();
             $table->json('skills')->nullable();

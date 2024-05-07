@@ -21,6 +21,7 @@ class Intern extends Model
         'user_id',
         'name',
         'ic',
+        'gender',
         'email',
         'phone_number',
         'letter',

@@ -56,6 +56,14 @@
                             {{ $intern->phone_number }}
                         </div>
                     </div>
+                    <div class="grid grid-cols-1 mb-2">
+                        <div>
+                            Jantina :
+                        </div>
+                        <div class="font-medium">
+                            {{ $intern->gender }}
+                        </div>
+                    </div>
                     @if ($intern->educational_level)
                         @foreach ($intern->educational_level as $educationalLevel)
                             {{ implode(', ', $educationalLevel) }}
@@ -73,6 +81,18 @@
                     {{ $intern->end_intern }}
                     {{ $intern->status }}
                     {{ $intern->office_position }}
+                    @if ($intern->resume)
+                        @foreach ($intern->resume as $url => $filePath)
+                            {{-- <iframe src="{{ asset('storage/' . $filePath) }}"></iframe> --}}
+                            <a href="{{ asset('storage/' . $filePath) }}" target="blank">Klik Resume</a>
+                        @endforeach
+                    @endif
+                    @if ($intern->letter)
+                        @foreach ($intern->letter as $url => $filePath)
+                            {{-- <iframe src="{{ asset('storage/' . $filePath) }}"></iframe> --}}
+                            <a href="{{ asset('storage/' . $filePath) }}" target="blank">Klik Surat</a>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

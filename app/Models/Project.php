@@ -9,6 +9,10 @@ class Project extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'sst' => 'array',
+    ];
+
     protected $fillable = [
         'year',
         'name',

@@ -32,7 +32,15 @@ class EmployeeForm extends BaseForm
         $employeeData =  Section::make([
             Split::make([
                 TextInput::make('name')->label('Nama Penuh')->required(),
-                DatePicker::make('birth_date')->label('Tarikh Lahir')->required()
+                DatePicker::make('birth_date')->label('Tarikh Lahir')->required(),
+                Select::make('gender')
+                    ->label('Jantina')
+                    ->options([
+                        'Lelaki' => 'Lelaki',
+                        'Perempuan' => 'Perempuan',
+                    ])
+                    ->native(false)
+                    ->required(),
             ])->from('md'),
             Split::make([
                 TextInput::make('phone_number')->label('No. Telefon')->required(),

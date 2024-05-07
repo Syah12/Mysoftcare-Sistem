@@ -20,19 +20,14 @@ class AttendanceTable extends BaseDataTable
 
     public function getColumns()
     {
-        $fullName = TextColumn::make('employee.full_name')->label('Name Penuh')->searchable()->sortable();
+        $fullName = TextColumn::make('employee.name')->label('Name Penuh')->searchable()->sortable();
         $phoneNumber = TextColumn::make('employee.phone_number')->label('No. Telefon')->sortable();
-        $type = TextColumn::make('employee.type')->label('Pekerja?')->sortable()->badge()->color(fn (string $state): string => match ($state) {
-            'Staff' => 'success',
-            'Intern' => 'warning',
-        });
         $date = TextInputColumn::make('date')->label('Tarikh Hari ini')->disabled();
         $attendance = ToggleColumn::make('is_present')->label('Kehadiran');
 
         return [
             $fullName,
             $phoneNumber,
-            $type,
             $date,
             $attendance
         ];
