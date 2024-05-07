@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             UserSeeder::class,
             EmployeeSeeder::class,
-            // InternSeeder::class,
+            InternSeeder::class,
             CompanyStatusSeeder::class,
             DutySeeder::class,
             ProjectSeeder::class
