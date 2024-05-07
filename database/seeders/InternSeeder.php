@@ -15,7 +15,7 @@ class InternSeeder extends Seeder
     public function run(): void
     {
         $names = [
-            'Intern Danial', 'Intern Zara', 'Intern Akmal', 'Intern Amira', 'Intern Hakim', 'Intern Azlina', 'Intern Asyraf', 'Intern Nur', 'Intern Fahmi', 'Intern Aina'
+            'Intern Danial', 'Intern Zara', 'Intern Akmal', 'Intern Amira', 'Intern Hakim', 'Intern Azlina', 'Intern Asyraf', 'Intern Nur', 'Intern Fahmi', 'Intern Aina', 'Intern Baruuu'
         ];
 
         collect($names)->each(function ($i) {

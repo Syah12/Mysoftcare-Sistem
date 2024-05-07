@@ -32,7 +32,7 @@
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 </th>
-                                @foreach ($dutyRostersTopOffice[0]['duties'] as $dutyId => $employeeName)
+                                @foreach ($dutyRostersTopOffice[0]['duties'] as $dutyId => $people)
                                     @php
                                         $dutyName = App\Models\Duty::find($dutyId)->name;
                                     @endphp
@@ -51,13 +51,17 @@
                                         class="px-6 py-3 text-left text-sm font-medium text-black uppercase whitespace-nowrap">
                                         {{ $week['date_range'] }}
                                     </th>
-                                    @foreach ($week['duties'] as $employeeId)
+                                    @foreach ($week['duties'] as $people)
                                         @php
-                                            $employee = App\Models\Employee::find($employeeId);
+                                            if ($people['model'] == 'Employee') {
+                                                $peopleObject = App\Models\Employee::find($people['id']);
+                                            } elseif ($people['model'] == 'Intern') {
+                                                $peopleObject = App\Models\Intern::find($people['id']);
+                                            }
                                         @endphp
                                         <td class="px-6 py-4 text-center whitespace-nowrap"
-                                            style="background-color: {{ $employee->colour }}">
-                                            {{ $employee->full_name }}
+                                            style="background-color: {{ $peopleObject->colour }}">
+                                            {{ $peopleObject->name }}
                                         </td>
                                     @endforeach
                                 </tr>
@@ -78,7 +82,7 @@
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 </th>
-                                @foreach ($dutyRostersBottomOffice[0]['duties'] as $dutyId => $employeeName)
+                                @foreach ($dutyRostersBottomOffice[0]['duties'] as $dutyId => $people)
                                     @php
                                         $dutyName = App\Models\Duty::find($dutyId)->name;
                                     @endphp
@@ -97,13 +101,17 @@
                                         class="px-6 py-3 text-left text-sm font-medium text-black uppercase whitespace-nowrap">
                                         {{ $week['date_range'] }}
                                     </th>
-                                    @foreach ($week['duties'] as $employeeId)
+                                    @foreach ($week['duties'] as $people)
                                         @php
-                                            $employee = App\Models\Employee::find($employeeId);
+                                            if ($people['model'] == 'Employee') {
+                                                $peopleObject = App\Models\Employee::find($people['id']);
+                                            } elseif ($people['model'] == 'Intern') {
+                                                $peopleObject = App\Models\Intern::find($people['id']);
+                                            }
                                         @endphp
                                         <td class="px-6 py-4 text-center whitespace-nowrap"
-                                            style="background-color: {{ $employee->colour }}">
-                                            {{ $employee->full_name }}
+                                            style="background-color: {{ $peopleObject->colour }}">
+                                            {{ $peopleObject->name }}
                                         </td>
                                     @endforeach
                                 </tr>

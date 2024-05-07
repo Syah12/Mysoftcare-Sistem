@@ -4,6 +4,7 @@ namespace App\Livewire\Duty\Partials;
 
 use App\Models\Duty;
 use App\Models\Employee;
+use App\Models\Intern;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -11,8 +12,8 @@ class GenerateDuty extends Component
 {
     public array $dutyRostersTopOffice = [];
     public array $dutyRostersBottomOffice = [];
-    public int $employeeIndexTopOffice = 0;
-    public int $employeeIndexBottomOffice = 0;
+    public int $peopleIndexTopOffice = 0;
+    public int $peopleIndexBottomOffice = 0;
     public string $generateButtonPressed;
     public ?string $fromDate = null;
     public ?string $toDate = null;
@@ -37,9 +38,27 @@ class GenerateDuty extends Component
 
         $employeeTopOffice = Employee::where('office_position', 'Atas')->pluck('id')->toArray();
         $employeeBottomOffice = Employee::where('office_position', 'Bawah')->pluck('id')->toArray();
+        $internTopOffice = Intern::where('office_position', 'Atas')->pluck('id')->toArray();
+        $internBottomOffice = Intern::where('office_position', 'Bawah')->pluck('id')->toArray();
 
-        $this->employeeIndexTopOffice = rand(0, count($employeeTopOffice) - 1);
-        $this->employeeIndexBottomOffice = rand(0, count($employeeBottomOffice) - 1);
+        $peopleTopOffice = [];
+        foreach ($employeeTopOffice as $id) {
+            $peopleTopOffice[] = ['id' => $id, 'model' => 'Employee'];
+        }
+        foreach ($internTopOffice as $id) {
+            $peopleTopOffice[] = ['id' => $id, 'model' => 'Intern'];
+        }
+
+        $peopleBottomOffice = [];
+        foreach ($employeeBottomOffice as $id) {
+            $peopleBottomOffice[] = ['id' => $id, 'model' => 'Employee'];
+        }
+        foreach ($internBottomOffice as $id) {
+            $peopleBottomOffice[] = ['id' => $id, 'model' => 'Intern'];
+        }
+
+        $this->peopleIndexTopOffice = rand(0, count($peopleTopOffice) - 1);
+        $this->peopleIndexBottomOffice = rand(0, count($peopleBottomOffice) - 1);
 
         $startDate = $this->fromDate ? Carbon::parse($this->fromDate) : Carbon::now()->startOfMonth();
         $endDate = $this->toDate ? Carbon::parse($this->toDate) : Carbon::now()->endOfMonth();
@@ -57,7 +76,7 @@ class GenerateDuty extends Component
                     $existingWeekBottomOffice = collect($this->dutyRostersBottomOffice)->firstWhere('date_range', $dateRange);
 
                     if (!$existingWeekTopOffice) {
-                        $assignmentsTopOffice = $this->generateDutyAssignments($dutiesTopOffice, $employeeTopOffice, $this->employeeIndexTopOffice);
+                        $assignmentsTopOffice = $this->generateDutyAssignments($dutiesTopOffice, $peopleTopOffice, $this->peopleIndexTopOffice);
                         $this->dutyRostersTopOffice[] = [
                             'date_range' => $dateRange,
                             'duties' => $assignmentsTopOffice,
@@ -65,7 +84,7 @@ class GenerateDuty extends Component
                     }
 
                     if (!$existingWeekBottomOffice) {
-                        $assignmentsBottomOffice = $this->generateDutyAssignments($dutiesBottomOffice, $employeeBottomOffice, $this->employeeIndexBottomOffice);
+                        $assignmentsBottomOffice = $this->generateDutyAssignments($dutiesBottomOffice, $peopleBottomOffice, $this->peopleIndexBottomOffice);
                         $this->dutyRostersBottomOffice[] = [
                             'date_range' => $dateRange,
                             'duties' => $assignmentsBottomOffice,
@@ -77,20 +96,22 @@ class GenerateDuty extends Component
             $startDate->addDay(); // Move to the next day
         }
 
+        // dd($this->dutyRostersTopOffice, $this->dutyRostersBottomOffice);
+
         $this->generateButtonPressed = now()->timestamp;
     }
 
-    private function generateDutyAssignments($duties, $employee, &$employeeIndex)
+    private function generateDutyAssignments($duties, $people, &$peopleIndex)
     {
         $assignments = [];
 
         foreach ($duties as $duty) {
-            $assignments[$duty->id] = $employee[$employeeIndex];
+            $assignments[$duty->id] = $people[$peopleIndex];
 
-            $employeeIndex++;
+            $peopleIndex++;
 
-            if ($employeeIndex == count($employee)) {
-                $employeeIndex = 0;
+            if ($peopleIndex == count($people)) {
+                $peopleIndex = 0;
             }
         }
 
