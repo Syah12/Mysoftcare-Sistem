@@ -112,7 +112,7 @@
                     </table>
                 </div>
 
-                <div class="flex flex-row-reverse py-5">
+                <div class="flex flex-row-reverse">
                     <button wire:click="print()"
                         class="px-4 py-2 font-medium text-white bg-blue-500 rounded-md hover:bg-blue-700 inline-flex items-center gap-4">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
