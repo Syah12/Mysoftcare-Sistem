@@ -23,6 +23,8 @@ class DutyScheduleController extends Controller
         // $headerFromDate = Carbon::parse(request('fromDate'))->format('d/m/Y');
         // $headerToDate = Carbon::parse(request('toDate'))->format('d/m/Y');
 
+        dd(request('data'));
+
         $vdp = [
             'title' => request('title'),
             'dutyRostersTopOffice' => request('dutyRostersTopOffice'),

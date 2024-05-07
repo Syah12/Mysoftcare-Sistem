@@ -36,25 +36,25 @@ class GenerateDuty extends Component
         $dutiesTopOffice = Duty::where('office_position', 'Atas')->get();
         $dutiesBottomOffice = Duty::where('office_position', 'Bawah')->get();
 
-        $employeeTopOffice = Employee::where('office_position', 'Atas')->pluck('id')->toArray();
-        $employeeBottomOffice = Employee::where('office_position', 'Bawah')->pluck('id')->toArray();
-        $internTopOffice = Intern::where('office_position', 'Atas')->pluck('id')->toArray();
-        $internBottomOffice = Intern::where('office_position', 'Bawah')->pluck('id')->toArray();
+        $employeeTopOffice = Employee::where('office_position', 'Atas')->get();
+        $employeeBottomOffice = Employee::where('office_position', 'Bawah')->get();
+        $internTopOffice = Intern::where('office_position', 'Atas')->get();
+        $internBottomOffice = Intern::where('office_position', 'Bawah')->get();
 
         $peopleTopOffice = [];
-        foreach ($employeeTopOffice as $id) {
-            $peopleTopOffice[] = ['id' => $id, 'model' => 'Employee'];
+        foreach ($employeeTopOffice as $peopleObject) {
+            $peopleTopOffice[] = $peopleObject;
         }
-        foreach ($internTopOffice as $id) {
-            $peopleTopOffice[] = ['id' => $id, 'model' => 'Intern'];
+        foreach ($internTopOffice as $peopleObject) {
+            $peopleTopOffice[] = $peopleObject;
         }
 
         $peopleBottomOffice = [];
-        foreach ($employeeBottomOffice as $id) {
-            $peopleBottomOffice[] = ['id' => $id, 'model' => 'Employee'];
+        foreach ($employeeBottomOffice as $peopleObject) {
+            $peopleBottomOffice[] = $peopleObject;
         }
-        foreach ($internBottomOffice as $id) {
-            $peopleBottomOffice[] = ['id' => $id, 'model' => 'Intern'];
+        foreach ($internBottomOffice as $peopleObject) {
+            $peopleBottomOffice[] = $peopleObject;
         }
 
         $this->peopleIndexTopOffice = rand(0, count($peopleTopOffice) - 1);
@@ -106,10 +106,19 @@ class GenerateDuty extends Component
         $assignments = [];
 
         foreach ($duties as $duty) {
-            $assignments[$duty->id] = $people[$peopleIndex];
+            if ($duty->gender == 'Lelaki & Perempuan') {
+                $assignments[$duty->id] = $people[$peopleIndex];
+            } else {
+                while ($people[$peopleIndex]->gender != $duty->gender) {
+                    $peopleIndex++;
+                    if ($peopleIndex == count($people)) {
+                        $peopleIndex = 0;
+                    }
+                }
+                $assignments[$duty->id] = $people[$peopleIndex];
+            }
 
             $peopleIndex++;
-
             if ($peopleIndex == count($people)) {
                 $peopleIndex = 0;
             }

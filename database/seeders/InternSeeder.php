@@ -14,11 +14,13 @@ class InternSeeder extends Seeder
      */
     public function run(): void
     {
-        $names = [
-            'Intern Danial', 'Intern Zara', 'Intern Akmal', 'Intern Amira', 'Intern Hakim', 'Intern Azlina', 'Intern Asyraf', 'Intern Nur', 'Intern Fahmi', 'Intern Aina', 'Intern Baruuu'
-        ];
+        $maleNames = ['Danial', 'Akmal', 'Hakim', 'Asyraf', 'Fahmi'];
+        $femaleNames = ['Zara', 'Amira', 'Azlina', 'Nur', 'Aina', 'Nora'];
 
-        collect($names)->each(function ($i) {
+        $names = array_merge($maleNames, $femaleNames);
+
+        collect($names)->each(function ($name) use ($maleNames) {
+            $gender = in_array($name, $maleNames) ? 'Lelaki' : 'Perempuan';
             $ic = rand(0, 999999) . "-" . rand(0, 99)  . "-" . rand(0, 9999);
             $phone_number = "013-" . rand(0, 9999999);
             $colors = $this->generateRandomColors(30);
@@ -38,15 +40,15 @@ class InternSeeder extends Seeder
 
             Intern::create([
                 'user_id' => null,
-                'name' => $i,
+                'name' => $name,
                 'ic' => $ic,
-                'email' => $i . '@gmail.com',
+                'email' => strtolower(str_replace(' ', '_', $name)) . '@gmail.com', // Using lowercased name for email
                 'phone_number' => $phone_number,
                 'letter' => null,
                 'educational_level' => $educational_level,
                 'skills' => $skills,
                 'university'    => Arr::random(['UiTM', 'UniSZA', 'UMT']),
-                'gender'    => Arr::random(['Lelaki', 'Perempuan']),
+                'gender'    => $gender,
                 'training_period' => Arr::random([6, 7, 8]),
                 'start_intern'    =>  now(),
                 'end_intern'    =>  now(),

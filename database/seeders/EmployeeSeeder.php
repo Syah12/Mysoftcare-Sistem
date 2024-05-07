@@ -16,23 +16,24 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
+        $maleNames = ['Ahmad', 'Mohammad', 'Hafiz', 'Syafiq', 'Aziz', 'Farhan', 'Razak'];
+        $femaleNames = ['Noraini', 'Siti', 'Aisyah', 'Norhayati', 'Nurul', 'Siti Aminah', 'Nurul Huda'];
 
-        $names = [
-            'Employee Amir', 'Employee Alya', 'Employee Haziq', 'Employee Siti', 'Employee Ahmad', 'Employee Nurul', 'Employee Imran', 'Employee Nadia', 'Employee Firdaus', 'Employee Nor'
-        ];
+        $names = array_merge($maleNames, $femaleNames);
 
-        collect($names)->each(function ($i) {
+        collect($names)->each(function ($name) use ($maleNames) {
+            $gender = in_array($name, $maleNames) ? 'Lelaki' : 'Perempuan';
             $birthDate = Carbon::now()->subYears(rand(18, 40))->subDays(rand(0, 365));
             $phoneNumber = "013-" . rand(1000000, 9999999);
             $colors = $this->generateRandomColors(30);
 
             Employee::create([
                 'user_id' => null,
-                'name' => $i,
+                'name' => $name,
                 'birth_date' => $birthDate,
                 'phone_number' => $phoneNumber,
-                'email' => $i . '@gmail.com',
-                'gender'    => Arr::random(['Lelaki', 'Perempuan']),
+                'email' => strtolower($name) . '@gmail.com', // Using lowercased name for email
+                'gender' => $gender,
                 'image' => null,
                 'position' => Arr::random(['Developer', 'CEO', 'Head Developer']),
                 'office_position' => Arr::random(['Atas', 'Bawah']),

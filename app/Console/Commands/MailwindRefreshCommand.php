@@ -12,7 +12,7 @@ class MailwindRefreshCommand extends Command
     protected $description = 'Command description';
 
     protected array $resources = [
-        // 'resources/views/pdf/duties/duty-schedules',
+        'resources/views/pdf/duties/duty-schedules',
     ];
 
     public function handle()

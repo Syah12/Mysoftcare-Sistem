@@ -7,7 +7,6 @@
                     <input type="date" id="fromDate" name="fromDate" wire:model="fromDate"
                         class="px-3 py-2 border border-gray-300 rounded-md">
                 </div>
-
                 <div class="flex flex-col w-full">
                     <label for="toDate" class="block text-gray-700">Tarikh akhir</label>
                     <input type="date" id="toDate" name="toDate" wire:model="toDate"
@@ -20,6 +19,8 @@
                     class="px-4 py-2 font-medium text-white bg-blue-500 rounded-md hover:bg-blue-700">Jana Jadual
                     Bertugas</button>
             </div>
+
+
 
             @if ($generateButtonPressed)
                 <div class="overflow-x-auto">
@@ -52,16 +53,9 @@
                                         {{ $week['date_range'] }}
                                     </th>
                                     @foreach ($week['duties'] as $people)
-                                        @php
-                                            if ($people['model'] == 'Employee') {
-                                                $peopleObject = App\Models\Employee::find($people['id']);
-                                            } elseif ($people['model'] == 'Intern') {
-                                                $peopleObject = App\Models\Intern::find($people['id']);
-                                            }
-                                        @endphp
                                         <td class="px-6 py-4 text-center whitespace-nowrap"
-                                            style="background-color: {{ $peopleObject->colour }}">
-                                            {{ $peopleObject->name }}
+                                            style="background-color: {{ $people->colour }}">
+                                            {{ $people->name }}
                                         </td>
                                     @endforeach
                                 </tr>
@@ -102,16 +96,9 @@
                                         {{ $week['date_range'] }}
                                     </th>
                                     @foreach ($week['duties'] as $people)
-                                        @php
-                                            if ($people['model'] == 'Employee') {
-                                                $peopleObject = App\Models\Employee::find($people['id']);
-                                            } elseif ($people['model'] == 'Intern') {
-                                                $peopleObject = App\Models\Intern::find($people['id']);
-                                            }
-                                        @endphp
                                         <td class="px-6 py-4 text-center whitespace-nowrap"
-                                            style="background-color: {{ $peopleObject->colour }}">
-                                            {{ $peopleObject->name }}
+                                            style="background-color: {{ $people->colour }}">
+                                            {{ $people->name }}
                                         </td>
                                     @endforeach
                                 </tr>
@@ -121,7 +108,7 @@
                 </div>
 
                 <div class="flex flex-row-reverse">
-                    <button wire:click="print()"
+                    <button wire:click="print"
                         class="px-4 py-2 font-medium text-white bg-blue-500 rounded-md hover:bg-blue-700 inline-flex items-center gap-4">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <path fill-rule="evenodd"
