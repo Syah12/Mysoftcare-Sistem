@@ -16,7 +16,7 @@
         <div class="bg-white p-4 rounded-lg border border-gray-200">
             <div class="grid grid-cols-6 gap-6 items-center">
                 <div class="col-span-2 flex justify-center">
-                    @if ($employee->image)
+                    @if (is_array($employee->image))
                         @foreach ($employee->image as $uuid => $filePath)
                             <img src="{{ asset('storage/' . $filePath) }}" class="w-60 rounded-xl mb-4  "
                                 alt="">

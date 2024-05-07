@@ -1,9 +1,9 @@
 <div>
-    <div class="flex flex-row-reverse">
+    <div class="flex flex-row-reverse gap-2">
         @foreach ($tabs as $key => $item)
-            <div class="mb-4 inline-flex">
+            <div class="pb-6 inline-flex">
                 <a href="{{ route('calendar-event.index', ['tab' => $key]) }}"
-                    class="px-4 py-2 rounded-lg  border border-gray-200 {{ $currentTab === $key ? 'bg-blue-200' : 'bg-white' }} mr-4">
+                    class="px-4 py-2 rounded-lg border border-gray-200 {{ $currentTab === $key ? 'bg-blue-400 text-white' : 'bg-white' }}">
                     {!! $item['icon'] !!}
                 </a>
             </div>
