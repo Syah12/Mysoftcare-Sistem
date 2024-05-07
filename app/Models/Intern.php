@@ -11,6 +11,10 @@ class Intern extends Model
 
     protected $casts = [
         'skills' => 'array',
+        'educational_level' => 'array',
+        'letter' => 'array',
+        'image' => 'array',
+        'resume' => 'array',
     ];
 
     protected $fillable = [
@@ -18,10 +22,9 @@ class Intern extends Model
         'name',
         'ic',
         'email',
+        'phone_number',
         'letter',
-        'year',
         'educational_level',
-        'institutions',
         'skills',
         'university',
         'training_period',
@@ -30,6 +33,7 @@ class Intern extends Model
         'image',
         'resume',
         'status',
-        'colour'
+        'office_position',
+        'colour',
     ];
 }

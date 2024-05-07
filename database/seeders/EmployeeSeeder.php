@@ -18,9 +18,7 @@ class EmployeeSeeder extends Seeder
     {
 
         $names = [
-            'Amir', 'Alya', 'Haziq', 'Siti', 'Ahmad', 'Nurul', 'Imran', 'Nadia', 'Firdaus', 'Nor',
-            'Aziz', 'Sofia', 'Syafiq', 'Zainab', 'Aiman', 'Farah', 'Izzat', 'Aishah', 'Haris', 'Rina',
-            'Danial', 'Zara', 'Akmal', 'Amira', 'Hakim', 'Azlina', 'Asyraf', 'Nur', 'Fahmi', 'Aina'
+            'Employee Amir', 'Employee Alya', 'Employee Haziq', 'Employee Siti', 'Employee Ahmad', 'Employee Nurul', 'Employee Imran', 'Employee Nadia', 'Employee Firdaus', 'Employee Nor'
         ];
 
         collect($names)->each(function ($i) {
@@ -30,10 +28,13 @@ class EmployeeSeeder extends Seeder
 
             Employee::create([
                 'user_id' => null,
-                'full_name' => $i,
+                'name' => $i,
                 'birth_date' => $birthDate,
-                'phone_number'    => $phoneNumber,
-                'office_position'    => Arr::random(['Atas', 'Bawah']),
+                'phone_number' => $phoneNumber,
+                'email' => $i . '@gmail.com',
+                'image' => null,
+                'position' => Arr::random(['Developer', 'CEO', 'Head Developer']),
+                'office_position' => Arr::random(['Atas', 'Bawah']),
                 'colour' => array_pop($colors),
             ]);
         });

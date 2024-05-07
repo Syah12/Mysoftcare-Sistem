@@ -14,10 +14,17 @@ class Employee extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'image' => 'array',
+    ];
+
     protected $fillable = [
-        'full_name',
+        'name',
         'birth_date',
         'phone_number',
+        'email',
+        'image',
+        'position',
         'office_position',
         'colour'
     ];

@@ -5,9 +5,9 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="font-semibold text-2xl text-blue-400">
+                    <a href="{{ route('dashboard') }}" class="block md:hidden font-semibold text-2xl text-blue-400">
                         {{-- <x-application-mark class="block h-9 w-auto" /> --}}
-                        {{-- Mysoftcare --}}
+                        Mysoftcare
                     </a>
                 </div>
 

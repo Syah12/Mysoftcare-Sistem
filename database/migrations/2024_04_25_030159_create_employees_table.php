@@ -18,9 +18,12 @@ return new class extends Migration
                 ->nullable()
                 ->constrained(User::getModel()->getTable())
                 ->onDelete('cascade');
-            $table->string('full_name')->nullable();
+            $table->string('name')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('phone_number')->nullable();
+            $table->string('email')->nullable();
+            $table->string('image')->nullable();
+            $table->string('position')->nullable();
             $table->string('office_position')->nullable();
             $table->string('colour')->nullable();
             $table->timestamps();

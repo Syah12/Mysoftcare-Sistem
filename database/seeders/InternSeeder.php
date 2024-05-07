@@ -15,9 +15,7 @@ class InternSeeder extends Seeder
     public function run(): void
     {
         $names = [
-            'Amir', 'Alya', 'Haziq', 'Siti', 'Ahmad', 'Nurul', 'Imran', 'Nadia', 'Firdaus', 'Nor',
-            'Aziz', 'Sofia', 'Syafiq', 'Zainab', 'Aiman', 'Farah', 'Izzat', 'Aishah', 'Haris', 'Rina',
-            'Danial', 'Zara', 'Akmal', 'Amira', 'Hakim', 'Azlina', 'Asyraf', 'Nur', 'Fahmi', 'Aina'
+            'Intern Danial', 'Intern Zara', 'Intern Akmal', 'Intern Amira', 'Intern Hakim', 'Intern Azlina', 'Intern Asyraf', 'Intern Nur', 'Intern Fahmi', 'Intern Aina'
         ];
 
         collect($names)->each(function ($i) {
@@ -25,6 +23,18 @@ class InternSeeder extends Seeder
             $phone_number = "013-" . rand(0, 9999999);
             $colors = $this->generateRandomColors(30);
             $skills = ['Python', 'Laravel', 'MySQL'];
+            $educational_level = [
+                [
+                    'year' => '2024',
+                    'educational_level' => 'PT3',
+                    'institution' => 'SMK',
+                ],
+                [
+                    'year' => '2024',
+                    'educational_level' => 'SPM',
+                    'institution' => 'SMK',
+                ]
+            ];
 
             Intern::create([
                 'user_id' => null,
@@ -33,9 +43,7 @@ class InternSeeder extends Seeder
                 'email' => $i . '@gmail.com',
                 'phone_number' => $phone_number,
                 'letter' => null,
-                'year' => Arr::random([1, 2, 3]),
-                'educational_level' => Arr::random(['Diploma', 'Degree']),
-                'institutions' => Arr::random(['Sekolah', 'Universiti']),
+                'educational_level' => $educational_level,
                 'skills' => $skills,
                 'university'    => Arr::random(['UiTM', 'UniSZA', 'UMT']),
                 'training_period' => Arr::random([6, 7, 8]),

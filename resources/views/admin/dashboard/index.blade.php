@@ -1,10 +1,13 @@
 <x-admin-layout>
 
     <x-slot name="welcome">
-        <h2 class="font-semibold text-2xl pt-6">
+        <h2 class="font-semibold text-2xl pt-6 pb-6">
             Selamat datang ke <span class="text-blue-400">Mysoftcare</span>, {{ Auth::user()->name }}.
         </h2>
-        <div>{{ __('Papan Utama') }}</div>
+
+        <x-mysoftcare.general.breadcrumbs>
+            <x-mysoftcare.general.breadcrumbs-item name="Papan Utama" disabled />
+        </x-mysoftcare.general.breadcrumbs>
     </x-slot>
 
     <div class="pt-6 pb-6">
@@ -62,8 +65,22 @@
             route="{{ 'calendar-event.index' }}" />
     </div>
 
-    <div>
+    <div class="pb-6">
         <livewire:dashboard.tables.calendar-event-table-today />
+    </div>
+
+    <div class="flex justify-between pb-6">
+        <x-mysoftcare.general.stat-link name="Kehadiran hari ini" value="0"
+            route="{{ 'attendance.index' }}" />
+    </div>
+
+    <div class="grid md:grid-cols-2 sm:grid-cols-1 gap-6">
+        <x-mysoftcare.general.stats-card colour="bg-blue-50" route="attendance.index" img="{{ asset('img/verified-user.png') }}"
+            name="Kehadiran Staf" value="0/0">
+        </x-mysoftcare.general.stats-card>
+        <x-mysoftcare.general.stats-card colour="bg-blue-50" route="attendance.index"
+            img="{{ asset('img/verified-user.png') }}" name="Kehadiran Pelajar LI" value="0/0">
+        </x-mysoftcare.general.stats-card>
     </div>
 
 </x-admin-layout>

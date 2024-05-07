@@ -3,6 +3,7 @@
 namespace App\Livewire\CalendarEvents\Forms;
 
 use App\Livewire\BaseForm;
+use App\Livewire\CalendarEvents\Libraries\FullCalendarView;
 use App\Models\CalendarEvent;
 use Carbon\Carbon;
 use Filament\Forms\Components\DateTimePicker;
@@ -80,6 +81,6 @@ class CalendarEventForm extends BaseForm
             ->seconds(3)
             ->send();
 
-        return to_route('calendar-event.index');
+        // return to_route('calendar-event.index');
     }
 }

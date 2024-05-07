@@ -1,18 +1,18 @@
 <x-admin-layout>
-    <x-slot name="breadcrumb">
-        <h2 class="font-medium py-2">
-            {{ __('Pelajar Industri') }}
-        </h2>
-    </x-slot>
 
     <x-slot name="welcome">
-        <h2 class="font-semibold text-2xl pt-4">
-            Selamat datang ke <span class="text-blue-400">Mysoftcare</span>
+        <h2 class="font-semibold text-2xl pt-6 pb-6">
+            Selamat datang ke <span class="text-blue-400">Mysoftcare</span>, {{ Auth::user()->name }}.
         </h2>
-        <p>Hi, {{ Auth::user()->name }}.</p>
+
+        <x-mysoftcare.general.breadcrumbs>
+            <x-mysoftcare.general.breadcrumbs-item route="{{ route('dashboard') }}" name="Papan Utama" />
+            <x-mysoftcare.general.breadcrumbs-item name="Senarai Pelajar LI" icon disabled  />
+        </x-mysoftcare.general.breadcrumbs>
     </x-slot>
 
-    <div class="mt-4">
+    <div class="pt-6">
         <livewire:intern.tables.intern-table />
     </div>
+
 </x-admin-layout>
