@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Agency;
+use App\Models\PIC;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,10 +15,18 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Agency::class, 'agency_id')
+                ->nullable()
+                ->constrained(Agency::getModel()->getTable())
+                ->onDelete('cascade');
+            $table->foreignIdFor(PIC::class, 'pic_id')
+                ->nullable()
+                ->constrained(Agency::getModel()->getTable())
+                ->onDelete('cascade');
+            // $table->string('agency')->nullable();
+            // $table->string('pic_agency')->nullable();
             $table->integer('year')->nullable();
             $table->string('name')->nullable();
-            $table->string('agency')->nullable();
-            $table->string('pic_agency')->nullable();
             $table->integer('contract_period')->nullable();
             $table->integer('contract_guarentee')->nullable();
             $table->date('start_date_contract')->nullable();

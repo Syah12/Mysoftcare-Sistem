@@ -7,11 +7,13 @@
 
         <x-mysoftcare.general.breadcrumbs>
             <x-mysoftcare.general.breadcrumbs-item route="{{ route('dashboard') }}" name="Papan Utama" />
-            <x-mysoftcare.general.breadcrumbs-item name="Senarai Agensi" icon disabled />
+            <x-mysoftcare.general.breadcrumbs-item route="{{ route('agency.index') }}" name="Senarai Agensi" icon  />
+            <x-mysoftcare.general.breadcrumbs-item name="Tambah Maklumat Agensi" icon disabled  />
         </x-mysoftcare.general.breadcrumbs>
     </x-slot>
 
     <div class="pt-6">
-        <livewire:agency.tables.agency-table />
+        <livewire:agency.forms.agency-form />
     </div>
+
 </x-admin-layout>

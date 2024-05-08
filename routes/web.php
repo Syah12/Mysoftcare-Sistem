@@ -42,8 +42,19 @@ Route::middleware([
     });
 
     Route::get('/peranan', [Admin\RoleController::class, 'index'])->name('role.index');
-    Route::get('/agensi', [Admin\AgencyController::class, 'index'])->name('agency.index');
-    Route::get('/pic_agensi', [Admin\PICAgencyController::class, 'index'])->name('pic.index');
+
+    Route::group(['prefix' => 'agensi'], function () {
+        Route::get('/senarai', [Admin\AgencyController::class, 'index'])->name('agency.index');
+        Route::get('/tambah', [Admin\AgencyController::class, 'create'])->name('agency.create');
+        Route::get('/kemaskini/{id}', [Admin\AgencyController::class, 'edit'])->name('agency.edit');
+    });
+
+    Route::group(['prefix' => 'pic_agensi'], function () {
+        Route::get('/senarai', [Admin\PICAgencyController::class, 'index'])->name('pic.index');
+        // Route::get('/tambah', [Admin\AgencyController::class, 'create'])->name('agency.create');
+        // Route::get('/kemaskini/{id}', [Admin\AgencyController::class, 'edit'])->name('agency.edit');
+    });
+
     Route::get('/user', [Admin\UserController::class, 'index'])->name('user.index');
 
     Route::group(['prefix' => 'jawatan'], function () {
@@ -60,5 +71,5 @@ Route::middleware([
         Route::get('/kemaskini/{id}', [Admin\UniversityController::class, 'edit'])->name('university.edit');
     });
 
-    // require __DIR__ . '/web/admin.php';
+    require __DIR__ . '/web/admin.php';
 });

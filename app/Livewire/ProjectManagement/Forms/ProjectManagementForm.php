@@ -3,6 +3,8 @@
 namespace App\Livewire\ProjectManagement\Forms;
 
 use App\Livewire\BaseForm;
+use App\Models\Agency;
+use App\Models\PIC;
 use App\Models\Project;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -17,6 +19,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Components\Wizard\Step;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Livewire\Component;
@@ -40,8 +44,28 @@ class ProjectManagementForm extends BaseForm
                 ->schema([
                     TextInput::make('year')->label('Tahun')->numeric()->required(),
                     TextInput::make('name')->label('Nama Projek')->required(),
-                    Select::make('agency')->label('Agensi')->required(),
-                    TextInput::make('pic_agency')->label('PIC Agensi')->required(),
+                    Select::make('agency_id')->label('Agensi')->helperText('Agensi yang terlibat')
+                        ->searchable()
+                        ->required()
+                        ->options(Agency::pluck('name', 'id'))
+                        ->live()
+                        ->afterStateUpdated(function (Get $get, Set $set) {
+                            if ($get('agency_id') == false) {
+                                $set('pic_id', null);
+                            }
+                        }),
+                    Select::make('pic_id')->label('PIC Agensi')->helperText('PIC agensi yang terlibat')
+                        ->options(function (Get $get) {
+                            $selectedAgencyId = $get('agency_id');
+                            if ($selectedAgencyId) {
+                                return PIC::where('agency_id', $selectedAgencyId)->pluck('name', 'id');
+                            } else {
+                                return null;
+                            }
+                        })
+                        ->searchable()
+                        ->required(fn (Get $get) => $get('agency_id'))
+                        ->hidden(fn (Get $get) => !$get('agency_id')),
                     TextInput::make('contract_period')->label('Tempoh Kontrak')->required()->helperText('Bulan')->numeric(),
                     TextInput::make('contract_guarentee')->label('Tempoh Jaminan')->required()->helperText('Bulan')->numeric(),
                     DatePicker::make('start_date_contract')->label('Tarikh Mula Kontrak')->required(),

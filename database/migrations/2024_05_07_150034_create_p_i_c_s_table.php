@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Agency;
+use App\Models\Position;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,9 +19,12 @@ return new class extends Migration
                 ->nullable()
                 ->constrained(Agency::getModel()->getTable())
                 ->onDelete('cascade');
+            $table->foreignIdFor(Position::class, 'position_id')
+                ->nullable()
+                ->constrained(Position::getModel()->getTable())
+                ->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('position')->nullable();
             $table->timestamps();
         });
     }

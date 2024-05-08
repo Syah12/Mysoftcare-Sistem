@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             UniversitySeeder::class,
             PositionSeeder::class,
+            AgencySeeder::class,
+            PICSeeder::class,
             EmployeeSeeder::class,
             InternSeeder::class,
             CompanyStatusSeeder::class,

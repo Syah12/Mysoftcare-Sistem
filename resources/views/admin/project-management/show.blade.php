@@ -42,6 +42,26 @@
                     </div>
                     <div class="grid grid-cols-1 mb-2">
                         <div>
+                            Agensi :
+                        </div>
+                        <div class="font-medium">
+                            {{ $project->agency->name}}
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 mb-2">
+                        <div>
+                            PIC Agensi :
+                        </div>
+                        <div class="font-medium">
+                            {{ $project->pic->name }}
+                            <br>
+                            Dari: {{ $project->pic->agency->name }}
+                            <br>
+                            Jawatan: {{ $project->pic->position->name }}
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 mb-2">
+                        <div>
                             Nilai :
                         </div>
                         <div class="font-medium">

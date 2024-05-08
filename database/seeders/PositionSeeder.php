@@ -13,7 +13,7 @@ class PositionSeeder extends Seeder
      */
     public function run(): void
     {
-        collect(range(1, 20))->each(function ($i) {
+        collect(range(1, 5))->each(function ($i) {
 
             Position::create([
                 'name' => 'Jawatan ' . $i,

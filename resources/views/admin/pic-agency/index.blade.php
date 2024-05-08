@@ -12,8 +12,6 @@
     </x-slot>
 
     <div class="pt-6">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa adipisci totam inventore reiciendis impedit
-        ut corporis unde recusandae. Quisquam adipisci temporibus perferendis ab doloremque obcaecati, qui maiores fugit
-        architecto.
+        <livewire:pic.tables.pic-table />
     </div>
 </x-admin-layout>

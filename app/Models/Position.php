@@ -19,4 +19,9 @@ class Position extends Model
     {
         return $this->hasMany(Employee::class);
     }
+
+    public function pics(): HasMany
+    {
+        return $this->hasMany(PIC::class);
+    }
 }

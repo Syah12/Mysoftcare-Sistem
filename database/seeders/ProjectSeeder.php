@@ -19,10 +19,10 @@ class ProjectSeeder extends Seeder
             $status = ['Berjaya', 'Aktif', 'EOT', 'Tempoh jaminan', 'Selesai'];
 
             Project::create([
+                'agency_id' => null,
+                'pic_id' => null,
                 'year' => '2024',
                 'name' => 'Projek ' . $i,
-                'agency' => 'Agensi ' . $i,
-                'pic_agency' => 'PIC Agensi ' . $i,
                 'contract_period' => Arr::random([6, 7, 8]),
                 'contract_guarentee' => Arr::random([6, 7, 8]),
                 'start_date_contract' => now(),

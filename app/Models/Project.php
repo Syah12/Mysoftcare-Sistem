@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Project extends Model
 {
@@ -14,10 +16,10 @@ class Project extends Model
     ];
 
     protected $fillable = [
+        'agency_id',
+        'pic_id',
         'year',
         'name',
-        'agency',
-        'pic_agency',
         'contract_period',
         'contract_guarentee',
         'start_date_contract',
@@ -28,4 +30,14 @@ class Project extends Model
         'creator',
         'status'
     ];
+
+    public function agency(): BelongsTo
+    {
+        return $this->belongsTo(Agency::class);
+    }
+
+    public function pic(): BelongsTo
+    {
+        return $this->belongsTo(PIC::class);
+    }
 }
