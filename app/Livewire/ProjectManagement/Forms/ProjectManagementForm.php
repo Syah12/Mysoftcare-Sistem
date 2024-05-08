@@ -35,53 +35,43 @@ class ProjectManagementForm extends BaseForm
     public function form(Form $form): Form
     {
         $projectData = Wizard::make([
-            Step::make('Maklumat Projek (Umum)')
+            Step::make('Projek')
+                ->description('Maklumat mengenai projek')
                 ->schema([
-                    Split::make([
-                        TextInput::make('year')->label('Tahun')->numeric()->required(),
-                        TextInput::make('name')->label('Nama Projek')->required(),
-                    ])->from('md'),
-                    Split::make([
-                        TextInput::make('agency')->label('Agensi')->required(),
-                        TextInput::make('pic_agency')->label('PIC Agensi')->required(),
-                    ])->from('md'),
-                    Split::make([
-                        TextInput::make('contract_period')->label('Tempoh Kontrak')->required()->helperText('Bulan'),
-                        TextInput::make('contract_guarentee')->label('Tempoh Jaminan')->required()->helperText('Bulan'),
-                    ])->from('md'),
-                    Split::make([
-                        DatePicker::make('start_date_contract')->label('Tarikh Mula Kontrak')->required(),
-                        DatePicker::make('end_date_contract')->label('Tarikh Tamat Kontrak')->required(),
-                    ])->from('md'),
+                    TextInput::make('year')->label('Tahun')->numeric()->required(),
+                    TextInput::make('name')->label('Nama Projek')->required(),
+                    Select::make('agency')->label('Agensi')->required(),
+                    TextInput::make('pic_agency')->label('PIC Agensi')->required(),
+                    TextInput::make('contract_period')->label('Tempoh Kontrak')->required()->helperText('Bulan')->numeric(),
+                    TextInput::make('contract_guarentee')->label('Tempoh Jaminan')->required()->helperText('Bulan')->numeric(),
+                    DatePicker::make('start_date_contract')->label('Tarikh Mula Kontrak')->required(),
+                    DatePicker::make('end_date_contract')->label('Tarikh Tamat Kontrak')->required(),
                 ]),
-            Step::make('Maklumat Projek (Terperinci)')
+            Step::make('Kontrak')
+                ->description('Maklumat mengenai kontrak projek')
                 ->schema([
-                    Split::make([
-                        TextInput::make('contract_value')->label('Nilai Kontrak')->required()->prefix('RM')->numeric(),
-                        Textarea::make('notes')->label('Catatan')->required(),
-                    ])->from('md'),
+                    TextInput::make('contract_value')->label('Nilai Kontrak')->required()->prefix('RM')->numeric(),
+                    Textarea::make('notes')->label('Catatan')->required()->rows(3),
                     FileUpload::make('sst')->label('SST')->helperText('Format PDF')->disk('public')->directory('file')->required()->openable(),
-                    Split::make([
-                        TextInput::make('creator')->label('Pencipta')->required(),
-                        Select::make('status')
-                            ->label('Status Projek')
-                            ->options([
-                                'Berjaya' => 'Berjaya',
-                                'Aktif' => 'Aktif',
-                                'EOT' => 'EOT',
-                                'Tempoh jaminan' => 'Tempoh jaminan',
-                                'Selesai' => 'Selesai',
-                            ])
-                            ->helperText('Status projek terkini')
-                            ->native(false)
-                            ->required()
-                    ])->from('md'),
+                    TextInput::make('creator')->label('Pencipta')->required(),
+                    Select::make('status')
+                        ->label('Status Projek')
+                        ->options([
+                            'Berjaya' => 'Berjaya',
+                            'Aktif' => 'Aktif',
+                            'EOT' => 'EOT',
+                            'Tempoh jaminan' => 'Tempoh jaminan',
+                            'Selesai' => 'Selesai',
+                        ])
+                        ->helperText('Status projek terkini')
+                        ->native(false)
+                        ->required()
                 ]),
         ]);
 
         return $form->schema([
             $projectData,
-        ])->statePath('data');
+        ])->statePath('data')->inlineLabel();
     }
 
     public function save()

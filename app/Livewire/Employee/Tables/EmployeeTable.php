@@ -4,11 +4,14 @@ namespace App\Livewire\Employee\Tables;
 
 use App\Livewire\BaseDataTable;
 use App\Models\Employee;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class EmployeeTable extends BaseDataTable
@@ -46,13 +49,37 @@ class EmployeeTable extends BaseDataTable
             ->emptyStateHeading('Tiada Staf')
             ->emptyStateDescription('Senarai pekerja akan dipaparkan di sini')
             ->actions([
-                ViewAction::make()
-                    ->label(false)
-                    ->url(fn (Employee $record): string => route('employee.show', $record)),
-                EditAction::make()
-                    ->label(false)
-                    ->color('warning')
-                    ->url(fn (Employee $record): string => route('employee.edit', $record)),
+                ActionGroup::make([
+                    ViewAction::make()
+                        ->icon(false)
+                        ->color('info')
+                        ->label('Lihat')
+                        ->url(fn (Employee $record): string => route('employee.show', $record)),
+                    EditAction::make()
+                        ->icon(false)
+                        ->color('warning')
+                        ->label('Kemaskini')
+                        ->url(fn (Employee $record): string => route('employee.edit', $record)),
+                    DeleteAction::make('delete')
+                        ->label('Padam')
+                        ->icon(false)
+                        ->requiresConfirmation()
+                        ->action(fn (Employee $record) => $record->delete())
+                        ->modalHeading('Padam Staf')
+                        ->modalDescription('Adakah anda pasti ingin melakukan ini?')
+                        ->modalCancelActionLabel('Tidak')
+                        ->modalSubmitActionLabel('Ya')
+                ])->color('gray'),
+            ])
+            ->heading('Senarai Staf')
+            ->description('Kemaskini maklumat staf di sini')
+            ->filters([
+                SelectFilter::make('gender')->label('Jantina')
+                    ->options([
+                        'Lelaki' => 'Lelaki',
+                        'Perempuan' => 'Perempuan'
+                    ])
+                    ->native(false)
             ]);
     }
 }

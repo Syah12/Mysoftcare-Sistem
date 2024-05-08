@@ -64,32 +64,63 @@
                             {{ $intern->gender }}
                         </div>
                     </div>
-                    @if ($intern->educational_level)
-                        @foreach ($intern->educational_level as $educationalLevel)
-                            {{ implode(', ', $educationalLevel) }}
-                        @endforeach
-                    @endif
+                    <div class="font-medium">
+                        @if ($intern->educational_level)
+                            @foreach ($intern->educational_level as $educationalLevel)
+                                <div>
+                                    {{ $educationalLevel['year'] }},
+                                    {{ $educationalLevel['educational_level'] }},
+                                    @if ($educationalLevel['institution'])
+                                        @php
+                                            $university = \App\Models\University::find(
+                                                $educationalLevel['institution'],
+                                            );
+                                        @endphp
+                                        @if ($university)
+                                            {{ $university->name }}
+                                        @endif
+                                    @endif
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
 
-                    @if ($intern->skills)
-                        @foreach ($intern->skills as $skill)
-                            {{ $skill }}
-                        @endforeach
-                    @endif
-                    {{ $intern->university }}
-                    {{ $intern->training_period }}
-                    {{ $intern->start_intern }}
-                    {{ $intern->end_intern }}
-                    {{ $intern->status }}
-                    {{ $intern->office_position }}
+                    <div class="font-medium">
+                        @if ($intern->skills)
+                            @foreach ($intern->skills as $skill)
+                                {{ $skill }}
+                            @endforeach
+                        @endif
+                    </div>
+                    <div class="font-medium">
+                        @if ($intern->university)
+                            {{ $intern->university->name }}
+                        @else
+                            Tiada maklumat
+                        @endif
+                    </div>
+                    <div class="font-medium">
+                        {{ $intern->training_period }} bulan
+                    </div>
+                    <div class="font-medium">
+                        {{ $intern->start_intern }}
+                    </div>
+                    <div class="font-medium">
+                        {{ $intern->end_intern }}
+                    </div>
+                    <div class="font-medium">
+                        {{ $intern->status }}
+                    </div>
+                    <div class="font-medium">
+                        {{ $intern->office_position }}
+                    </div>
                     @if (is_array($intern->resume))
                         @foreach ($intern->resume as $url => $filePath)
-                            {{-- <iframe src="{{ asset('storage/' . $filePath) }}"></iframe> --}}
                             <a href="{{ asset('storage/' . $filePath) }}" target="blank">Klik Resume</a>
                         @endforeach
                     @endif
                     @if (is_array($intern->letter))
                         @foreach ($intern->letter as $url => $filePath)
-                            {{-- <iframe src="{{ asset('storage/' . $filePath) }}"></iframe> --}}
                             <a href="{{ asset('storage/' . $filePath) }}" target="blank">Klik Surat</a>
                         @endforeach
                     @endif

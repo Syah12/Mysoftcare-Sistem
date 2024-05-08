@@ -56,6 +56,18 @@
                             {{ $employee->gender }}
                         </div>
                     </div>
+                    <div class="grid grid-cols-1 mb-2">
+                        <div>
+                            Jawatan :
+                        </div>
+                        <div class="font-medium">
+                            @if ($employee->position)
+                                {{ $employee->position->name }}
+                            @else
+                                Tiada Maklumat
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

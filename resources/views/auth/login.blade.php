@@ -1,14 +1,11 @@
 <x-guest-layout>
     <x-mysoftcare.general.card>
         <x-slot name="logo">
-            <img src="{{ asset('img/mysoftcare.png') }}" class="w-96" alt="">
+            <img src="{{ asset('img/mysoftcare.png') }}" alt="">
         </x-slot>
 
         <x-validation-errors class="mb-4" />
 
-        {{-- <div class="text-4xl font-semibold text-blue-400">
-            Mysoftcare
-        </div> --}}
         <div class="mb-4 text-lg font-medium">
             Log masuk
         </div>
@@ -50,11 +47,7 @@
                     </a>
                 @endif
             </div>
-            {{-- <div class="flex items-center  mt-4">
-            </div> --}}
-            {{-- <x-button class="ms-4">
-            </x-button> --}}
-            <button class="bg-blue-600 hover:bg-blue-900 text-white py-2 w-full rounded-lg uppercase">
+            <button class="bg-blue-500 hover:bg-blue-900 text-white py-2 w-full rounded-lg uppercase">
                 {{ __('Log masuk') }}
             </button>
         </form>

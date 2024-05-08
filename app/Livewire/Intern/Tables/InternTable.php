@@ -14,12 +14,14 @@ use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Components\Wizard\Step;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class InternTable extends BaseDataTable
@@ -66,21 +68,39 @@ class InternTable extends BaseDataTable
             ->emptyStateHeading('Tiada Pelajar Industri')
             ->emptyStateDescription('Senarai Pelajar Industri akan dipaparkan di sini')
             ->actions([
-                ViewAction::make()
-                    ->label(false)
-                    ->url(fn (Intern $record): string => route('intern.show', $record)),
-                EditAction::make()
-                    ->label(false)
-                    ->color('warning')
-                    ->url(fn (Intern $record): string => route('intern.edit', $record)),
-                DeleteAction::make('delete')
-                    ->label(false)
-                    ->requiresConfirmation()
-                    ->action(fn (Intern $record) => $record->delete())
-                    ->modalHeading('Padam Pelajar Industri')
-                    ->modalDescription('Adakah anda pasti ingin melakukan ini?')
-                    ->modalCancelActionLabel('Tidak')
-                    ->modalSubmitActionLabel('Ya')
+                ActionGroup::make([
+                    ViewAction::make()
+                        ->label('Lihat')
+                        ->icon(false)
+                        ->color('info')
+                        ->url(fn (Intern $record): string => route('intern.show', $record)),
+                    EditAction::make()
+                        ->label('Kemaskini')
+                        ->icon(false)
+                        ->color('warning')
+                        ->url(fn (Intern $record): string => route('intern.edit', $record)),
+                    DeleteAction::make('delete')
+                        ->label('Padam')
+                        ->icon(false)
+                        ->requiresConfirmation()
+                        ->action(fn (Intern $record) => $record->delete())
+                        ->modalHeading('Padam Pelajar Industri')
+                        ->modalDescription('Adakah anda pasti ingin melakukan ini?')
+                        ->modalCancelActionLabel('Tidak')
+                        ->modalSubmitActionLabel('Ya')
+                ])->color('gray'),
+            ])
+            ->heading('Senarai Pelajar LI')
+            ->description('Kemaskini maklumat pelajar LI di sini')
+            ->filters([
+                SelectFilter::make('status')->label('Status')
+                    ->options([
+                        'Diterima' => 'Diterima',
+                        'Ditolak' => 'Ditolak',
+                        'Aktif' => 'Aktif',
+                        'Tamat' => 'Tamat'
+                    ])
+                    ->native(false)
             ]);
     }
 }

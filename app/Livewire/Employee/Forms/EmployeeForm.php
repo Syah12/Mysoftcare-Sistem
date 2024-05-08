@@ -4,15 +4,16 @@ namespace App\Livewire\Employee\Forms;
 
 use App\Livewire\BaseForm;
 use App\Models\Employee;
+use App\Models\Position;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Infolists\Components\TextEntry;
+use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Livewire\Component;
 
@@ -29,8 +30,9 @@ class EmployeeForm extends BaseForm
 
     public function form(Form $form): Form
     {
-        $employeeData =  Section::make([
-            Split::make([
+        $employeeData =  Section::make('Staf')
+            ->description('Maklumat mengenai staf')
+            ->schema([
                 TextInput::make('name')->label('Nama Penuh')->required(),
                 DatePicker::make('birth_date')->label('Tarikh Lahir')->required(),
                 Select::make('gender')
@@ -41,21 +43,12 @@ class EmployeeForm extends BaseForm
                     ])
                     ->native(false)
                     ->required(),
-            ])->from('md'),
-            Split::make([
                 TextInput::make('phone_number')->label('No. Telefon')->required(),
-                TextInput::make('email')->label('E-mel')->required()
-            ])->from('md'),
-            FileUpload::make('image')->label('Gambar Profil')->helperText('Format PNG')->disk('public')->directory('file')->required(),
-            Split::make([
-                Select::make('position')
-                    ->label('Jawatan')
-                    ->options([
-                        'CEO' => 'CEO',
-                        'Head Developer' => 'Head Developer',
-                        'Developer' => 'Developer',
-                    ])
-                    ->helperText('Jawatan dalam pejabat')
+                TextInput::make('email')->label('E-mel')->required(),
+                FileUpload::make('image')->label('Gambar Profil')->helperText('Format PNG')->disk('public')->directory('file'),
+                Select::make('position_id')->label('Jawatan')->helperText('Jawatan dalam pejabat')
+                    ->options(Position::pluck('name', 'id'))
+                    ->searchable()
                     ->native(false)
                     ->required(),
                 Select::make('office_position')
@@ -67,12 +60,11 @@ class EmployeeForm extends BaseForm
                     ->helperText('Kedudukan staf tersebut dalam pejabat')
                     ->native(false)
                     ->required()
-            ])->from('md')
-        ]);
+            ]);
 
         return $form->schema([
             $employeeData,
-        ])->statePath('data');
+        ])->statePath('data')->inlineLabel();
     }
 
     public function save()

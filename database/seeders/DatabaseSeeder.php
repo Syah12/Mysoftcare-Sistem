@@ -17,11 +17,13 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PermissionSeeder::class,
             UserSeeder::class,
+            UniversitySeeder::class,
+            PositionSeeder::class,
             EmployeeSeeder::class,
             InternSeeder::class,
             CompanyStatusSeeder::class,
             DutySeeder::class,
-            ProjectSeeder::class
+            ProjectSeeder::class,
             // AttendanceSeeder::class
         ]);
     }

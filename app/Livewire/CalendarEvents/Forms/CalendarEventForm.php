@@ -11,6 +11,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Route;
+use Livewire\Attributes\On;
 
 class CalendarEventForm extends BaseForm
 {
@@ -81,6 +82,6 @@ class CalendarEventForm extends BaseForm
             ->seconds(3)
             ->send();
 
-        // return to_route('calendar-event.index');
+        return to_route('calendar-event.index');
     }
 }

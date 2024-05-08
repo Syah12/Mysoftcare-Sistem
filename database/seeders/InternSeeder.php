@@ -27,17 +27,13 @@ class InternSeeder extends Seeder
                 [
                     'year' => '2024',
                     'educational_level' => 'PT3',
-                    'institution' => 'SMK',
-                ],
-                [
-                    'year' => '2024',
-                    'educational_level' => 'SPM',
-                    'institution' => 'SMK',
+                    'institution' => '1',
                 ]
             ];
 
             Intern::create([
                 'user_id' => null,
+                'university_id' => null,
                 'name' => $i,
                 'ic' => $ic,
                 'email' => $i . '@gmail.com',
@@ -45,7 +41,6 @@ class InternSeeder extends Seeder
                 'letter' => null,
                 'educational_level' => $educational_level,
                 'skills' => $skills,
-                'university'    => Arr::random(['UiTM', 'UniSZA', 'UMT']),
                 'gender'    => Arr::random(['Lelaki', 'Perempuan']),
                 'training_period' => Arr::random([6, 7, 8]),
                 'start_intern'    =>  now(),

@@ -11,6 +11,7 @@ use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Livewire\Component;
 
@@ -62,6 +63,19 @@ class ProjectManagementTable extends BaseDataTable
                     ->label(false)
                     ->color('warning')
                     ->url(fn (Project $record): string => route('project.edit', $record))
+            ])
+            ->heading('Senarai Projek')
+            ->description('Kemaskini maklumat projek di sini')
+            ->filters([
+                SelectFilter::make('status')->label('Status')
+                    ->options([
+                        'Tempoh Jaminan' => 'Tempoh Jaminan',
+                        'EOT' => 'EOT',
+                        'Berjaya' => 'Berjaya',
+                        'Aktif' => 'Aktif',
+                        'Selesai' => 'Selesai'
+                    ])
+                    ->native(false)
             ]);
     }
 }

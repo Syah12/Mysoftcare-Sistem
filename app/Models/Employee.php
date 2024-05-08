@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[ObservedBy([EmployeeObserver::class])]
 class Employee extends Model
@@ -19,13 +20,14 @@ class Employee extends Model
     ];
 
     protected $fillable = [
+        'user_id',
+        'position_id',
         'name',
         'birth_date',
         'phone_number',
         'email',
         'gender',
         'image',
-        'position',
         'office_position',
         'colour'
     ];
@@ -38,5 +40,10 @@ class Employee extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function position(): BelongsTo
+    {
+        return $this->belongsTo(Position::class);
     }
 }

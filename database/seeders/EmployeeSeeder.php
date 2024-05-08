@@ -28,13 +28,13 @@ class EmployeeSeeder extends Seeder
 
             Employee::create([
                 'user_id' => null,
+                'position_id' => null,
                 'name' => $i,
                 'birth_date' => $birthDate,
                 'phone_number' => $phoneNumber,
                 'email' => $i . '@gmail.com',
                 'gender'    => Arr::random(['Lelaki', 'Perempuan']),
                 'image' => null,
-                'position' => Arr::random(['Developer', 'CEO', 'Head Developer']),
                 'office_position' => Arr::random(['Atas', 'Bawah']),
                 'colour' => array_pop($colors),
             ]);
