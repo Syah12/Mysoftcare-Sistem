@@ -3,12 +3,16 @@
 namespace App\Livewire\PIC\Tables;
 
 use App\Livewire\BaseDataTable;
+use App\Models\Agency;
 use App\Models\PIC;
+use App\Models\Position;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Livewire\Component;
 
@@ -22,11 +26,15 @@ class PICTable extends BaseDataTable
     public function getColumns()
     {
         $name = TextColumn::make('name')->label('Nama')->sortable()->searchable();
+        $agency = TextColumn::make('agency.name')->label('Agensi')->sortable()->searchable();
         $position = TextColumn::make('position.name')->label('Jawatan')->sortable()->searchable();
+        $phoneNumber = TextColumn::make('phone_number')->label('No. Telefon')->sortable()->searchable();
 
         return [
             $name,
+            $agency,
             $position,
+            $phoneNumber
         ];
     }
 
@@ -37,7 +45,7 @@ class PICTable extends BaseDataTable
                 CreateAction::make()
                     ->label('Tambah PIC Agensi')
                     ->icon('heroicon-s-plus')
-                    // ->url(fn (): string => route('university.create'))
+                    ->url(fn (): string => route('pic.create'))
             ])
             ->columns($this->getColumns())
             ->emptyStateHeading('Tiada PIC Agensi')
@@ -46,24 +54,32 @@ class PICTable extends BaseDataTable
                 ActionGroup::make([
                     ViewAction::make()
                         ->icon(false)
-                        ->label('Lihat'),
-                    // ->url(fn (Project $record): string => route('university.show', $record)),
+                        ->label('Semak')
+                        ->url(fn (PIC $record): string => route('pic.show', $record)),
                     EditAction::make()
                         ->icon(false)
                         ->label('Kemaskini')
-                        // ->url(fn (University $record): string => route('university.edit', $record)),
-                    // DeleteAction::make(),
+                        ->url(fn (PIC $record): string => route('pic.edit', $record)),
+                    DeleteAction::make('delete')
+                        ->label('Padam')
+                        ->icon(false)
+                        ->requiresConfirmation()
+                        ->action(fn (PIC $record) => $record->delete())
+                        ->modalHeading('Padam PIC Agensi')
+                        ->modalDescription('Adakah anda pasti ingin melakukan ini?')
+                        ->modalCancelActionLabel('Tidak')
+                        ->modalSubmitActionLabel('Ya')
                 ])->color('gray'),
             ])
             ->heading('Senarai PIC Agensi')
-            ->description('Kemaskini maklumat PIC agensi di sini');
-            // ->filters([
-            //     SelectFilter::make('is_university')->label('Institusi')
-            //         ->options([
-            //             '0' => 'Sekolah',
-            //             '1' => 'Universiti'
-            //         ])
-            //         ->native(false)
-            // ]);
+            ->description('Kemaskini maklumat PIC agensi di sini')
+            ->filters([
+                SelectFilter::make('agency_id')->label('Agensi')
+                    ->options(Agency::pluck('name', 'id'))
+                    ->native(false),
+                SelectFilter::make('position_id')->label('Jawatan')
+                    ->options(Position::pluck('name', 'id'))
+                    ->native(false)
+            ]);
     }
 }

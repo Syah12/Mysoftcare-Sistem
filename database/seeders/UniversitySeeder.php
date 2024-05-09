@@ -23,7 +23,7 @@ class UniversitySeeder extends Seeder
                 'address' => 'Alamat ' . $i,
                 'state' => 'Negeri ' . $i,
                 'district' => 'Daerah ' . $i,
-                'country' => 'Negara ' . $i,
+                'country' => 'Malaysia',
                 'postcode' => $i,
                 'is_university' => Arr::random([true, false])
             ]);

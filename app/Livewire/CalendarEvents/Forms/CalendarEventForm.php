@@ -3,19 +3,15 @@
 namespace App\Livewire\CalendarEvents\Forms;
 
 use App\Livewire\BaseForm;
-use App\Livewire\CalendarEvents\Libraries\FullCalendarView;
 use App\Models\CalendarEvent;
 use Carbon\Carbon;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
-use Illuminate\Support\Facades\Route;
-use Livewire\Attributes\On;
 
 class CalendarEventForm extends BaseForm
 {
-    // public ?int $eventId = null;
     public ?string $startDate = null;
     public ?string $endDate = null;
     public ?CalendarEvent $calendarEvent;
@@ -23,7 +19,6 @@ class CalendarEventForm extends BaseForm
     public function mount()
     {
         $this->calendarEvent ??= new CalendarEvent();
-        // $this->calendarEvent = CalendarEvent::findOrNew($this->eventId);
 
         if ($this->startDate && $this->endDate) {
             $endDate = Carbon::parse($this->endDate)->subDay(1);

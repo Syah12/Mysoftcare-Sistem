@@ -20,8 +20,8 @@ class DashboardController extends Controller
             Gate::authorize(config('mysoftcare.permissions.admin.route.dashboardIndex'));
 
             $projectActiveCount = Project::where('status', 'Aktif')->count();
-            $internActiveCount = Intern::where('status', 'Aktif')->count();
             $internAcceptedCount = Intern::where('status', 'Diterima')->count();
+            $internActiveCount = Intern::where('status', 'Aktif')->count();
             $projectCount = Project::count();
             $internCount = Intern::count();
             $totalProjectValueSuccess = Project::where('status', 'Berjaya')->sum('contract_value');

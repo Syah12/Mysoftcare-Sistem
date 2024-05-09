@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('office_position')->nullable();
             $table->string('colour')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

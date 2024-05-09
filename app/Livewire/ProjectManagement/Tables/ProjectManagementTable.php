@@ -7,7 +7,9 @@ use App\Models\Project;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
@@ -56,13 +58,25 @@ class ProjectManagementTable extends BaseDataTable
             ->emptyStateHeading('Tiada Projek')
             ->emptyStateDescription('Senarai projek akan dipaparkan di sini')
             ->actions([
-                ViewAction::make()
-                    ->label(false)
-                    ->url(fn (Project $record): string => route('project.show', $record)),
-                EditAction::make()
-                    ->label(false)
-                    ->color('warning')
-                    ->url(fn (Project $record): string => route('project.edit', $record))
+                ActionGroup::make([
+                    ViewAction::make()
+                        ->label('Semak')
+                        ->icon(false)
+                        ->url(fn (Project $record): string => route('project.show', $record)),
+                    EditAction::make()
+                        ->label('Kemaskini')
+                        ->icon(false)
+                        ->url(fn (Project $record): string => route('project.edit', $record)),
+                    DeleteAction::make('delete')
+                        ->label('Padam')
+                        ->icon(false)
+                        ->requiresConfirmation()
+                        ->action(fn (Project $record) => $record->delete())
+                        ->modalHeading('Padam Projek')
+                        ->modalDescription('Adakah anda pasti ingin melakukan ini?')
+                        ->modalCancelActionLabel('Tidak')
+                        ->modalSubmitActionLabel('Ya')
+                ])->color('gray'),
             ])
             ->heading('Senarai Projek')
             ->description('Kemaskini maklumat projek di sini')

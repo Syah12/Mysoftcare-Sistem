@@ -52,12 +52,10 @@ class EmployeeTable extends BaseDataTable
                 ActionGroup::make([
                     ViewAction::make()
                         ->icon(false)
-                        ->color('info')
-                        ->label('Lihat')
+                        ->label('Semak')
                         ->url(fn (Employee $record): string => route('employee.show', $record)),
                     EditAction::make()
                         ->icon(false)
-                        ->color('warning')
                         ->label('Kemaskini')
                         ->url(fn (Employee $record): string => route('employee.edit', $record)),
                     DeleteAction::make('delete')

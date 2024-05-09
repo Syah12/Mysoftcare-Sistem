@@ -70,14 +70,12 @@ class InternTable extends BaseDataTable
             ->actions([
                 ActionGroup::make([
                     ViewAction::make()
-                        ->label('Lihat')
+                        ->label('Semak')
                         ->icon(false)
-                        ->color('info')
                         ->url(fn (Intern $record): string => route('intern.show', $record)),
                     EditAction::make()
                         ->label('Kemaskini')
                         ->icon(false)
-                        ->color('warning')
                         ->url(fn (Intern $record): string => route('intern.edit', $record)),
                     DeleteAction::make('delete')
                         ->label('Padam')

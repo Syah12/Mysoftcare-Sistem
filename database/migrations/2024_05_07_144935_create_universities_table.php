@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('district')->nullable();
             $table->string('country')->nullable();
             $table->boolean('is_university')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

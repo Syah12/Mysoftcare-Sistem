@@ -46,13 +46,15 @@ Route::middleware([
     Route::group(['prefix' => 'agensi'], function () {
         Route::get('/senarai', [Admin\AgencyController::class, 'index'])->name('agency.index');
         Route::get('/tambah', [Admin\AgencyController::class, 'create'])->name('agency.create');
+        Route::get('/semak/{id}', [Admin\AgencyController::class, 'show'])->name('agency.show');
         Route::get('/kemaskini/{id}', [Admin\AgencyController::class, 'edit'])->name('agency.edit');
     });
 
     Route::group(['prefix' => 'pic_agensi'], function () {
         Route::get('/senarai', [Admin\PICAgencyController::class, 'index'])->name('pic.index');
-        // Route::get('/tambah', [Admin\AgencyController::class, 'create'])->name('agency.create');
-        // Route::get('/kemaskini/{id}', [Admin\AgencyController::class, 'edit'])->name('agency.edit');
+        Route::get('/tambah', [Admin\PICAgencyController::class, 'create'])->name('pic.create');
+        Route::get('/semak/{id}', [Admin\PICAgencyController::class, 'show'])->name('pic.show');
+        Route::get('/kemaskini/{id}', [Admin\PICAgencyController::class, 'edit'])->name('pic.edit');
     });
 
     Route::get('/user', [Admin\UserController::class, 'index'])->name('user.index');
@@ -60,7 +62,7 @@ Route::middleware([
     Route::group(['prefix' => 'jawatan'], function () {
         Route::get('/senarai', [Admin\PositionController::class, 'index'])->name('position.index');
         Route::get('/tambah', [Admin\PositionController::class, 'create'])->name('position.create');
-        // Route::get('/semak/{id}', [Admin\UniversityController::class, 'show'])->name('university.show');
+        Route::get('/semak/{id}', [Admin\PositionController::class, 'show'])->name('position.show');
         Route::get('/kemaskini/{id}', [Admin\PositionController::class, 'edit'])->name('position.edit');
     });
 

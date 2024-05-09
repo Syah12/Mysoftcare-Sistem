@@ -13,64 +13,112 @@
     </x-slot>
 
     <div class="pt-6">
-        <div class="bg-white p-4 rounded-lg border border-gray-200">
-            <div class="grid grid-cols-6 gap-6 items-center">
-                <div class="col-span-2 flex justify-center">
-                    @if (is_array($employee->image))
-                        @foreach ($employee->image as $uuid => $filePath)
-                            <img src="{{ asset('storage/' . $filePath) }}" class="w-60 rounded-xl mb-4  "
-                                alt="">
-                        @endforeach
-                    @endif
+        <div class="bg-white rounded-lg border border-gray-200">
+            <div class="py-4 px-6">
+                <div class="font-semibold mb-1">
+                    Maklumat Staf
                 </div>
-                <div class="col-span-4">
-                    <div class="grid grid-cols-1 mb-2">
-                        <div>
-                            Nama :
+                <div class="text-sm text-gray-700">
+                    Semak Maklumat Staf
+                </div>
+            </div>
+            <hr>
+            <div class="py-4 px-6">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="grid md:grid-cols-2 mb-4">
+                            <div>
+                                Nama :
+                            </div>
+                            <div class="font-medium">
+                                {{ $employee->name }}
+                            </div>
                         </div>
-                        <div class="font-medium">
-                            {{ $employee->name }}
+                        <div class="grid md:grid-cols-2 mb-4">
+                            <div>
+                                Tarikh Lahir :
+                            </div>
+                            <div class="font-medium">
+                                {{ $employee->birth_date }}
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 mb-4">
+                            <div>
+                                E-mel :
+                            </div>
+                            <div class="font-medium">
+                                {{ $employee->email }}
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 mb-4">
+                            <div>
+                                No. Telefon :
+                            </div>
+                            <div class="font-medium">
+                                {{ $employee->phone_number }}
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 mb-4">
+                            <div>
+                                Jantina :
+                            </div>
+                            <div class="font-medium">
+                                {{ $employee->gender }}
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 mb-4">
+                            <div>
+                                Jawatan :
+                            </div>
+                            <div class="font-medium">
+                                @if ($employee->position_id)
+                                    {{ $employee->position->name }}
+                                @else
+                                    -
+                                @endif
+                            </div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 mb-2">
+                    <div>
+                        @if (is_array($employee->image))
+                            @foreach ($employee->image as $uuid => $filePath)
+                                <img src="{{ asset('storage/' . $filePath) }}" class="w-40 rounded-lg" alt="">
+                            @endforeach
+                        @else
+                            <div
+                                class="bg-blue-100 w-40 rounded-lg h-40 items-center flex justify-center relative overflow-hidden">
+                                <div class="absolute inset-0 flex justify-center items-center transform -rotate-45">
+                                    <span class="text-gray-600 font-medium">Tiada Gambar</span>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <div class="grid md:grid-cols-5 mb-4">
                         <div>
-                            E-mel :
+                            Dicipta pada :
                         </div>
                         <div class="font-medium">
-                            {{ $employee->email }}
+                            {{ $employee->created_at }}
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 mb-2">
+                    <div class="grid md:grid-cols-5">
                         <div>
-                            No. Telefon :
+                            Dikemaskini pada :
                         </div>
                         <div class="font-medium">
-                            {{ $employee->phone_number }}
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 mb-2">
-                        <div>
-                            Jantina :
-                        </div>
-                        <div class="font-medium">
-                            {{ $employee->gender }}
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 mb-2">
-                        <div>
-                            Jawatan :
-                        </div>
-                        <div class="font-medium">
-                            @if ($employee->position)
-                                {{ $employee->position->name }}
-                            @else
-                                Tiada Maklumat
-                            @endif
+                            {{ $employee->updated_at }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="pt-6 flex flex-row-reverse">
+        <x-mysoftcare.general.primary-link route="employee.index" name="Kembali"
+            class="bg-white border border-gray-200" />
     </div>
 
 </x-admin-layout>

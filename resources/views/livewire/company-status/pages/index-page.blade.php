@@ -11,10 +11,10 @@
         <div class="flex md:flex-row-reverse">
             @if ($companyStatusMysoftcare->isNotEmpty())
                 @foreach ($companyStatusMysoftcare as $item)
-                    <x-mysoftcare.general.primary-button name="Kemaskini" wireClick="edit({{ $item->id }})" />
+                    <x-mysoftcare.general.primary-button name="Kemaskini" wireClick="edit({{ $item->id }})" class="bg-blue-500 text-white" />
                 @endforeach
             @else
-                <x-mysoftcare.general.primary-button name="Tambah" wireClick="create" />
+                <x-mysoftcare.general.primary-button name="Tambah" wireClick="create" class="bg-blue-500 text-white" />
             @endif
 
             <livewire:company-status.modals.form-modal />

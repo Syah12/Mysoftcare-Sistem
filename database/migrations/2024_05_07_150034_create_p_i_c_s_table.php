@@ -25,6 +25,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('phone_number')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

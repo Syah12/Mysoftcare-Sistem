@@ -23,8 +23,6 @@ return new class extends Migration
                 ->nullable()
                 ->constrained(Agency::getModel()->getTable())
                 ->onDelete('cascade');
-            // $table->string('agency')->nullable();
-            // $table->string('pic_agency')->nullable();
             $table->integer('year')->nullable();
             $table->string('name')->nullable();
             $table->integer('contract_period')->nullable();
@@ -36,6 +34,7 @@ return new class extends Migration
             $table->longText('notes')->nullable();
             $table->string('creator')->nullable();
             $table->string('status')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -30,21 +30,20 @@ class UniversityForm extends BaseForm
         $universityData = Section::make('Institusi')
             ->description('Maklumat mengenai institusi')
             ->schema([
+                Radio::make('is_university')->label('Universiti/Sekolah?')->required()->options([
+                    true => 'Universiti',
+                    false => 'Sekolah'
+                ])->inline()->helperText('Adakah institusi tersebut sekolah atau universiti? Pilih salah satu.'),
                 TextInput::make('name')->label('Nama Universiti/Sekolah')->required(),
                 TextInput::make('phone_number')->label('No. Telefon'),
                 TextInput::make('email')->label('E-mel'),
                 TextInput::make('address')->label('Alamat')->required(),
                 TextInput::make('postcode')->label('Poskod')->numeric()->required(),
-                TextInput::make('state')->label('Negeri')->required(),
-                TextInput::make('district')->label('Daerah')->required(),
                 Select::make('country')->label('Negara')->options([
                     'Malaysia' => 'Malaysia',
-                    'Indonesia' => 'Indonesia'
                 ])->searchable()->required(),
-                Radio::make('is_university')->label('Universiti/Sekolah?')->required()->options([
-                    true => 'Universiti',
-                    false => 'Sekolah'
-                ])->inline()->helperText('Adakah institusi tersebut sekolah atau universiti? Pilih salah satu.')
+                TextInput::make('state')->label('Negeri')->required(),
+                TextInput::make('district')->label('Daerah')->required()
             ]);
 
         return $form->schema([

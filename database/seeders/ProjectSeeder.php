@@ -28,7 +28,7 @@ class ProjectSeeder extends Seeder
                 'start_date_contract' => now(),
                 'end_date_contract' => now(),
                 'contract_value' => Arr::random($value),
-                'sst' => 'SST' . $i,
+                'sst' => null,
                 'notes' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam magnam quis placeat! Tempore soluta repudiandae magni sit quae consequuntur hic odio, corporis veritatis, inventore aperiam, voluptatibus illo nulla vero? In.',
                 'creator' => 'Creator' . $i,
                 'status' => Arr::random($status),

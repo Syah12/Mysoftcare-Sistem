@@ -6,6 +6,7 @@ use App\Livewire\BaseDataTable;
 use App\Models\University;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
@@ -55,13 +56,21 @@ class UniversityTable extends BaseDataTable
                 ActionGroup::make([
                     ViewAction::make()
                         ->icon(false)
-                        ->label('Lihat'),
-                    // ->url(fn (Project $record): string => route('university.show', $record)),
+                        ->label('Semak')
+                        ->url(fn (University $record): string => route('university.show', $record)),
                     EditAction::make()
                         ->icon(false)
                         ->label('Kemaskini')
                         ->url(fn (University $record): string => route('university.edit', $record)),
-                    // DeleteAction::make(),
+                    DeleteAction::make('delete')
+                        ->label('Padam')
+                        ->icon(false)
+                        ->requiresConfirmation()
+                        ->action(fn (University $record) => $record->delete())
+                        ->modalHeading('Padam Institusi')
+                        ->modalDescription('Adakah anda pasti ingin melakukan ini?')
+                        ->modalCancelActionLabel('Tidak')
+                        ->modalSubmitActionLabel('Ya')
                 ])->color('gray'),
             ])
             ->heading('Senarai Institusi')

@@ -14,7 +14,7 @@ abstract class BaseForm extends Component implements HasActions, HasForms
     use InteractsWithForms, InteractsWithActions;
 
     public array $data = [];
-    
+
     abstract public function form(Form $form): Form;
 
     public function render()

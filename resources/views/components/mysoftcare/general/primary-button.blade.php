@@ -1,3 +1,3 @@
-@props(['name', 'wireClick' => false])
+@props(['name', 'wireClick' => false, 'class'])
 
-<button class="bg-blue-500 text-white py-2 px-4 rounded-lg" wire:click="{{ $wireClick }}">{{ $name }}</button>
+<button class="{{ $class }} py-2 px-4 rounded-lg" wire:click="{{ $wireClick }}">{{ $name }}</button>
