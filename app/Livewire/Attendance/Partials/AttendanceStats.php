@@ -14,11 +14,11 @@ class AttendanceStats extends BaseWidget
         $presentCount = Attendance::where('is_present', true)->count();
 
         $intern = Stat::make('Bilangan Kehadiran Pelajar LI', $presentCount . '/' . $totalAttendance);
-        $staf = Stat::make('Bilangan Kehadiran Staf', $presentCount . '/' . $totalAttendance);
+        // $staf = Stat::make('Bilangan Kehadiran Staf', $presentCount . '/' . $totalAttendance);
 
         return [
             $intern,
-            $staf
+            // $staf
         ];
     }
 }

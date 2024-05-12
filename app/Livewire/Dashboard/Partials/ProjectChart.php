@@ -17,7 +17,6 @@ class ProjectChart extends ChartWidget
 
         foreach ($statuses as $status) {
             $count = Project::where('status', $status)->count();
-
             $data[] = $count;
         }
 
@@ -28,7 +27,7 @@ class ProjectChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Status',
+                    'label' => 'Bilangan',
                     'data' => $data,
                     'backgroundColor' => [
                         '#FF6384', // Berjaya

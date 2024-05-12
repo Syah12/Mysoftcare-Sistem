@@ -10,7 +10,15 @@ class UniversityController extends Controller
 {
     public function index()
     {
-        return view('admin.university.index');
+        $university = University::latest()->get();
+
+        $incompletedData = $university->filter(function ($item) {
+            return in_array(null, collect($item)->except(['deleted_at', 'is_university'])->values()->toArray());
+        })->pluck('name', 'id')->toArray();
+
+        return view('admin.university.index', [
+            'incompletedData' => $incompletedData,
+        ]);
     }
 
     public function create()

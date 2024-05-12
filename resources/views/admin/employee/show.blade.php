@@ -28,7 +28,7 @@
                     <div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Nama :
+                                Nama
                             </div>
                             <div class="font-medium">
                                 {{ $employee->name }}
@@ -36,7 +36,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Tarikh Lahir :
+                                Tarikh Lahir
                             </div>
                             <div class="font-medium">
                                 {{ $employee->birth_date }}
@@ -44,7 +44,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                E-mel :
+                                E-mel
                             </div>
                             <div class="font-medium">
                                 {{ $employee->email }}
@@ -52,7 +52,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                No. Telefon :
+                                No. Telefon
                             </div>
                             <div class="font-medium">
                                 {{ $employee->phone_number }}
@@ -60,7 +60,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Jantina :
+                                Jantina
                             </div>
                             <div class="font-medium">
                                 {{ $employee->gender }}
@@ -68,7 +68,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Jawatan :
+                                Jawatan
                             </div>
                             <div class="font-medium">
                                 @if ($employee->position_id)
@@ -86,7 +86,7 @@
                             @endforeach
                         @else
                             <div
-                                class="bg-blue-100 w-40 rounded-lg h-40 items-center flex justify-center relative overflow-hidden">
+                                class="bg-yellow-50 w-40 rounded-lg h-40 items-center flex justify-center relative overflow-hidden">
                                 <div class="absolute inset-0 flex justify-center items-center transform -rotate-45">
                                     <span class="text-gray-600 font-medium">Tiada Gambar</span>
                                 </div>
@@ -97,7 +97,7 @@
                 <div class="bg-blue-50 rounded-lg p-4">
                     <div class="grid md:grid-cols-5 mb-4">
                         <div>
-                            Dicipta pada :
+                            Dicipta pada
                         </div>
                         <div class="font-medium">
                             {{ $employee->created_at }}
@@ -105,7 +105,7 @@
                     </div>
                     <div class="grid md:grid-cols-5">
                         <div>
-                            Dikemaskini pada :
+                            Dikemaskini pada
                         </div>
                         <div class="font-medium">
                             {{ $employee->updated_at }}

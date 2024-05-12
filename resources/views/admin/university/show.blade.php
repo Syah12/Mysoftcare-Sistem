@@ -27,7 +27,7 @@
             <div class="py-4 px-6">
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Jenis Institusi :
+                        Jenis Institusi
                     </div>
                     <div class="font-medium">
                         @if ($university->is_university == true)
@@ -39,7 +39,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Nama :
+                        Nama
                     </div>
                     <div class="font-medium">
                         {{ $university->name }}
@@ -47,7 +47,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        No. Telefon :
+                        No. Telefon
                     </div>
                     <div class="font-medium">
                         {{ $university->phone_number }}
@@ -55,7 +55,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        E-mel :
+                        E-mel
                     </div>
                     <div class="font-medium">
                         {{ $university->email }}
@@ -63,7 +63,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Alamat :
+                        Alamat
                     </div>
                     <div class="font-medium">
                         {{ $university->address }}
@@ -71,7 +71,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Poskod :
+                        Poskod
                     </div>
                     <div class="font-medium">
                         {{ $university->postcode }}
@@ -79,7 +79,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Negera :
+                        Negera
                     </div>
                     <div class="font-medium">
                         {{ $university->country }}
@@ -87,7 +87,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Negeri :
+                        Negeri
                     </div>
                     <div class="font-medium">
                         {{ $university->state }}
@@ -95,7 +95,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Daerah :
+                        Daerah
                     </div>
                     <div class="font-medium">
                         {{ $university->district }}
@@ -104,7 +104,7 @@
                 <div class="bg-blue-50 rounded-lg p-4">
                     <div class="grid md:grid-cols-5 mb-4">
                         <div>
-                            Dicipta pada :
+                            Dicipta pada
                         </div>
                         <div class="font-medium">
                             {{ $university->created_at }}
@@ -112,7 +112,7 @@
                     </div>
                     <div class="grid md:grid-cols-5">
                         <div>
-                            Dikemaskini pada :
+                            Dikemaskini pada
                         </div>
                         <div class="font-medium">
                             {{ $university->updated_at }}

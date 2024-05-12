@@ -27,7 +27,7 @@
             <div class="py-4 px-6">
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Nama :
+                        Nama
                     </div>
                     <div class="font-medium">
                         {{ $agency->name }}
@@ -35,7 +35,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        No. Telefon :
+                        No. Telefon
                     </div>
                     <div class="font-medium">
                         {{ $agency->phone_number }}
@@ -43,7 +43,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        E-mel :
+                        E-mel
                     </div>
                     <div class="font-medium">
                         {{ $agency->email }}
@@ -51,7 +51,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Alamat :
+                        Alamat
                     </div>
                     <div class="font-medium">
                         {{ $agency->address }}
@@ -59,7 +59,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Poskod :
+                        Poskod
                     </div>
                     <div class="font-medium">
                         {{ $agency->postcode }}
@@ -67,7 +67,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Negera :
+                        Negera
                     </div>
                     <div class="font-medium">
                         {{ $agency->country }}
@@ -75,7 +75,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Negeri :
+                        Negeri
                     </div>
                     <div class="font-medium">
                         {{ $agency->state }}
@@ -83,7 +83,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Daerah :
+                        Daerah
                     </div>
                     <div class="font-medium">
                         {{ $agency->district }}
@@ -92,7 +92,7 @@
                 <div class="bg-blue-50 rounded-lg p-4">
                     <div class="grid md:grid-cols-5 mb-4">
                         <div>
-                            Dicipta pada :
+                            Dicipta pada
                         </div>
                         <div class="font-medium">
                             {{ $agency->created_at }}
@@ -100,7 +100,7 @@
                     </div>
                     <div class="grid md:grid-cols-5">
                         <div>
-                            Dikemaskini pada :
+                            Dikemaskini pada
                         </div>
                         <div class="font-medium">
                             {{ $agency->updated_at }}

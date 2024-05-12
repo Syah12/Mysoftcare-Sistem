@@ -28,7 +28,7 @@
                     <div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Nama :
+                                Nama
                             </div>
                             <div class="font-medium">
                                 {{ $intern->name }}
@@ -36,7 +36,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                IC :
+                                IC
                             </div>
                             <div class="font-medium">
                                 {{ $intern->ic }}
@@ -44,7 +44,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                E-mel :
+                                E-mel
                             </div>
                             <div class="font-medium">
                                 {{ $intern->email }}
@@ -52,7 +52,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                No. Telefon :
+                                No. Telefon
                             </div>
                             <div class="font-medium">
                                 {{ $intern->phone_number }}
@@ -60,7 +60,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Jantina :
+                                Jantina
                             </div>
                             <div class="font-medium">
                                 {{ $intern->gender }}
@@ -68,7 +68,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Universiti :
+                                Universiti
                             </div>
                             <div class="font-medium">
                                 @if ($intern->university)
@@ -80,7 +80,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Kemahiran :
+                                Kemahiran
                             </div>
                             <div class="font-medium">
                                 @if ($intern->skills)
@@ -96,7 +96,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Taraf Pendidikan :
+                                Taraf Pendidikan
                             </div>
                             <div class="font-medium">
                                 @if ($intern->educational_level)
@@ -123,7 +123,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Tarikh Mula :
+                                Tarikh Mula
                             </div>
                             <div class="font-medium">
                                 {{ $intern->start_intern }}
@@ -131,7 +131,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Tarikh Tamat :
+                                Tarikh Tamat
                             </div>
                             <div class="font-medium">
                                 {{ $intern->end_intern }}
@@ -139,7 +139,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Resume :
+                                Resume
                             </div>
                             <div class="font-medium">
                                 @if (is_array($intern->resume))
@@ -154,7 +154,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Surat Permohonan :
+                                Surat Permohonan
                             </div>
                             <div class="font-medium">
                                 @if (is_array($intern->letter))
@@ -169,7 +169,7 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Status :
+                                Status
                             </div>
                             <div class="font-medium">
                                 @php
@@ -194,7 +194,7 @@
                             @endforeach
                         @else
                             <div
-                                class="bg-blue-100 w-40 rounded-lg h-40 items-center flex justify-center relative overflow-hidden">
+                                class="bg-yellow-50 w-40 rounded-lg h-40 items-center flex justify-center relative overflow-hidden">
                                 <div class="absolute inset-0 flex justify-center items-center transform -rotate-45">
                                     <span class="text-gray-600 font-medium">Tiada Gambar</span>
                                 </div>
@@ -205,7 +205,7 @@
                 <div class="bg-blue-50 rounded-lg p-4">
                     <div class="grid md:grid-cols-5 mb-4">
                         <div>
-                            Dicipta pada :
+                            Dicipta pada
                         </div>
                         <div class="font-medium">
                             {{ $intern->created_at }}
@@ -213,7 +213,7 @@
                     </div>
                     <div class="grid md:grid-cols-5">
                         <div>
-                            Dikemaskini pada :
+                            Dikemaskini pada
                         </div>
                         <div class="font-medium">
                             {{ $intern->updated_at }}

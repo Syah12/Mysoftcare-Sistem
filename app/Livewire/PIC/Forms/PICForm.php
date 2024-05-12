@@ -35,11 +35,34 @@ class PICForm extends BaseForm
                     ->options(Agency::pluck('name', 'id'))
                     ->searchable()
                     ->native(false)
+                    ->createOptionForm([
+                        TextInput::make('name')->label('Jawatan')
+                            ->required()
+                    ])
+                    ->createOptionUsing(function (array $data) {
+                        Agency::create([
+                            'name' => $data['name'],
+                        ]);
+                    })
+                    ->createOptionAction(function ($action) {
+                        $action->modalWidth('xl');
+                    })
+                    ->createOptionModalHeading('Tambah Jawatan')
                     ->required(),
                 Select::make('position_id')->label('Jawatan PIC')
                     ->options(Position::pluck('name', 'id'))
                     ->searchable()
                     ->native(false)
+                    ->createOptionForm([
+                        TextInput::make('name')->label('Jawatan')
+                            ->required()
+                    ])
+                    ->createOptionUsing(function (array $data) {
+                        PIC::create([
+                            'name' => $data['name'],
+                        ]);
+                    })
+                    ->createOptionModalHeading('Tambah Jawatan')
                     ->required(),
             ]);
 

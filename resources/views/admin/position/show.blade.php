@@ -26,7 +26,7 @@
             <div class="py-4 px-6">
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Jawatan :
+                        Jawatan
                     </div>
                     <div class="font-medium">
                         {{ $position->name }}
@@ -35,7 +35,7 @@
                 <div class="bg-blue-50 rounded-lg p-4">
                     <div class="grid md:grid-cols-5 mb-4">
                         <div>
-                            Dicipta pada :
+                            Dicipta pada
                         </div>
                         <div class="font-medium">
                             {{ $position->created_at }}
@@ -43,7 +43,7 @@
                     </div>
                     <div class="grid md:grid-cols-5">
                         <div>
-                            Dikemaskini pada :
+                            Dikemaskini pada
                         </div>
                         <div class="font-medium">
                             {{ $position->updated_at }}

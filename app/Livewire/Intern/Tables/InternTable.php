@@ -33,7 +33,7 @@ class InternTable extends BaseDataTable
 
     public function getColumns()
     {
-        $img = ImageColumn::make('image')->label('Gambar Profil')->circular()->width(60)->height(60);
+        // $img = ImageColumn::make('image')->label('Gambar Profil')->circular()->width(60)->height(60);
         $name = TextColumn::make('name')->label('Name Penuh')->searchable()->sortable();
         $ic = TextColumn::make('ic')->label('IC')->searchable()->sortable();
         $start_intern = TextColumn::make('start_intern')->label('Tarikh Mula')->sortable();
@@ -46,7 +46,7 @@ class InternTable extends BaseDataTable
         });
 
         return [
-            $img,
+            // $img,
             $name,
             $ic,
             $start_intern,

@@ -7,11 +7,13 @@
 
         <x-mysoftcare.general.breadcrumbs>
             <x-mysoftcare.general.breadcrumbs-item route="{{ route('dashboard') }}" name="Papan Utama" />
-            <x-mysoftcare.general.breadcrumbs-item name="Senarai Pengguna" icon disabled />
+            <x-mysoftcare.general.breadcrumbs-item route="{{ route('user.index') }}" name="Senarai Pengguna" icon  />
+            <x-mysoftcare.general.breadcrumbs-item name="Tambah Maklumat Pengguna" icon disabled  />
         </x-mysoftcare.general.breadcrumbs>
     </x-slot>
 
     <div class="pt-6">
-        <livewire:user.tables.user-table />
+        <livewire:user.forms.user-form />
     </div>
+
 </x-admin-layout>

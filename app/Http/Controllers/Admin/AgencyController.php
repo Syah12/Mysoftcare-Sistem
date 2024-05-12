@@ -10,7 +10,15 @@ class AgencyController extends Controller
 {
     public function index()
     {
-        return view('admin.agency.index');
+        $agency = Agency::latest()->get();
+
+        $incompletedData = $agency->filter(function ($item) {
+            return in_array(null, collect($item)->except(['deleted_at'])->values()->toArray());
+        })->pluck('name', 'id')->toArray();
+
+        return view('admin.agency.index', [
+            'incompletedData' => $incompletedData,
+        ]);
     }
 
     public function create()

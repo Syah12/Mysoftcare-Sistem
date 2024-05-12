@@ -26,7 +26,7 @@
             <div class="py-4 px-6">
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Nama :
+                        Nama
                     </div>
                     <div class="font-medium">
                         {{ $pic->name }}
@@ -34,7 +34,7 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        No. Telefon :
+                        No. Telefon
                     </div>
                     <div class="font-medium">
                         {{ $pic->phone_number }}
@@ -42,15 +42,56 @@
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Agensi :
+                        Agensi
                     </div>
-                    <div class="font-medium">
-                        {{ $pic->agency->name }}
+                    <div class="font-medium col-span-4">
+                        <div x-data="{ expanded: false }">
+                            <button @click="expanded = ! expanded" class="inline-flex items-center gap-4 mb-2">
+                                @if ($pic->agency_id)
+                                    {{ $pic->agency->name }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            :d="expanded ? 'm4.5 15.75 7.5-7.5 7.5 7.5' : 'm19.5 8.25-7.5 7.5-7.5-7.5'" />
+                                    </svg>
+                                @else
+                                    -
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            :d="expanded ? 'm4.5 15.75 7.5-7.5 7.5 7.5' : 'm19.5 8.25-7.5 7.5-7.5-7.5'" />
+                                    </svg>
+                                @endif
+                            </button>
+
+                            <div x-show="expanded" {{-- @click.outside="expanded = false" --}}>
+                                @if ($pic->agency)
+                                    <div class="grid grid-cols-5 mb-2">
+                                        <div>
+                                            No. Telefon
+                                        </div>
+                                        <div>
+                                            {{ $pic->agency->phone_number }}
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-5">
+                                        <div>
+                                            E-mel
+                                        </div>
+                                        <div>
+                                            {{ $pic->agency->email }}
+                                        </div>
+                                    </div>
+                                @else
+                                    -
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
                     <div>
-                        Jawatan :
+                        Jawatan
                     </div>
                     <div class="font-medium">
                         {{ $pic->position->name }}
@@ -59,7 +100,7 @@
                 <div class="bg-blue-50 rounded-lg p-4">
                     <div class="grid md:grid-cols-5 mb-4">
                         <div>
-                            Dicipta pada :
+                            Dicipta pada
                         </div>
                         <div class="font-medium">
                             {{ $pic->created_at }}
@@ -67,7 +108,7 @@
                     </div>
                     <div class="grid md:grid-cols-5">
                         <div>
-                            Dikemaskini pada :
+                            Dikemaskini pada
                         </div>
                         <div class="font-medium">
                             {{ $pic->updated_at }}
@@ -79,8 +120,7 @@
     </div>
 
     <div class="pt-6 flex flex-row-reverse">
-        <x-mysoftcare.general.primary-link route="pic.index" name="Kembali"
-            class="bg-white border border-gray-200" />
+        <x-mysoftcare.general.primary-link route="pic.index" name="Kembali" class="bg-white border border-gray-200" />
     </div>
 
 </x-admin-layout>

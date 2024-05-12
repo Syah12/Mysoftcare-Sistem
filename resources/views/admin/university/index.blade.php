@@ -11,6 +11,27 @@
         </x-mysoftcare.general.breadcrumbs>
     </x-slot>
 
+    @if (!empty($incompletedData))
+        <div class="pt-6">
+            <div class="bg-yellow-100 p-4 border-l-4 border-yellow-500">
+                <div class="font-semibold text-yellow-700 uppercase">
+                    Tindakan anda
+                </div>
+                <div class="text-sm text-gray-700 mb-2">
+                    Kemaskini institusi
+                </div>
+                <div>
+                    <ul>
+                        @foreach ($incompletedData as $id => $name)
+                            <li class="py-1"><a href="{{ route('university.edit', $id) }}"
+                                    class="hover:text-yellow-700">{{ $name }}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="pt-6">
         <livewire:university.tables.university-table />
     </div>

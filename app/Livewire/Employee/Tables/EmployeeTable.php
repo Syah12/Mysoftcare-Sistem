@@ -23,13 +23,13 @@ class EmployeeTable extends BaseDataTable
 
     public function getColumns()
     {
-        $img = ImageColumn::make('image')->label('Gambar Profil')->circular()->width(60)->height(60);
+        // $img = ImageColumn::make('image')->label('Gambar Profil')->circular()->width(60)->height(60);
         $name = TextColumn::make('name')->label('Name Penuh')->searchable()->sortable();
         $email = TextColumn::make('email')->label('E-mel')->sortable();
         $phoneNumber = TextColumn::make('phone_number')->label('No. Telefon')->sortable();
 
         return [
-            $img,
+            // $img,
             $name,
             $email,
             $phoneNumber

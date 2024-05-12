@@ -26,9 +26,12 @@ class ProjectManagementTable extends BaseDataTable
 
     public function getColumns()
     {
-        $year = TextColumn::make('year')->label('Tahun')->sortable();
+        // $year = TextColumn::make('year')->label('Tahun')->sortable();
         $name = TextColumn::make('name')->label('Nama Projek')->sortable()->searchable();
-        $contractValue = TextColumn::make('contract_value')->label('Nilai Kontrak')->sortable();
+        $agency = TextColumn::make('agency.name')->label('Agensi')->sortable();
+        $startDateContract = TextColumn::make('start_date_contract')->label('Tarikh Mula Kontrak')->sortable();
+        $endDateContract = TextColumn::make('end_date_contract')->label('Tarikh Akhir Kontrak')->sortable();
+        // $contractValue = TextColumn::make('contract_value')->label('Nilai Kontrak')->sortable();
         $status = TextColumn::make('status')->label('Status')->sortable()->badge()->color(fn (string $state): string => match ($state) {
             'Berjaya' => 'success',
             'Aktif' => 'primary',
@@ -38,9 +41,12 @@ class ProjectManagementTable extends BaseDataTable
         });
 
         return [
-            $year,
+            // $year,
             $name,
-            $contractValue,
+            $agency,
+            $startDateContract,
+            $endDateContract,
+            // $contractValue,
             $status
         ];
     }

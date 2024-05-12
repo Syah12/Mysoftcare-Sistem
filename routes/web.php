@@ -57,7 +57,13 @@ Route::middleware([
         Route::get('/kemaskini/{id}', [Admin\PICAgencyController::class, 'edit'])->name('pic.edit');
     });
 
-    Route::get('/user', [Admin\UserController::class, 'index'])->name('user.index');
+    Route::group(['prefix' => 'pengguna'], function () {
+        Route::get('/senarai', [Admin\UserController::class, 'index'])->name('user.index');
+        Route::get('/tambah', [Admin\UserController::class, 'create'])->name('user.create');
+        Route::get('/semak/{id}', [Admin\UserController::class, 'show'])->name('user.show');
+        Route::get('/kemaskini/{id}', [Admin\UserController::class, 'edit'])->name('user.edit');
+    });
+
 
     Route::group(['prefix' => 'jawatan'], function () {
         Route::get('/senarai', [Admin\PositionController::class, 'index'])->name('position.index');
