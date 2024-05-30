@@ -17,7 +17,7 @@ class CalendarEventTableToday extends BaseDataTable
 
     public function getColumns()
     {
-        $title = TextColumn::make('title')->label('Tajuk')->sortable()->searchable();
+        $title = TextColumn::make('title')->label('Acara')->sortable()->searchable();
         $startTime = TextColumn::make('start_time')->label('Tarikh Dari')->sortable();
         $endTime = TextColumn::make('end_time')->label('Tarikh Hingga')->sortable();
 

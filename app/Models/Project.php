@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Project extends Model
+class Project extends Model implements Auditable
 {
     use HasFactory;
     use SoftDeletes;
+    use AuditingAuditable;
 
     protected $casts = [
         'sst' => 'array',
+        'pic_id' => 'array'
     ];
 
     protected $fillable = [
@@ -30,7 +33,11 @@ class Project extends Model
         'sst',
         'notes',
         'creator',
-        'status'
+        'status',
+        'mileage',
+        'date',
+        'place',
+        'status_mileage'
     ];
 
     public function agency(): BelongsTo

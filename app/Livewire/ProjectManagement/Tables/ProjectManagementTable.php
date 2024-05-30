@@ -4,10 +4,8 @@ namespace App\Livewire\ProjectManagement\Tables;
 
 use App\Livewire\BaseDataTable;
 use App\Models\Project;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
@@ -26,12 +24,10 @@ class ProjectManagementTable extends BaseDataTable
 
     public function getColumns()
     {
-        // $year = TextColumn::make('year')->label('Tahun')->sortable();
         $name = TextColumn::make('name')->label('Nama Projek')->sortable()->searchable();
         $agency = TextColumn::make('agency.name')->label('Agensi')->sortable();
-        $startDateContract = TextColumn::make('start_date_contract')->label('Tarikh Mula Kontrak')->sortable();
-        $endDateContract = TextColumn::make('end_date_contract')->label('Tarikh Akhir Kontrak')->sortable();
-        // $contractValue = TextColumn::make('contract_value')->label('Nilai Kontrak')->sortable();
+        $startDateContract = TextColumn::make('start_date_contract')->label('Tarikh Mula Kontrak')->sortable()->dateTime('d/m/Y');
+        $endDateContract = TextColumn::make('end_date_contract')->label('Tarikh Akhir Kontrak')->sortable()->dateTime('d/m/Y');
         $status = TextColumn::make('status')->label('Status')->sortable()->badge()->color(fn (string $state): string => match ($state) {
             'Berjaya' => 'success',
             'Aktif' => 'primary',
@@ -39,15 +35,22 @@ class ProjectManagementTable extends BaseDataTable
             'Tempoh jaminan' => 'warning',
             'Selesai' => 'gray',
         });
+        $mileage = TextColumn::make('mileage')->label('Perbatuan')
+            // ->getStateUsing(fn ($record) => !is_null($record->mileage) ? 'Ada' : 'Tiada');
+            ->getStateUsing(fn ($record) => !is_null($record->mileage))
+            ->formatStateUsing(
+                fn (bool $state) => $state
+                    ? '<span style="color: green;">&#10003;</span>'
+                    : '<span style="color: red;">&#10007;</span>'
+            )->html();
 
         return [
-            // $year,
             $name,
             $agency,
             $startDateContract,
             $endDateContract,
-            // $contractValue,
-            $status
+            $status,
+            $mileage
         ];
     }
 
@@ -63,16 +66,32 @@ class ProjectManagementTable extends BaseDataTable
             ->columns($this->getColumns())
             ->emptyStateHeading('Tiada Projek')
             ->emptyStateDescription('Senarai projek akan dipaparkan di sini')
+            // ->bulkActions([
+            //     BulkAction::make('delete')
+            //         ->requiresConfirmation()
+            //         ->color('danger')
+            //         ->label('Padam')
+            //         ->modalHeading('Padam Semua')
+            //         ->modalDescription('Adakah anda pasti ingin melakukan ini?')
+            //         ->modalCancelActionLabel('Tidak')
+            //         ->modalSubmitActionLabel('Ya')
+            //         ->action(function ($records) {
+            //             foreach ($records as $record) {
+            //                 $record->delete();
+            //             }
+            //         })
+            // ])
             ->actions([
+                EditAction::make()
+                    ->label('Kemaskini')
+                    ->button()
+                    ->icon(false)
+                    ->url(fn (Project $record): string => route('project.edit', $record)),
                 ActionGroup::make([
                     ViewAction::make()
-                        ->label('Semak')
+                        ->label('Lihat')
                         ->icon(false)
                         ->url(fn (Project $record): string => route('project.show', $record)),
-                    EditAction::make()
-                        ->label('Kemaskini')
-                        ->icon(false)
-                        ->url(fn (Project $record): string => route('project.edit', $record)),
                     DeleteAction::make('delete')
                         ->label('Padam')
                         ->icon(false)

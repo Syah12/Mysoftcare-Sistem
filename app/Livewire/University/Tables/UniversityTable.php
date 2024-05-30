@@ -53,15 +53,16 @@ class UniversityTable extends BaseDataTable
             ->emptyStateHeading('Tiada Institusi')
             ->emptyStateDescription('Senarai institusi akan dipaparkan di sini')
             ->actions([
+                EditAction::make()
+                    ->icon(false)
+                    ->button()
+                    ->label('Kemaskini')
+                    ->url(fn (University $record): string => route('university.edit', $record)),
                 ActionGroup::make([
                     ViewAction::make()
                         ->icon(false)
-                        ->label('Semak')
+                        ->label('Lihat')
                         ->url(fn (University $record): string => route('university.show', $record)),
-                    EditAction::make()
-                        ->icon(false)
-                        ->label('Kemaskini')
-                        ->url(fn (University $record): string => route('university.edit', $record)),
                     DeleteAction::make('delete')
                         ->label('Padam')
                         ->icon(false)

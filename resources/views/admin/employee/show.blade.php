@@ -1,15 +1,14 @@
 <x-admin-layout>
-
     <x-slot name="welcome">
-        <h2 class="font-semibold text-2xl pt-6 pb-6">
-            Selamat datang ke <span class="text-blue-400">Mysoftcare</span>, {{ Auth::user()->name }}.
-        </h2>
-
         <x-mysoftcare.general.breadcrumbs>
             <x-mysoftcare.general.breadcrumbs-item route="{{ route('dashboard') }}" name="Papan Utama" />
             <x-mysoftcare.general.breadcrumbs-item route="{{ route('employee.index') }}" name="Senarai Staf" icon />
-            <x-mysoftcare.general.breadcrumbs-item name="Semak Maklumat Staf" icon disabled />
+            <x-mysoftcare.general.breadcrumbs-item name="Lihat Maklumat Staf" icon disabled />
         </x-mysoftcare.general.breadcrumbs>
+        <h2 class="font-semibold text-2xl pt-6">
+            Selamat datang, {{ Auth::user()->name }}.
+        </h2>
+        <p class="text-sm">Paparan dikemaskini pada {{ now()->format('d/m/Y') }}</p>
     </x-slot>
 
     <div class="pt-6">
@@ -19,7 +18,7 @@
                     Maklumat Staf
                 </div>
                 <div class="text-sm text-gray-700">
-                    Semak Maklumat Staf
+                    Lihat Maklumat Staf
                 </div>
             </div>
             <hr>
@@ -60,14 +59,6 @@
                         </div>
                         <div class="grid md:grid-cols-2 mb-4">
                             <div>
-                                Jantina
-                            </div>
-                            <div class="font-medium">
-                                {{ $employee->gender }}
-                            </div>
-                        </div>
-                        <div class="grid md:grid-cols-2 mb-4">
-                            <div>
                                 Jawatan
                             </div>
                             <div class="font-medium">
@@ -76,6 +67,22 @@
                                 @else
                                     -
                                 @endif
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 mb-4">
+                            <div>
+                                Dicipta pada
+                            </div>
+                            <div class="font-medium bg-blue-50 py-1 px-3 rounded-lg text-center">
+                                {{ $employee->created_at }}
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2">
+                            <div>
+                                Dikemaskini pada
+                            </div>
+                            <div class="font-medium bg-blue-50 py-1 px-3 rounded-lg text-center">
+                                {{ $employee->updated_at }}
                             </div>
                         </div>
                     </div>
@@ -92,24 +99,6 @@
                                 </div>
                             </div>
                         @endif
-                    </div>
-                </div>
-                <div class="bg-blue-50 rounded-lg p-4">
-                    <div class="grid md:grid-cols-5 mb-4">
-                        <div>
-                            Dicipta pada
-                        </div>
-                        <div class="font-medium">
-                            {{ $employee->created_at }}
-                        </div>
-                    </div>
-                    <div class="grid md:grid-cols-5">
-                        <div>
-                            Dikemaskini pada
-                        </div>
-                        <div class="font-medium">
-                            {{ $employee->updated_at }}
-                        </div>
                     </div>
                 </div>
             </div>

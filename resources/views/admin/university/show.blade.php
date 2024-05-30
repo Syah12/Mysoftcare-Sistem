@@ -1,16 +1,15 @@
 <x-admin-layout>
-
     <x-slot name="welcome">
-        <h2 class="font-semibold text-2xl pt-6 pb-6">
-            Selamat datang ke <span class="text-blue-400">Mysoftcare</span>, {{ Auth::user()->name }}.
-        </h2>
-
         <x-mysoftcare.general.breadcrumbs>
             <x-mysoftcare.general.breadcrumbs-item route="{{ route('dashboard') }}" name="Papan Utama" />
             <x-mysoftcare.general.breadcrumbs-item route="{{ route('university.index') }}" name="Senarai Institusi"
                 icon />
-            <x-mysoftcare.general.breadcrumbs-item name="Semak Maklumat Institusi" icon disabled />
+            <x-mysoftcare.general.breadcrumbs-item name="Lihat Maklumat Institusi" icon disabled />
         </x-mysoftcare.general.breadcrumbs>
+        <h2 class="font-semibold text-2xl pt-6">
+            Selamat datang, {{ Auth::user()->name }}.
+        </h2>
+        <p class="text-sm">Paparan dikemaskini pada {{ now()->format('d/m/Y') }}</p>
     </x-slot>
 
     <div class="pt-6">
@@ -20,7 +19,7 @@
                     Maklumat Institusi
                 </div>
                 <div class="text-sm text-gray-700">
-                    Semak Maklumat Institusi
+                    Lihat Maklumat Institusi
                 </div>
             </div>
             <hr>
@@ -51,14 +50,6 @@
                     </div>
                     <div class="font-medium">
                         {{ $university->phone_number }}
-                    </div>
-                </div>
-                <div class="grid md:grid-cols-5 mb-4">
-                    <div>
-                        E-mel
-                    </div>
-                    <div class="font-medium">
-                        {{ $university->email }}
                     </div>
                 </div>
                 <div class="grid md:grid-cols-5 mb-4">
@@ -101,22 +92,20 @@
                         {{ $university->district }}
                     </div>
                 </div>
-                <div class="bg-blue-50 rounded-lg p-4">
-                    <div class="grid md:grid-cols-5 mb-4">
-                        <div>
-                            Dicipta pada
-                        </div>
-                        <div class="font-medium">
-                            {{ $university->created_at }}
-                        </div>
+                <div class="grid md:grid-cols-5 mb-4">
+                    <div>
+                        Dicipta pada
                     </div>
-                    <div class="grid md:grid-cols-5">
-                        <div>
-                            Dikemaskini pada
-                        </div>
-                        <div class="font-medium">
-                            {{ $university->updated_at }}
-                        </div>
+                    <div class="font-medium bg-blue-50 py-1 px-3 rounded-lg text-center">
+                        {{ $university->created_at }}
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-5">
+                    <div>
+                        Dikemaskini pada
+                    </div>
+                    <div class="font-medium bg-blue-50 py-1 px-3 rounded-lg text-center">
+                        {{ $university->updated_at }}
                     </div>
                 </div>
             </div>

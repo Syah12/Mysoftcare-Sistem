@@ -25,7 +25,7 @@
         <div class="md:block hidden h-full">
             <x-mysoftcare.sidebar.content />
         </div>
-        <div class="md:col-span-5 sm:col-span-6 overflow-y-auto bg-gray-100">
+        <div class="md:col-span-5 sm:col-span-6 overflow-y-auto {{-- scrollbar-hide --}} bg-gray-100">
             <div>
                 @livewire('navigation-menu')
 

@@ -1,12 +1,12 @@
 @props(['route' => false, 'name', 'icon' => false, 'disabled' => false])
 
 <li>
-    <div class="flex items-center">
+    <div class="flex items-center space-x-2">
         @if ($icon)
-            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m1 9 4-4-4-4" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path fill-rule="evenodd"
+                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                    clip-rule="evenodd" />
             </svg>
         @endif
         <a href="{{ $route }}"

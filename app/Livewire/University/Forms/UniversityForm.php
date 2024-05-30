@@ -36,7 +36,6 @@ class UniversityForm extends BaseForm
                 ])->inline()->helperText('Adakah institusi tersebut sekolah atau universiti? Pilih salah satu.'),
                 TextInput::make('name')->label('Nama Universiti/Sekolah')->required(),
                 TextInput::make('phone_number')->label('No. Telefon'),
-                TextInput::make('email')->label('E-mel'),
                 TextInput::make('address')->label('Alamat')->required(),
                 TextInput::make('postcode')->label('Poskod')->numeric()->required(),
                 Select::make('country')->label('Negara')->options([

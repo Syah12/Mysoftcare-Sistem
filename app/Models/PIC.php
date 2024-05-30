@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,8 +31,8 @@ class PIC extends Model
         return $this->belongsTo(Agency::class);
     }
 
-    public function project(): HasOne
+    public function project(): HasMany
     {
-        return $this->hasOne(Project::class);
+        return $this->hasMany(Project::class);
     }
 }

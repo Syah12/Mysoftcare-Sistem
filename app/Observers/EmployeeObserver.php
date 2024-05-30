@@ -16,7 +16,7 @@ class EmployeeObserver
         Attendance::create([
             'employee_id' => $employee->id,
             'date' => Carbon::now(),
-            'is_present' => false
+            'is_present' => true
         ]);
     }
 

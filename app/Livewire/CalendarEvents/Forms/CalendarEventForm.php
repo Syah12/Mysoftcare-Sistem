@@ -43,7 +43,7 @@ class CalendarEventForm extends BaseForm
     {
         return $form->schema([
             TextInput::make('title')
-                ->label('Tajuk')
+                ->label('Cara')
                 ->required(),
             DateTimePicker::make('start_time')
                 ->label('Tarikh Dari')

@@ -19,7 +19,6 @@ class UniversitySeeder extends Seeder
             University::create([
                 'name' => 'Universiti/Sekolah ' . $i,
                 'phone_number' => '013' . $i,
-                'email' => $i . '@gmail.com',
                 'address' => 'Alamat ' . $i,
                 'state' => 'Negeri ' . $i,
                 'district' => 'Daerah ' . $i,

@@ -20,7 +20,6 @@ class University extends Model
         'country',
         'district',
         'state',
-        'email',
         'is_university'
     ];
 

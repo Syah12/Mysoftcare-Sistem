@@ -46,15 +46,16 @@ class PositionTable extends BaseDataTable
             ->emptyStateHeading('Tiada Jawatan')
             ->emptyStateDescription('Senarai jawatan akan dipaparkan di sini')
             ->actions([
+                EditAction::make()
+                    ->icon(false)
+                    ->button()
+                    ->label('Kemaskini')
+                    ->url(fn (Position $record): string => route('position.edit', $record)),
                 ActionGroup::make([
                     ViewAction::make()
                         ->icon(false)
-                        ->label('Semak')
+                        ->label('Lihat')
                         ->url(fn (Position $record): string => route('position.show', $record)),
-                    EditAction::make()
-                        ->icon(false)
-                        ->label('Kemaskini')
-                        ->url(fn (Position $record): string => route('position.edit', $record)),
                     DeleteAction::make('delete')
                         ->label('Padam')
                         ->icon(false)

@@ -1,20 +1,25 @@
 <div class="bg-white p-4 rounded-lg  border border-gray-200">
-    <div class="grid md:grid-cols-2 gap-4 items-center">
-        <div>
-            <div class="text-blue-400 font-medium text-xl">
-                Status Bekerja Syarikat
+    <div class="flex justify-between items-center">
+        <div class="inline-flex items-center gap-6">
+            <div>
+                <img src="{{ asset('img/megaphone (1).png') }}" class="w-16" alt="">
             </div>
-            <div class="text-gray-700 text-sm">
-                Maklumkan kepada pekerja syarikat dibuka atau ditutup pada ({{ $now->format('d/m/Y') }})
+            <div>
+                <div class="font-semibold text-xl">
+                    Status Bekerja Syarikat
+                </div>
+                <div class="text-gray-500 text-sm">
+                    Status bekerja pada hari ini
+                </div>
             </div>
         </div>
-        <div class="flex md:flex-row-reverse">
+        <div>
             @if ($companyStatusMysoftcare->isNotEmpty())
                 @foreach ($companyStatusMysoftcare as $item)
-                    <x-mysoftcare.general.primary-button name="Kemaskini" wireClick="edit({{ $item->id }})" class="bg-blue-500 text-white" />
+                    <x-mysoftcare.general.primary-button name="Kemaskini" wireClick="edit({{ $item->id }})" class="bg-blue-500 text-white hover:bg-blue-700" />
                 @endforeach
             @else
-                <x-mysoftcare.general.primary-button name="Tambah" wireClick="create" class="bg-blue-500 text-white" />
+                <x-mysoftcare.general.primary-button name="Tambah" wireClick="create" class="bg-blue-500 text-white hover:bg-blue-700" />
             @endif
 
             <livewire:company-status.modals.form-modal />

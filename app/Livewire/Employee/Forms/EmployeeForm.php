@@ -35,14 +35,6 @@ class EmployeeForm extends BaseForm
             ->schema([
                 TextInput::make('name')->label('Nama Penuh')->required(),
                 DatePicker::make('birth_date')->label('Tarikh Lahir')->required(),
-                Select::make('gender')
-                    ->label('Jantina')
-                    ->options([
-                        'Lelaki' => 'Lelaki',
-                        'Perempuan' => 'Perempuan',
-                    ])
-                    ->native(false)
-                    ->required(),
                 TextInput::make('phone_number')->label('No. Telefon')->required(),
                 TextInput::make('email')->label('E-mel')->required(),
                 FileUpload::make('image')->label('Gambar Profil')->helperText('Format PNG')->disk('public')->directory('file'),

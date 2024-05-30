@@ -29,7 +29,6 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
-            $table->string('gender')->nullable();
             $table->string('image')->nullable();
             $table->string('office_position')->nullable();
             $table->string('colour')->nullable();

@@ -1,13 +1,12 @@
 <x-admin-layout>
-
     <x-slot name="welcome">
-        <h2 class="font-semibold text-2xl pt-6 pb-6">
-            Selamat datang ke <span class="text-blue-400">Mysoftcare</span>, {{ Auth::user()->name }}.
-        </h2>
-
         <x-mysoftcare.general.breadcrumbs>
             <x-mysoftcare.general.breadcrumbs-item name="Papan Utama" disabled />
         </x-mysoftcare.general.breadcrumbs>
+        <h2 class="font-semibold text-2xl pt-6">
+            Selamat datang, {{ Auth::user()->name }}.
+        </h2>
+        <p class="text-sm">Paparan dikemaskini pada {{ now()->format('d/m/Y') }}</p>
     </x-slot>
 
     <div class="pt-6 pb-6">
@@ -17,19 +16,9 @@
             </div>
             <div class="text-sm text-gray-700 ml-6">
                 <ol class="list-decimal">
-                    <li>Kemaskini <span class="font-medium uppercase">status bekerja syarikat</span></li>
                     <li>Semak <span class="font-medium uppercase">kehadiran pelajar li</span></li>
                 </ol>
             </div>
-            {{-- @if (!empty($incompletedData))
-                <div>
-                    <ul class="font-medium">
-                        @foreach ($incompletedData as $id => $name)
-                            <li><a href="{{ route('university.edit', $id) }}">{{ $name }}</a></li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif --}}
         </div>
     </div>
 
@@ -37,43 +26,25 @@
         <livewire:company-status.pages.index-page />
     </div>
 
-    <div class="grid md:grid-cols-4 sm:grid-cols-1 gap-6 pb-6">
-        <x-mysoftcare.general.stats-card colour="bg-blue-50" route="{{ route('project.index') }}"
-            img="{{ asset('img/software (1).png') }}" name="Bilangan Projek" value="{{ $projectCount }}">
-            <div class="mb-2">
-                <span class="text-gray-500 font-medium">Keseluruhan</span>
+    <div class="grid md:grid-cols-3 sm:grid-cols-1 gap-6 pb-6">
+        <x-mysoftcare.general.stats-card colour="bg-white" route="{{ route('project.index') }}" name="Projek Aktif"
+            value="{{ $projectActiveCount }}/{{ $projectCount }}">
+            <div>
+                <img src="{{ asset('img/clipboard.png') }}" class="w-16" alt="">
             </div>
         </x-mysoftcare.general.stats-card>
-        <x-mysoftcare.general.stats-card colour="bg-blue-50" route="{{ route('project.index') }}"
-            img="{{ asset('img/accept (1).png') }}" name="Bilangan Projek" value="{{ $projectActiveCount }}">
-            <div class="mb-2">
-                <span class="text-blue-400 font-medium">Aktif</span>
+        <x-mysoftcare.general.stats-card colour="bg-white" route="{{ route('intern.index') }}"
+            name="Pelajar LI Diterima" status="Diterima" value="{{ $internAcceptedCount }}">
+            <div>
+                <img src="{{ asset('img/resume.png') }}" class="w-16" alt="">
             </div>
         </x-mysoftcare.general.stats-card>
-        <x-mysoftcare.general.stats-card colour="bg-blue-50" route="{{ route('intern.index') }}"
-            img="{{ asset('img/new-employee.png') }}" name="Bilangan Pelajar LI" status="Diterima"
-            value="{{ $internAcceptedCount }}">
-            <div class="mb-2">
-                <span class="text-green-400 font-medium">Diterima</span>
+        <x-mysoftcare.general.stats-card colour="bg-white" route="{{ route('intern.index') }}" name="Pelajar LI Aktif"
+            value="{{ $internActiveCount }}">
+            <div>
+                <img src="{{ asset('img/checked (1).png') }}" class="w-16" alt="">
             </div>
         </x-mysoftcare.general.stats-card>
-        <x-mysoftcare.general.stats-card colour="bg-blue-50" route="{{ route('intern.index') }}"
-            img="{{ asset('img/attendance.png') }}" name="Bilangan Pelajar LI" value="{{ $internActiveCount }}">
-            <div class="mb-2">
-                <span class="text-blue-400 font-medium">Aktif</span>
-            </div>
-        </x-mysoftcare.general.stats-card>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-8 pb-6">
-        <div class="flex justify-between">
-            <x-mysoftcare.general.stat-link name="Bilangan Projek" value="{{ $projectCount }}"
-                route="{{ 'project.index' }}" />
-        </div>
-        <div class="flex justify-between">
-            <x-mysoftcare.general.stat-link name="Bilangan Pelajar LI" value="{{ $internCount }}"
-                route="{{ 'intern.index' }}" />
-        </div>
     </div>
 
     <div class="grid md:grid-cols-3 sm:grid-cols-1 gap-6 items-start pb-6">
@@ -86,29 +57,68 @@
     </div>
 
     <div class="pb-6">
-        <livewire:dashboard.partials.contract-value-stats />
-    </div>
-
-    <div class="flex justify-between pb-6">
-        <x-mysoftcare.general.stat-link name="Acara hari ini" value="{{ $eventToday }}"
-            route="{{ 'calendar-event.index' }}" />
+        <div class="font-semibold text-xl">
+            Projek Aktif
+        </div>
+        <div class="text-gray-500 mb-4 text-sm">Senarai projek aktif yang terkini</div>
+        <livewire:dashboard.tables.project-active-table />
     </div>
 
     <div class="pb-6">
+        <div class="font-semibold text-xl">
+            Kontrak Projek
+        </div>
+        <div class="text-gray-500 mb-4 text-sm">Jumlah nilai kontrak mengikut status projek</div>
+        <livewire:dashboard.partials.contract-value-stats />
+    </div>
+
+    <div class="pb-6">
+        <div class="font-semibold text-xl">
+            Permohonan Pelajar LI
+        </div>
+        <div class="text-gray-500 mb-4 text-sm">Navigasi permohonan pelajar LI</div>
+        <div class="grid md:grid-cols-3 sm:grid-cols-1 gap-6">
+            <x-mysoftcare.general.stats-card colour="bg-white" route="{{ route('intern.index') }}"
+                name="Permohonan Baru" value="0">
+            </x-mysoftcare.general.stats-card>
+            <x-mysoftcare.general.stats-card colour="bg-white" route="{{ route('intern.index') }}"
+                name="Permohonan Diterima" value="0">
+            </x-mysoftcare.general.stats-card>
+        </div>
+    </div>
+
+    <div class="pb-6">
+        <div class="font-semibold text-xl">
+            Kehadiran Pelajar LI
+        </div>
+        <div class="text-gray-500 mb-4 text-sm">Navigasi kehadiran pelajar LI</div>
+        <div class="grid md:grid-cols-3 sm:grid-cols-1 gap-6">
+            <x-mysoftcare.general.stats-card colour="bg-white" route="{{ route('attendance.index') }}"
+                name="Kehadiran Pelajar LI Aktif" value="0/0">
+            </x-mysoftcare.general.stats-card>
+        </div>
+    </div>
+
+    <div class="pb-6">
+        <div class="font-semibold text-xl">
+            Tambah Pengguna
+        </div>
+        <div class="text-gray-500 mb-4 text-sm">Navigasi permohonan pengguna</div>
+        <div class="grid md:grid-cols-3 sm:grid-cols-1 gap-6">
+            <x-mysoftcare.general.stats-card colour="bg-white" route="{{ route('user.index') }}" name="Pengguna Baru"
+                value="0">
+            </x-mysoftcare.general.stats-card>
+            <x-mysoftcare.general.stats-card colour="bg-white" route="{{ route('user.index') }}" name="Pengguna Aktif"
+                value="0">
+            </x-mysoftcare.general.stats-card>
+        </div>
+    </div>
+
+    <div>
+        <div class="font-semibold text-xl">
+            Kalendar
+        </div>
+        <div class="text-gray-500 mb-4 text-sm">Senarai acara pada hari ini</div>
         <livewire:dashboard.tables.calendar-event-table-today />
     </div>
-
-    <div class="flex justify-between pb-6">
-        <x-mysoftcare.general.stat-link name="Kehadiran hari ini" value="0" route="{{ 'attendance.index' }}" />
-    </div>
-
-    <div class="grid md:grid-cols-2 sm:grid-cols-1 gap-6">
-        {{-- <x-mysoftcare.general.stats-card colour="bg-blue-50" route="attendance.index"
-            img="{{ asset('img/verified-user.png') }}" name="Kehadiran Staf" value="0/0">
-        </x-mysoftcare.general.stats-card> --}}
-            <x-mysoftcare.general.stats-card colour="bg-blue-50" route="{{ route('attendance.index') }}"
-                img="{{ asset('img/verified-user.png') }}" name="Kehadiran Pelajar LI" value="0/0">
-            </x-mysoftcare.general.stats-card>
-    </div>
-
 </x-admin-layout>

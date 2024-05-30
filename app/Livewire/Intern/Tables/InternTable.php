@@ -68,15 +68,16 @@ class InternTable extends BaseDataTable
             ->emptyStateHeading('Tiada Pelajar Industri')
             ->emptyStateDescription('Senarai Pelajar Industri akan dipaparkan di sini')
             ->actions([
+                EditAction::make()
+                    ->label('Kemaskini')
+                    ->icon(false)
+                    ->button()
+                    ->url(fn (Intern $record): string => route('intern.edit', $record)),
                 ActionGroup::make([
                     ViewAction::make()
-                        ->label('Semak')
+                        ->label('Lihat')
                         ->icon(false)
                         ->url(fn (Intern $record): string => route('intern.show', $record)),
-                    EditAction::make()
-                        ->label('Kemaskini')
-                        ->icon(false)
-                        ->url(fn (Intern $record): string => route('intern.edit', $record)),
                     DeleteAction::make('delete')
                         ->label('Padam')
                         ->icon(false)

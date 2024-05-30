@@ -49,15 +49,16 @@ class EmployeeTable extends BaseDataTable
             ->emptyStateHeading('Tiada Staf')
             ->emptyStateDescription('Senarai pekerja akan dipaparkan di sini')
             ->actions([
+                EditAction::make()
+                    ->icon(false)
+                    ->button()
+                    ->label('Kemaskini')
+                    ->url(fn (Employee $record): string => route('employee.edit', $record)),
                 ActionGroup::make([
                     ViewAction::make()
                         ->icon(false)
-                        ->label('Semak')
+                        ->label('Lihat')
                         ->url(fn (Employee $record): string => route('employee.show', $record)),
-                    EditAction::make()
-                        ->icon(false)
-                        ->label('Kemaskini')
-                        ->url(fn (Employee $record): string => route('employee.edit', $record)),
                     DeleteAction::make('delete')
                         ->label('Padam')
                         ->icon(false)

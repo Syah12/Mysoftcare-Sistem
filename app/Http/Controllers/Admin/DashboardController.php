@@ -19,6 +19,7 @@ class DashboardController extends Controller
 
             Gate::authorize(config('mysoftcare.permissions.admin.route.dashboardIndex'));
 
+            $projectActive = Project::where('status', 'Aktif')->latest()->get();
             $projectActiveCount = Project::where('status', 'Aktif')->count();
             $internAcceptedCount = Intern::where('status', 'Diterima')->count();
             $internActiveCount = Intern::where('status', 'Aktif')->count();
@@ -28,8 +29,10 @@ class DashboardController extends Controller
             $totalProjectValueComplete = Project::where('status', 'Selesai')->sum('contract_value');
             $totalProjectValue = Project::sum('contract_value');
             $eventToday = CalendarEvent::whereDate('start_time', now()->toDateString())->count();
+            $projects = Project::where('status', 'Aktif')->latest()->get();
 
             return view('admin.dashboard.index', compact([
+                'projectActive',
                 'projectActiveCount',
                 'internActiveCount',
                 'internAcceptedCount',
@@ -38,7 +41,8 @@ class DashboardController extends Controller
                 'totalProjectValueSuccess',
                 'totalProjectValueComplete',
                 'totalProjectValue',
-                'eventToday'
+                'eventToday',
+                'projects'
             ]));
 
         } else {

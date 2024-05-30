@@ -23,7 +23,7 @@ class CalendarEventTable extends BaseDataTable
 
     public function getColumns()
     {
-        $title = TextColumn::make('title')->label('Tajuk')->sortable();
+        $title = TextColumn::make('title')->label('Acara')->sortable();
         $startTime = TextColumn::make('start_time')->label('Tarikh Dari')->sortable();
         $endTime = TextColumn::make('end_time')->label('Tarikh Hingga')->sortable();
 

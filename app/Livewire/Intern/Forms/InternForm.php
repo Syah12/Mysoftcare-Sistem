@@ -10,6 +10,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\TagsInput;
@@ -35,14 +36,16 @@ class InternForm extends BaseForm
     public function form(Form $form): Form
     {
         return $form->schema([
-            Wizard::make([
-                Step::make('Pelajar Industri')
-                    ->description('Maklumat mengenai Pelajar LI')
-                    ->schema($this->internFormSchema()),
-                Step::make('Permohonan')
-                    ->description('Maklumat mengenai Permohonan Latihan Industri')
-                    ->schema($this->applicationFormSchema()),
-            ])
+            Section::make('Pelajar Industri')
+                ->description('Maklumat mengenai Pelajar LI')
+                ->schema($this->internFormSchema())
+                ->collapsible(),
+            Section::make('Permohonan')
+                ->description('Maklumat mengenai Permohonan Latihan Industri')
+                ->schema($this->applicationFormSchema())
+                ->collapsible()
+
+
         ])
             ->statePath('data')->inlineLabel();
     }

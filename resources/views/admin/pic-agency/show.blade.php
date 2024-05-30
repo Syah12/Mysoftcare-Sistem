@@ -1,15 +1,14 @@
 <x-admin-layout>
-
     <x-slot name="welcome">
-        <h2 class="font-semibold text-2xl pt-6 pb-6">
-            Selamat datang ke <span class="text-blue-400">Mysoftcare</span>, {{ Auth::user()->name }}.
-        </h2>
-
         <x-mysoftcare.general.breadcrumbs>
             <x-mysoftcare.general.breadcrumbs-item route="{{ route('dashboard') }}" name="Papan Utama" />
             <x-mysoftcare.general.breadcrumbs-item route="{{ route('pic.index') }}" name="Senarai PIC Agensi" icon />
-            <x-mysoftcare.general.breadcrumbs-item name="Semak Maklumat PIC Agensi" icon disabled />
+            <x-mysoftcare.general.breadcrumbs-item name="Lihat Maklumat PIC Agensi" icon disabled />
         </x-mysoftcare.general.breadcrumbs>
+        <h2 class="font-semibold text-2xl pt-6">
+            Selamat datang, {{ Auth::user()->name }}.
+        </h2>
+        <p class="text-sm">Paparan dikemaskini pada {{ now()->format('d/m/Y') }}</p>
     </x-slot>
 
     <div class="pt-6">
@@ -19,7 +18,7 @@
                     Maklumat PIC Agensi
                 </div>
                 <div class="text-sm text-gray-700">
-                    Semak Maklumat PIC Agensi
+                    Lihat Maklumat PIC Agensi
                 </div>
             </div>
             <hr>
@@ -40,13 +39,13 @@
                         {{ $pic->phone_number }}
                     </div>
                 </div>
-                <div class="grid md:grid-cols-5 mb-4">
+                <div class="grid md:grid-cols-5">
                     <div>
                         Agensi
                     </div>
                     <div class="font-medium col-span-4">
                         <div x-data="{ expanded: false }">
-                            <button @click="expanded = ! expanded" class="inline-flex items-center gap-4 mb-2">
+                            <button @click="expanded = ! expanded" class="inline-flex items-center gap-4 mb-4">
                                 @if ($pic->agency_id)
                                     {{ $pic->agency->name }}
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -70,15 +69,15 @@
                                         <div>
                                             No. Telefon
                                         </div>
-                                        <div>
+                                        <div class="bg-yellow-50 py-1 px-3 rounded-lg text-center">
                                             {{ $pic->agency->phone_number }}
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-5">
+                                    <div class="grid grid-cols-5 mb-4">
                                         <div>
                                             E-mel
                                         </div>
-                                        <div>
+                                        <div class="bg-yellow-50 py-1 px-3 rounded-lg text-center">
                                             {{ $pic->agency->email }}
                                         </div>
                                     </div>
@@ -97,22 +96,20 @@
                         {{ $pic->position->name }}
                     </div>
                 </div>
-                <div class="bg-blue-50 rounded-lg p-4">
-                    <div class="grid md:grid-cols-5 mb-4">
-                        <div>
-                            Dicipta pada
-                        </div>
-                        <div class="font-medium">
-                            {{ $pic->created_at }}
-                        </div>
+                <div class="grid md:grid-cols-5 mb-4">
+                    <div>
+                        Dicipta pada
                     </div>
-                    <div class="grid md:grid-cols-5">
-                        <div>
-                            Dikemaskini pada
-                        </div>
-                        <div class="font-medium">
-                            {{ $pic->updated_at }}
-                        </div>
+                    <div class="font-medium bg-blue-50 py-1 px-3 rounded-lg text-center">
+                        {{ $pic->created_at }}
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-5">
+                    <div>
+                        Dikemaskini pada
+                    </div>
+                    <div class="font-medium bg-blue-50 py-1 px-3 rounded-lg text-center">
+                        {{ $pic->updated_at }}
                     </div>
                 </div>
             </div>

@@ -48,15 +48,16 @@ class AgencyTable extends BaseDataTable
             ->emptyStateHeading('Tiada Agensi')
             ->emptyStateDescription('Senarai agensi akan dipaparkan di sini')
             ->actions([
+                EditAction::make()
+                    ->icon(false)
+                    ->button()
+                    ->label('Kemaskini')
+                    ->url(fn (Agency $record): string => route('agency.edit', $record)),
                 ActionGroup::make([
                     ViewAction::make()
                         ->icon(false)
-                        ->label('Semak')
+                        ->label('Lihat')
                         ->url(fn (Agency $record): string => route('agency.show', $record)),
-                    EditAction::make()
-                        ->icon(false)
-                        ->label('Kemaskini')
-                        ->url(fn (Agency $record): string => route('agency.edit', $record)),
                     DeleteAction::make('delete')
                         ->label('Padam')
                         ->icon(false)
