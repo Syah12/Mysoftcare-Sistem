@@ -14,10 +14,8 @@
             <div class="font-semibold text-yellow-600 uppercase mb-2">
                 Tindakan anda
             </div>
-            <div class="text-sm text-gray-700 ml-6">
-                <ol class="list-decimal">
-                    <li>Semak <span class="font-medium uppercase">kehadiran pelajar li</span></li>
-                </ol>
+            <div class="text-sm text-gray-700">
+                <div>Semak <span class="font-medium uppercase">kehadiran pelajar LI</span></div>
             </div>
         </div>
     </div>
