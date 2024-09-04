@@ -1,16 +1,4 @@
 <div class="overflow-hidden">
-    {{-- <div class="flex flex-row-reverse gap-4 mb-4">
-        <div>
-            @if ($showNext)
-                <button type="button" wire:click="next" class="text-sm bg-blue-500 py-2 px-4 text-white rounded-lg">~</button>
-            @endif
-        </div>
-        <div>
-            @if ($showPrev)
-                <button type="button" wire:click="prev" class="text-sm bg-blue-500 py-2 px-4 text-white rounded-lg">Sebelum</button>
-            @endif
-        </div>
-    </div> --}}
     <div class="divide-y overflow-hidden">
         <div class="grid grid-cols-5 py-2">
             <div>
@@ -98,16 +86,4 @@
             </div>
         @endif
     </div>
-    {{-- <div class="flex flex-row-reverse gap-4">
-        <div>
-            @if ($showNext)
-                <button type="button" wire:click="next" class="text-blue-500">Seterusnya</button>
-            @endif
-        </div>
-        <div>
-            @if ($showPrev)
-                <button type="button" wire:click="prev" class="text-blue-500">Sebelum</button>
-            @endif
-        </div>
-    </div> --}}
 </div>

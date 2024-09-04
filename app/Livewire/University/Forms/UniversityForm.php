@@ -23,6 +23,7 @@ class UniversityForm extends BaseForm
         $this->university ??= new University();
         $this->data = $this->university->toArray();
         $this->form->fill($this->data);
+        dd($this->data);
     }
 
     public function form(Form $form): Form
